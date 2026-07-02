@@ -1,35 +1,38 @@
 @use '../abstracts' as *;
 
 // ---------------------------------------------------------------------------
-// Footer — dark warm ink, 4 columns, legal bar.
+// Footer — board 1A: light stone (#f6f5ef), hairline top, 4 columns
+// (brand / Explore / Plan / Newsletter), quiet legal bar.
 // ---------------------------------------------------------------------------
 
 .mcb-footer {
-	background: var(--mcb-color-footer);
-	color: rgb(255 255 255 / 72%);
-	font-size: var(--mcb-text-sm);
+	background: var(--mcb-color-stone);
+	border-top: 1px solid #e9e8de;
+	color: var(--mcb-color-muted);
+	font-size: 0.90625rem;
 
 	a {
-		color: rgb(255 255 255 / 72%);
+		color: #4b544a;
 
 		&:hover {
-			color: #fff;
+			color: var(--mcb-color-primary);
 		}
 	}
 
 	&__prefooter {
 		padding-block: var(--mcb-space-6);
-		background: var(--mcb-color-primary);
-		color: #fff;
+		background: var(--mcb-color-tint);
+		border-bottom: 1px solid #dde3d3;
+		color: var(--mcb-color-ink);
 	}
 
 	&__main {
-		padding-block: var(--mcb-space-8) var(--mcb-space-7);
+		padding-block: 4rem 0;
 	}
 
 	&__grid {
 		display: grid;
-		gap: var(--mcb-space-6);
+		gap: var(--mcb-space-6) 3rem;
 		grid-template-columns: 1fr;
 
 		@include mq($breakpoint-sm) {
@@ -37,45 +40,117 @@
 		}
 
 		@include mq($breakpoint-lg) {
-			grid-template-columns: 2fr 1fr 1fr 1fr;
+			grid-template-columns: 1.5fr 1fr 1fr 1.4fr;
+		}
+	}
+
+	// Brand column.
+	&__brand-lockup {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+
+		.mcb-icon {
+			width: 2.125rem;
+			height: 2.4375rem;
 		}
 	}
 
 	&__brand-name {
-		margin: 0 0 var(--mcb-space-3);
-		font-family: var(--mcb-font-display);
-		font-size: var(--mcb-text-xl);
-		color: #fff;
+		margin: 0;
+		font-size: 0.9375rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		line-height: 1;
+		color: #243027;
+		text-transform: uppercase;
+	}
+
+	&__brand-tag {
+		display: block;
+		margin-top: 0.25rem;
+		font-size: 0.5625rem;
+		font-weight: 600;
+		letter-spacing: 0.32em;
+		text-transform: uppercase;
+		color: var(--mcb-color-secondary);
 	}
 
 	&__brand-desc {
-		max-width: 22rem;
-		margin: 0;
+		max-width: 18.125rem;
+		margin: 1.25rem 0 0;
+		line-height: 1.6;
+		color: var(--mcb-color-muted);
 	}
 
 	&__widget-title {
 		margin: 0 0 var(--mcb-space-4);
 		font-family: var(--mcb-font-body);
-		font-size: var(--mcb-text-sm);
-		font-weight: 700;
-		letter-spacing: 0.12em;
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: 0.18em;
 		text-transform: uppercase;
-		color: #fff;
+		color: var(--mcb-color-faint);
 	}
 
 	&__menu,
 	&__widget ul {
 		display: flex;
 		flex-direction: column;
-		gap: var(--mcb-space-2);
+		gap: 0.6875rem;
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
+	// Newsletter (native form widget / Elementor form picks these up).
+	&__widget form,
+	&__newsletter {
+		display: flex;
+		gap: var(--mcb-space-2);
+
+		input[type='email'],
+		input[type='text'] {
+			flex: 1;
+			min-width: 0;
+			padding: 0.75rem 0.875rem;
+			font-family: inherit;
+			font-size: var(--mcb-text-sm);
+			color: #2b322c;
+			background: #fff;
+			border: 1px solid #dddcd0;
+			border-radius: 0.625rem;
+			outline: none;
+
+			&:focus {
+				border-color: var(--mcb-color-secondary);
+			}
+		}
+
+		button,
+		input[type='submit'] {
+			padding: 0.75rem 1.125rem;
+			font-family: inherit;
+			font-size: var(--mcb-text-sm);
+			font-weight: 500;
+			color: #fff;
+			background: var(--mcb-color-primary);
+			border: 0;
+			border-radius: 0.625rem;
+			cursor: pointer;
+
+			&:hover {
+				background: var(--mcb-color-primary-dark);
+			}
+		}
+	}
+
 	&__bottom {
-		border-top: 1px solid rgb(255 255 255 / 12%);
-		padding-block: var(--mcb-space-4);
+		margin-top: 2.5rem;
+		padding-block: 1.375rem 1.875rem;
+		border-top: 1px solid #e6e5db;
+		font-size: 0.78125rem;
+		color: var(--mcb-color-faint);
 	}
 
 	&__bottom-inner {
@@ -93,9 +168,17 @@
 	&__legal-menu {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--mcb-space-4);
+		gap: 1.375rem;
 		margin: 0;
 		padding: 0;
 		list-style: none;
+
+		a {
+			color: var(--mcb-color-faint);
+
+			&:hover {
+				color: var(--mcb-color-primary);
+			}
+		}
 	}
 }

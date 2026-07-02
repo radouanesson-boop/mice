@@ -17,23 +17,23 @@ body.mcb {
 	select,
 	textarea {
 		width: 100%;
-		padding: 0.75rem 1rem;
+		padding: 0.875rem 1rem;
 		font-family: var(--mcb-font-body);
 		font-size: var(--mcb-text-base);
-		color: var(--mcb-color-ink);
+		color: #3c443c;
 		background: var(--mcb-color-surface);
-		border: 1.5px solid var(--mcb-color-line);
+		border: 1px solid #e2e1d5;
 		border-radius: var(--mcb-radius);
 		transition: border-color var(--mcb-duration) var(--mcb-ease), box-shadow var(--mcb-duration) var(--mcb-ease);
 
 		&:focus {
-			border-color: var(--mcb-color-primary);
-			box-shadow: 0 0 0 3px var(--mcb-color-primary-soft);
+			border-color: var(--mcb-color-secondary);
+			box-shadow: 0 0 0 3px var(--mcb-color-tint);
 			outline: none;
 		}
 
 		&::placeholder {
-			color: var(--mcb-color-muted);
+			color: var(--mcb-color-faint);
 		}
 	}
 
@@ -45,11 +45,12 @@ body.mcb {
 		color: var(--mcb-color-ink);
 	}
 
-	// Native submit buttons inherit the primary button look.
+	// Native submit buttons inherit the primary pill look.
 	button[type='submit']:not(.mcb-btn),
 	input[type='submit']:not(.mcb-btn) {
-		padding: 0.75rem 1.5rem;
-		font-weight: 600;
+		padding: 0.875rem 1.625rem;
+		font-family: var(--mcb-font-body);
+		font-weight: 500;
 		color: #fff;
 		background: var(--mcb-color-primary);
 		border: 0;

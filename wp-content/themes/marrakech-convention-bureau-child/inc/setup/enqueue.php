@@ -80,8 +80,8 @@ add_action(
 	'wp_head',
 	function () {
 		$fonts = array(
-			'/assets/fonts/marcellus-latin-400.woff2',
-			'/assets/fonts/inter-latin-var.woff2',
+			'/assets/fonts/jost-latin-var.woff2',
+			'/assets/fonts/newsreader-italic-latin-var.woff2',
 		);
 
 		foreach ( $fonts as $font ) {

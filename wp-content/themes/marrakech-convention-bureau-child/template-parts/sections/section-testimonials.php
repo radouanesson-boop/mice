@@ -1,9 +1,10 @@
 <?php
 /**
- * Testimonials — pulls a "testimonial" post type when one exists (Brikk
- * installs often register one), otherwise renders nothing rather than
- * hardcoding content. In Elementor, use its native testimonial/loop
- * widgets styled by .mcb-testimonial classes.
+ * Featured pull-quote — board 1A: one large centered Newsreader italic
+ * quote with attribution. Pulls the most recent "testimonial" post when
+ * that post type exists; renders nothing otherwise (no hardcoded content).
+ *
+ * Content model: quote = post content, name = post title, role = excerpt.
  *
  * @package MCB
  */
@@ -19,7 +20,7 @@ if ( ! post_type_exists( $mcb_post_type ) ) {
 $mcb_query = new WP_Query(
 	array(
 		'post_type'      => $mcb_post_type,
-		'posts_per_page' => 3,
+		'posts_per_page' => 1,
 		'post_status'    => 'publish',
 		'no_found_rows'  => true,
 	)
@@ -28,45 +29,22 @@ $mcb_query = new WP_Query(
 if ( ! $mcb_query->have_posts() ) {
 	return;
 }
-?>
-<section class="mcb-section mcb-section--testimonials">
-	<div class="mcb-container">
 
-		<?php
-		mcb_part(
-			'components/section-heading',
-			array(
-				'kicker' => __( 'Testimonials', 'mcb' ),
-				'title'  => __( 'Planners on Marrakech', 'mcb' ),
-			)
-		);
-		?>
+while ( $mcb_query->have_posts() ) :
+	$mcb_query->the_post();
+	?>
+	<figure class="mcb-quote">
+		<blockquote class="mcb-quote__text">
+			<?php echo esc_html( wp_strip_all_tags( get_the_content() ) ); ?>
+		</blockquote>
+		<figcaption>
+			<div class="mcb-quote__name"><?php the_title(); ?></div>
+			<?php if ( has_excerpt() ) : ?>
+				<div class="mcb-quote__role"><?php echo esc_html( get_the_excerpt() ); ?></div>
+			<?php endif; ?>
+		</figcaption>
+	</figure>
+	<?php
+endwhile;
 
-		<div class="mcb-grid mcb-grid--cols-3">
-			<?php
-			while ( $mcb_query->have_posts() ) :
-				$mcb_query->the_post();
-				?>
-				<figure class="mcb-testimonial">
-					<blockquote class="mcb-testimonial__quote">
-						<?php mcb_icon( 'quote' ); ?>
-						<?php the_content(); ?>
-					</blockquote>
-					<figcaption class="mcb-testimonial__author">
-						<?php if ( has_post_thumbnail() ) : ?>
-							<?php the_post_thumbnail( 'thumbnail', array( 'class' => 'mcb-testimonial__avatar', 'loading' => 'lazy' ) ); ?>
-						<?php endif; ?>
-						<div>
-							<span class="mcb-testimonial__name"><?php the_title(); ?></span>
-							<?php if ( has_excerpt() ) : ?>
-								<span class="mcb-testimonial__role"><?php echo esc_html( get_the_excerpt() ); ?></span>
-							<?php endif; ?>
-						</div>
-					</figcaption>
-				</figure>
-			<?php endwhile; ?>
-			<?php wp_reset_postdata(); ?>
-		</div>
-
-	</div>
-</section>
+wp_reset_postdata();

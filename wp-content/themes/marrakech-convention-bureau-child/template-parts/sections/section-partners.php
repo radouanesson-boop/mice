@@ -1,47 +1,33 @@
 <?php
 /**
- * Partners / institutional logos.
+ * Partners strip — board 1A: single quiet row. Label left, partner names
+ * (or grayscale logos) spread across the row.
  *
- * Logos come from a WP menu of custom links with images NOT hardcoded:
- * source order is `mcb/partners` filter (array of [name, logo_id, url])
- * → attachments tagged via theme mod → nothing.
- *
- * In Elementor: use an Image Carousel styled by .mcb-partners classes.
+ *     add_filter( 'mcb/partners', fn() => [
+ *         [ 'name' => 'Royal Mansour' ],
+ *         [ 'name' => 'Four Seasons', 'logo_id' => 42, 'url' => 'https://…' ],
+ *     ] );
  *
  * @package MCB
  */
 
 defined( 'ABSPATH' ) || exit;
 
-/**
- * Provide partner logos:
- *
- *     add_filter( 'mcb/partners', fn() => [
- *         [ 'name' => 'GL events', 'logo_id' => 42, 'url' => 'https://…' ],
- *     ] );
- */
 $mcb_partners = apply_filters( 'mcb/partners', array() );
 
 if ( empty( $mcb_partners ) ) {
 	return;
 }
-?>
-<section class="mcb-section mcb-section--partners mcb-partners">
-	<div class="mcb-container">
 
-		<?php
-		mcb_part(
-			'components/section-heading',
-			array(
-				'kicker' => __( 'Partners', 'mcb' ),
-				'title'  => __( 'Trusted by institutions & industry', 'mcb' ),
-			)
-		);
-		?>
+$mcb_label = apply_filters( 'mcb/partners_label', __( 'Our hospitality partners', 'mcb' ) );
+?>
+<div class="mcb-partners">
+	<div class="mcb-container mcb-partners__inner">
+		<p class="mcb-partners__label"><?php echo esc_html( $mcb_label ); ?></p>
 
 		<ul class="mcb-partners__row">
 			<?php foreach ( $mcb_partners as $mcb_partner ) : ?>
-				<li class="mcb-partners__item">
+				<li>
 					<?php if ( ! empty( $mcb_partner['url'] ) ) : ?>
 						<a href="<?php echo esc_url( $mcb_partner['url'] ); ?>" rel="noopener" target="_blank" aria-label="<?php echo esc_attr( $mcb_partner['name'] ?? '' ); ?>">
 					<?php endif; ?>
@@ -60,6 +46,5 @@ if ( empty( $mcb_partners ) ) {
 				</li>
 			<?php endforeach; ?>
 		</ul>
-
 	</div>
-</section>
+</div>

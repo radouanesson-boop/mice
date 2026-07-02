@@ -1,8 +1,10 @@
 <?php
 /**
- * Site footer: pre-footer CTA strip, 4 widget columns, legal bar.
+ * Site footer — board 1A: light stone, hairline top. Four columns
+ * (brand + tagline / Explore / Plan / Newsletter) and a quiet legal bar.
  *
- * Entirely widget/menu driven — no hardcoded content.
+ * Entirely widget/menu driven — the design's column content maps to the
+ * MCB Footer widget areas; menus are the no-widget fallback.
  *
  * @package MCB
  */
@@ -28,8 +30,16 @@ defined( 'ABSPATH' ) || exit;
 					dynamic_sidebar( 'mcb-footer-brand' );
 				} else {
 					?>
-					<p class="mcb-footer__brand-name"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></p>
-					<p class="mcb-footer__brand-desc"><?php echo esc_html( get_bloginfo( 'description' ) ); ?></p>
+					<div class="mcb-footer__brand-lockup">
+						<?php mcb_icon( 'logo-mark' ); ?>
+						<div>
+							<p class="mcb-footer__brand-name"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></p>
+							<span class="mcb-footer__brand-tag"><?php echo esc_html( get_bloginfo( 'description' ) ); ?></span>
+						</div>
+					</div>
+					<p class="mcb-footer__brand-desc">
+						<?php echo esc_html( get_theme_mod( 'mcb_footer_tagline', __( 'The official Convention Bureau for Marrakech. Feel the Bahja Spirit.', 'mcb' ) ) ); ?>
+					</p>
 					<?php
 				}
 				?>
@@ -49,6 +59,12 @@ defined( 'ABSPATH' ) || exit;
 					if ( is_active_sidebar( $mcb_sidebar ) ) {
 						dynamic_sidebar( $mcb_sidebar );
 					} else {
+						$mcb_menu_obj = wp_get_nav_menu_object( get_nav_menu_locations()[ $mcb_menu ] ?? 0 );
+
+						if ( $mcb_menu_obj ) {
+							echo '<h2 class="mcb-footer__widget-title">' . esc_html( $mcb_menu_obj->name ) . '</h2>';
+						}
+
 						wp_nav_menu(
 							array(
 								'theme_location' => $mcb_menu,
@@ -64,36 +80,38 @@ defined( 'ABSPATH' ) || exit;
 			<?php endforeach; ?>
 
 		</div>
-	</div>
 
-	<div class="mcb-footer__bottom">
-		<div class="mcb-container mcb-footer__bottom-inner">
-			<p class="mcb-footer__copyright">
-				<?php
-				printf(
-					/* translators: 1: year, 2: site name. */
-					esc_html__( '© %1$s %2$s. All rights reserved.', 'mcb' ),
-					esc_html( gmdate( 'Y' ) ),
-					esc_html( get_bloginfo( 'name' ) )
-				);
-				?>
-			</p>
+		<div class="mcb-container">
+			<div class="mcb-footer__bottom">
+				<div class="mcb-footer__bottom-inner">
+					<p class="mcb-footer__copyright">
+						<?php
+						printf(
+							/* translators: 1: year, 2: site name. */
+							esc_html__( '© %1$s %2$s. All rights reserved.', 'mcb' ),
+							esc_html( gmdate( 'Y' ) ),
+							esc_html( get_bloginfo( 'name' ) )
+						);
+						?>
+					</p>
 
-			<?php if ( has_nav_menu( 'mcb_footer_legal' ) ) : ?>
-				<nav class="mcb-footer__legal" aria-label="<?php esc_attr_e( 'Legal', 'mcb' ); ?>">
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'mcb_footer_legal',
-							'container'      => false,
-							'menu_class'     => 'mcb-footer__legal-menu',
-							'depth'          => 1,
-							'fallback_cb'    => false,
-						)
-					);
-					?>
-				</nav>
-			<?php endif; ?>
+					<?php if ( has_nav_menu( 'mcb_footer_legal' ) ) : ?>
+						<nav class="mcb-footer__legal" aria-label="<?php esc_attr_e( 'Legal', 'mcb' ); ?>">
+							<?php
+							wp_nav_menu(
+								array(
+									'theme_location' => 'mcb_footer_legal',
+									'container'      => false,
+									'menu_class'     => 'mcb-footer__legal-menu',
+									'depth'          => 1,
+									'fallback_cb'    => false,
+								)
+							);
+							?>
+						</nav>
+					<?php endif; ?>
+				</div>
+			</div>
 		</div>
 	</div>
 

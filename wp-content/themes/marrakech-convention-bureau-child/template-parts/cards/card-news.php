@@ -1,6 +1,7 @@
 <?php
 /**
- * News/blog card.
+ * Insight/news card — board 1A: borderless. Image (13px radius), sage
+ * category label, title, read time.
  *
  * @package MCB
  */
@@ -9,6 +10,9 @@ defined( 'ABSPATH' ) || exit;
 
 $mcb_id       = (int) ( $args['post_id'] ?? get_the_ID() );
 $mcb_category = get_the_category( $mcb_id );
+
+// Estimate read time from content length (≈220 wpm), fine for a card meta.
+$mcb_minutes = max( 1, (int) round( str_word_count( wp_strip_all_tags( get_post_field( 'post_content', $mcb_id ) ) ) / 220 ) );
 ?>
 <article class="mcb-card mcb-card--news">
 
@@ -17,25 +21,22 @@ $mcb_category = get_the_category( $mcb_id );
 	</a>
 
 	<div class="mcb-card__body">
-		<div class="mcb-card__eyebrow">
-			<?php if ( ! empty( $mcb_category ) ) : ?>
-				<span class="mcb-badge mcb-badge--soft"><?php echo esc_html( $mcb_category[0]->name ); ?></span>
-			<?php endif; ?>
-			<time class="mcb-card__time" datetime="<?php echo esc_attr( get_the_date( 'c', $mcb_id ) ); ?>">
-				<?php echo esc_html( get_the_date( '', $mcb_id ) ); ?>
-			</time>
-		</div>
+		<?php if ( ! empty( $mcb_category ) ) : ?>
+			<p class="mcb-card__eyebrow"><?php echo esc_html( $mcb_category[0]->name ); ?></p>
+		<?php endif; ?>
 
 		<h3 class="mcb-card__title">
 			<a href="<?php echo esc_url( get_permalink( $mcb_id ) ); ?>"><?php echo esc_html( get_the_title( $mcb_id ) ); ?></a>
 		</h3>
 
-		<p class="mcb-card__excerpt"><?php echo esc_html( get_the_excerpt( $mcb_id ) ); ?></p>
-
-		<a class="mcb-card__link" href="<?php echo esc_url( get_permalink( $mcb_id ) ); ?>">
-			<?php esc_html_e( 'Read more', 'mcb' ); ?>
-			<?php mcb_icon( 'arrow-right' ); ?>
-		</a>
+		<div class="mcb-card__footer">
+			<span class="mcb-card__time">
+				<?php
+				/* translators: %d: estimated minutes. */
+				printf( esc_html__( '%d min read', 'mcb' ), (int) $mcb_minutes );
+				?>
+			</span>
+		</div>
 	</div>
 
 </article>

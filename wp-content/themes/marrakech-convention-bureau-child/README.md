@@ -34,7 +34,7 @@ marrakech-convention-bureau-child/
 │   ├── js/main.js                Vanilla JS: drawer, mega menu, sticky header,
 │   │                             counters, accordion (~2 KB gzip, deferred)
 │   ├── svg/                      Inline SVG icon set (currentColor)
-│   └── fonts/                    Self-hosted Marcellus + Inter (variable)
+│   └── fonts/                    Self-hosted Jost + Newsreader italic (variable)
 │
 ├── inc/
 │   ├── setup/                    Theme supports, enqueue, menus, image sizes, widgets

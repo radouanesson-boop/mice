@@ -1,10 +1,12 @@
 <?php
 /**
- * Site header: top bar + brand + primary nav (mega-menu capable) + CTA.
+ * Site header — design board 1A: white 84px bar, brand lockup (Bahja mark +
+ * VISIT MARRAKECH / CONVENTION BUREAU), centered nav with mega menu,
+ * EN/FR switcher, search, "Submit an RFP" pill.
  *
- * All content is editor-managed: logo via Customizer (custom-logo, Brikk
- * inherits core support), menus via Appearance → Menus, CTA via the
- * `mcb/header_cta` filter or Customizer option when available.
+ * All content is editor-managed: logo via Customizer (custom-logo), menus
+ * via Appearance → Menus, CTA via theme mods / `mcb/header_cta`, languages
+ * via Polylang/WPML when installed.
  *
  * @package MCB
  */
@@ -14,8 +16,8 @@ defined( 'ABSPATH' ) || exit;
 $mcb_cta = apply_filters(
 	'mcb/header_cta',
 	array(
-		'text' => get_theme_mod( 'mcb_header_cta_text', __( 'Plan your event', 'mcb' ) ),
-		'url'  => get_theme_mod( 'mcb_header_cta_url', home_url( '/plan-your-event/' ) ),
+		'text' => get_theme_mod( 'mcb_header_cta_text', __( 'Submit an RFP', 'mcb' ) ),
+		'url'  => get_theme_mod( 'mcb_header_cta_url', home_url( '/submit-rfp/' ) ),
 	)
 );
 ?>
@@ -49,8 +51,12 @@ $mcb_cta = apply_filters(
 				<?php if ( has_custom_logo() ) : ?>
 					<?php the_custom_logo(); ?>
 				<?php else : ?>
-					<a class="mcb-header__brand-text" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<span class="mcb-header__brand-mark"><?php mcb_icon( 'logo-mark' ); ?></span>
+						<span>
+							<span class="mcb-header__brand-name"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span>
+							<span class="mcb-header__brand-tag"><?php echo esc_html( get_bloginfo( 'description' ) ); ?></span>
+						</span>
 					</a>
 				<?php endif; ?>
 			</div>
@@ -71,8 +77,21 @@ $mcb_cta = apply_filters(
 			</nav>
 
 			<div class="mcb-header__actions">
+
+				<?php if ( function_exists( 'pll_the_languages' ) ) : ?>
+					<ul class="mcb-header__lang">
+						<?php pll_the_languages( array( 'display_names_as' => 'slug', 'hide_if_no_translation' => 0, 'echo' => 1, 'raw' => 0 ) ); // phpcs:ignore ?>
+					</ul>
+				<?php elseif ( has_action( 'wpml_add_language_selector' ) ) : ?>
+					<div class="mcb-header__lang"><?php do_action( 'wpml_add_language_selector' ); ?></div>
+				<?php endif; ?>
+
+				<a class="mcb-header__search" href="<?php echo esc_url( home_url( '/?s=' ) ); ?>" aria-label="<?php esc_attr_e( 'Search', 'mcb' ); ?>">
+					<?php mcb_icon( 'search' ); ?>
+				</a>
+
 				<?php if ( ! empty( $mcb_cta['text'] ) ) : ?>
-					<a class="mcb-btn mcb-btn--primary mcb-header__cta" href="<?php echo esc_url( $mcb_cta['url'] ); ?>">
+					<a class="mcb-btn mcb-btn--primary mcb-btn--sm mcb-header__cta" href="<?php echo esc_url( $mcb_cta['url'] ); ?>">
 						<?php echo esc_html( $mcb_cta['text'] ); ?>
 					</a>
 				<?php endif; ?>

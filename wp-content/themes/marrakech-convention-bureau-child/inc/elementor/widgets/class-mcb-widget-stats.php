@@ -2,9 +2,9 @@
 /**
  * Elementor widget: MCB Stats.
  *
- * Repeater of animated counters ("120+ venues", "40k hotel beds",
- * "8 min airport transfer"). Values, suffixes and labels are all
- * client-editable; the count-up animation lives in assets/js/main.js.
+ * The "Trusted at the highest level" reference band — hairline-top columns
+ * with a value (text like "COP22" or a number that counts up) and a label.
+ * Renders template-parts/sections/section-stats.php.
  *
  * @package MCB
  */
@@ -36,25 +36,46 @@ class MCB_Widget_Stats extends \Elementor\Widget_Base {
 	}
 
 	protected function register_controls() {
-		$this->start_controls_section( 'section_items', array( 'label' => __( 'Statistics', 'mcb' ) ) );
+		$this->start_controls_section( 'section_items', array( 'label' => __( 'Content', 'mcb' ) ) );
+
+		$this->add_control(
+			'kicker',
+			array(
+				'label'   => __( 'Eyebrow', 'mcb' ),
+				'type'    => Controls_Manager::TEXT,
+				'default' => __( 'Proven ground', 'mcb' ),
+				'dynamic' => array( 'active' => true ),
+			)
+		);
+
+		$this->add_control(
+			'title',
+			array(
+				'label'   => __( 'Title', 'mcb' ),
+				'type'    => Controls_Manager::TEXT,
+				'default' => __( 'Trusted at the highest level', 'mcb' ),
+				'dynamic' => array( 'active' => true ),
+			)
+		);
 
 		$repeater = new Repeater();
 
 		$repeater->add_control(
 			'value',
 			array(
-				'label'   => __( 'Number', 'mcb' ),
-				'type'    => Controls_Manager::NUMBER,
-				'default' => 120,
+				'label'       => __( 'Value', 'mcb' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => 'COP22',
+				'description' => __( 'Text ("COP22") or a number (counts up on scroll).', 'mcb' ),
 			)
 		);
 
 		$repeater->add_control(
 			'suffix',
 			array(
-				'label'   => __( 'Suffix', 'mcb' ),
+				'label'   => __( 'Suffix (numbers only)', 'mcb' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => '+',
+				'default' => '',
 			)
 		);
 
@@ -63,7 +84,7 @@ class MCB_Widget_Stats extends \Elementor\Widget_Base {
 			array(
 				'label'   => __( 'Label', 'mcb' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => __( 'Event venues', 'mcb' ),
+				'default' => __( 'UN Climate Change Conference', 'mcb' ),
 			)
 		);
 
@@ -75,11 +96,21 @@ class MCB_Widget_Stats extends \Elementor\Widget_Base {
 				'fields'      => $repeater->get_controls(),
 				'title_field' => '{{{ value }}}{{{ suffix }}} — {{{ label }}}',
 				'default'     => array(
-					array( 'value' => 120, 'suffix' => '+', 'label' => __( 'Event venues', 'mcb' ) ),
-					array( 'value' => 40, 'suffix' => 'k', 'label' => __( 'Hotel beds', 'mcb' ) ),
-					array( 'value' => 26, 'suffix' => '', 'label' => __( 'Direct air routes', 'mcb' ) ),
-					array( 'value' => 15, 'suffix' => ' min', 'label' => __( 'Airport to medina', 'mcb' ) ),
+					array( 'value' => 'COP22', 'suffix' => '', 'label' => __( 'UN Climate Change Conference', 'mcb' ) ),
+					array( 'value' => 'IMF · World Bank', 'suffix' => '', 'label' => __( 'Annual Meetings 2023', 'mcb' ) ),
+					array( 'value' => 'GITEX Africa', 'suffix' => '', 'label' => __( 'Largest tech event in Africa', 'mcb' ) ),
+					array( 'value' => 'PURE Life', 'suffix' => '', 'label' => __( 'Luxury experiential travel', 'mcb' ) ),
 				),
+			)
+		);
+
+		$this->add_control(
+			'show_quote',
+			array(
+				'label'        => __( 'Show featured testimonial quote', 'mcb' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'return_value' => 'yes',
 			)
 		);
 
@@ -89,6 +120,14 @@ class MCB_Widget_Stats extends \Elementor\Widget_Base {
 	protected function render() {
 		$s = $this->get_settings_for_display();
 
-		mcb_part( 'sections/section-stats', array( 'items' => is_array( $s['items'] ) ? $s['items'] : array() ) );
+		mcb_part(
+			'sections/section-stats',
+			array(
+				'kicker' => $s['kicker'],
+				'title'  => $s['title'],
+				'items'  => is_array( $s['items'] ) ? $s['items'] : array(),
+				'quote'  => 'yes' === $s['show_quote'],
+			)
+		);
 	}
 }

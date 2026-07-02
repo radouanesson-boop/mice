@@ -1,13 +1,23 @@
 <?php
 /**
- * Latest news section (standard posts).
+ * Insights section — board 1A: paper background, eyebrow + title with
+ * "Read the journal →" link, three borderless article cards.
  *
  * @package MCB
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$args = wp_parse_args( $args ?? array(), array( 'count' => 3 ) );
+$args = wp_parse_args(
+	$args ?? array(),
+	array(
+		'kicker'    => __( 'Insights', 'mcb' ),
+		'title'     => __( 'Intelligence for event professionals', 'mcb' ),
+		'more_text' => __( 'Read the journal', 'mcb' ),
+		'more_url'  => get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/insights/' ),
+		'count'     => 3,
+	)
+);
 
 $mcb_query = new WP_Query(
 	array(
@@ -23,15 +33,17 @@ if ( ! $mcb_query->have_posts() ) {
 	return;
 }
 ?>
-<section class="mcb-section mcb-section--news">
+<section class="mcb-section mcb-section--paper mcb-section--news">
 	<div class="mcb-container">
 
 		<?php
 		mcb_part(
 			'components/section-heading',
 			array(
-				'kicker' => __( 'News', 'mcb' ),
-				'title'  => __( 'Latest from the bureau', 'mcb' ),
+				'kicker'    => $args['kicker'],
+				'title'     => $args['title'],
+				'link_text' => $args['more_text'],
+				'link_url'  => $args['more_url'],
 			)
 		);
 		?>

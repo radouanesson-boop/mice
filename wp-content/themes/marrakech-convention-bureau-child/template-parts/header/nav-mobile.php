@@ -1,10 +1,8 @@
 <?php
 /**
- * Mobile navigation drawer.
- *
- * Uses the dedicated `mcb_mobile` menu when assigned, otherwise falls back
- * to the primary menu. Sub-menus become tap-to-expand accordions (JS in
- * assets/js/main.js).
+ * Mobile navigation — design board 1C: full-screen deep-green takeover,
+ * large light links with sage arrows, EN/FR + white RFP button at the
+ * bottom. Sub-menus expand in place (JS in assets/js/main.js).
  *
  * @package MCB
  */
@@ -12,6 +10,14 @@
 defined( 'ABSPATH' ) || exit;
 
 $mcb_location = has_nav_menu( 'mcb_mobile' ) ? 'mcb_mobile' : 'mcb_primary';
+
+$mcb_cta = apply_filters(
+	'mcb/header_cta',
+	array(
+		'text' => get_theme_mod( 'mcb_header_cta_text', __( 'Submit an RFP', 'mcb' ) ),
+		'url'  => get_theme_mod( 'mcb_header_cta_url', home_url( '/submit-rfp/' ) ),
+	)
+);
 ?>
 <div class="mcb-mobile-nav" id="mcb-mobile-nav" data-mcb-mobile-nav hidden>
 	<div class="mcb-mobile-nav__scrim" data-mcb-nav-close></div>
@@ -41,18 +47,14 @@ $mcb_location = has_nav_menu( 'mcb_mobile' ) ? 'mcb_mobile' : 'mcb_primary';
 		</nav>
 
 		<div class="mcb-mobile-nav__footer">
-			<?php
-			$mcb_cta = apply_filters(
-				'mcb/header_cta',
-				array(
-					'text' => get_theme_mod( 'mcb_header_cta_text', __( 'Plan your event', 'mcb' ) ),
-					'url'  => get_theme_mod( 'mcb_header_cta_url', home_url( '/plan-your-event/' ) ),
-				)
-			);
+			<?php if ( function_exists( 'pll_the_languages' ) ) : ?>
+				<ul class="mcb-mobile-nav__lang">
+					<?php pll_the_languages( array( 'display_names_as' => 'slug', 'hide_if_no_translation' => 0, 'echo' => 1 ) ); // phpcs:ignore ?>
+				</ul>
+			<?php endif; ?>
 
-			if ( ! empty( $mcb_cta['text'] ) ) :
-				?>
-				<a class="mcb-btn mcb-btn--primary mcb-btn--block" href="<?php echo esc_url( $mcb_cta['url'] ); ?>">
+			<?php if ( ! empty( $mcb_cta['text'] ) ) : ?>
+				<a class="mcb-btn mcb-btn--block" href="<?php echo esc_url( $mcb_cta['url'] ); ?>">
 					<?php echo esc_html( $mcb_cta['text'] ); ?>
 				</a>
 			<?php endif; ?>

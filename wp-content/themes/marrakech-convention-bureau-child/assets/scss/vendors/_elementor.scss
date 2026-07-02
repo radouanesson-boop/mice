@@ -18,19 +18,22 @@ body.mcb {
 	// editors can still override per-widget.
 	.elementor-widget-heading .elementor-heading-title {
 		font-family: var(--mcb-font-display);
+		font-weight: 300;
+		letter-spacing: var(--mcb-track-tight);
 		color: var(--mcb-color-ink);
 	}
 
 	.elementor-button {
 		border-radius: var(--mcb-radius-pill);
-		font-weight: 600;
+		font-weight: 500;
 	}
 
-	// Elementor testimonial/image-carousel widgets reuse MCB card cosmetics.
-	.elementor-testimonial-wrapper {
-		background: var(--mcb-color-surface);
-		border: 1px solid var(--mcb-color-line);
-		border-radius: var(--mcb-radius-lg);
-		padding: var(--mcb-space-6);
+	// Elementor testimonials adopt the design's editorial pull-quote voice.
+	.elementor-testimonial-wrapper .elementor-testimonial-content {
+		font-family: var(--mcb-font-em);
+		font-style: italic;
+		font-size: var(--mcb-text-2xl);
+		line-height: 1.36;
+		color: #2b3a2d;
 	}
 }

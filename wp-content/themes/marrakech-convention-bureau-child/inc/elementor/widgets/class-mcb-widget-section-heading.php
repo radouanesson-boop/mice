@@ -84,7 +84,7 @@ class MCB_Widget_Section_Heading extends \Elementor\Widget_Base {
 					'left'   => array( 'title' => __( 'Left', 'mcb' ), 'icon' => 'eicon-text-align-left' ),
 					'center' => array( 'title' => __( 'Center', 'mcb' ), 'icon' => 'eicon-text-align-center' ),
 				),
-				'default' => 'center',
+				'default' => 'left',
 			)
 		);
 

@@ -1,32 +1,31 @@
 <?php
 /**
- * Experience card — tall imagery, duration and group size.
+ * Experience card — board 1A: full-image overlay card (344px), bottom
+ * gradient, on-dark category label + name. Structure is self-contained
+ * because the image fills the card.
  *
  * @package MCB
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$mcb_id = (int) ( $args['post_id'] ?? get_the_ID() );
+$mcb_id   = (int) ( $args['post_id'] ?? get_the_ID() );
+$mcb_term = mcb_listing_primary_term( $mcb_id );
+?>
+<article class="mcb-card mcb-card--experience">
 
-$mcb_duration = mcb_listing_meta( 'duration', $mcb_id );
-$mcb_group    = mcb_listing_meta( 'group_size', $mcb_id );
+	<span class="mcb-card__media mcb-media" aria-hidden="true">
+		<?php mcb_thumbnail( $mcb_id, 'mcb-card-tall' ); ?>
+	</span>
 
-mcb_part(
-	'cards/card-listing',
-	array(
-		'post_id' => $mcb_id,
-		'kind'    => 'experience',
-		'size'    => 'mcb-card-tall',
-		'meta'    => array(
-			array(
-				'icon' => 'clock',
-				'text' => $mcb_duration,
-			),
-			array(
-				'icon' => 'users',
-				'text' => $mcb_group ? sprintf( /* translators: %s: group size. */ __( 'Groups up to %s', 'mcb' ), number_format_i18n( (float) $mcb_group ) ) : '',
-			),
-		),
-	)
-);
+	<div class="mcb-card__body">
+		<?php if ( $mcb_term ) : ?>
+			<p class="mcb-card__eyebrow"><?php echo esc_html( $mcb_term->name ); ?></p>
+		<?php endif; ?>
+
+		<h3 class="mcb-card__title">
+			<a href="<?php echo esc_url( get_permalink( $mcb_id ) ); ?>"><?php echo esc_html( get_the_title( $mcb_id ) ); ?></a>
+		</h3>
+	</div>
+
+</article>

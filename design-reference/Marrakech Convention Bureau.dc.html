@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<meta name="design_doc_mode" content="canvas">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#e7e5dd;font-family:'Jost',system-ui,-apple-system,sans-serif;color:#2b322c;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  ::selection{background:#7d985b;color:#fff}
+  .em{font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:500;color:#7d985b}
+</style>
+<template id="__bundler_thumbnail">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" rx="18" fill="#284236"/><path d="M50 24c14 0 22 11 22 26s-9 26-22 26-22-11-22-26 8-26 22-26Z" fill="#7d985b"/><g stroke="#fff" stroke-width="4" fill="none"><path d="M40 45h12v18"/><path d="M60 63h-9v-9h9"/></g></svg>
+</template>
+</helmet>
+
+<nav style="position:fixed;left:26px;bottom:22px;z-index:60;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border:1px solid #d8d6cc;border-radius:14px;padding:12px 14px;box-shadow:0 18px 50px -24px rgba(40,66,54,.5);font-size:12px;letter-spacing:.02em;display:flex;flex-direction:column;gap:7px;min-width:190px">
+  <div style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#8a9184;font-weight:600;margin-bottom:2px">Proposal boards</div>
+  <a href="#1a" style="color:#2f382f;text-decoration:none;display:flex;gap:9px;align-items:center"><b style="background:#284236;color:#fff;border-radius:5px;font-size:10px;padding:2px 6px;letter-spacing:.06em">1A</b> Homepage — Editorial</a>
+  <a href="#1b" style="color:#2f382f;text-decoration:none;display:flex;gap:9px;align-items:center"><b style="background:#284236;color:#fff;border-radius:5px;font-size:10px;padding:2px 6px;letter-spacing:.06em">1B</b> Homepage — Structured</a>
+  <a href="#1c" style="color:#2f382f;text-decoration:none;display:flex;gap:9px;align-items:center"><b style="background:#284236;color:#fff;border-radius:5px;font-size:10px;padding:2px 6px;letter-spacing:.06em">1C</b> Mobile concept</a>
+  <a href="#1d" style="color:#2f382f;text-decoration:none;display:flex;gap:9px;align-items:center"><b style="background:#284236;color:#fff;border-radius:5px;font-size:10px;padding:2px 6px;letter-spacing:.06em">1D</b> Design system</a>
+</nav>
+
+<section id="1a" style="padding:74px 92px 40px;scroll-margin-top:30px">
+  <div style="display:flex;align-items:flex-end;gap:16px;margin-bottom:22px;max-width:1440px">
+    <span style="background:#284236;color:#fff;font-size:13px;font-weight:600;letter-spacing:.08em;padding:5px 12px;border-radius:7px">1A</span>
+    <div>
+      <div style="font-size:23px;font-weight:600;color:#243027;letter-spacing:-.01em">Direction A — Editorial Luxe</div>
+      <div style="font-size:14px;color:#7c8378;margin-top:2px">Aman × Aesop calm. Full homepage. Whitespace, hairlines, cinematic photography, warm restraint.</div>
+    </div>
+  </div>
+
+  <div style="width:1440px;background:#fff;border:1px solid #e9e7df;border-radius:16px;overflow:hidden;box-shadow:0 50px 130px -50px rgba(40,66,54,.34);position:relative">
+
+    <!-- NAV -->
+    <div style="position:relative;z-index:20" onMouseLeave="{{ closeMega }}">
+      <div style="height:84px;padding:0 42px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #efeee7;background:#fff">
+        <div style="display:flex;align-items:center;gap:13px">
+          <svg width="38" height="44" viewBox="0 0 40 46" fill="none"><path d="M20 1.6c10.9 0 17.4 8.6 17.4 20.1C37.4 35 30 44.4 20 44.4S2.6 35 2.6 21.7C2.6 10.2 9.1 1.6 20 1.6Z" fill="#7d985b"/><g stroke="#fff" stroke-width="3.3" fill="none" stroke-linecap="square"><path d="M12 15.5h10.5v15"/><path d="M28 30.5h-8.5v-8.5H28"/><path d="M12 30.5v-6.5"/></g></svg>
+          <div style="line-height:1">
+            <div style="font-size:16px;font-weight:600;letter-spacing:.13em;color:#243027">VISIT MARRAKECH</div>
+            <div style="font-size:9.5px;font-weight:600;letter-spacing:.34em;color:#7d985b;margin-top:4px">{{ t.cbTag }}</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:30px;font-size:14.5px;font-weight:500">
+          <span style="color:#3c443c;cursor:pointer" style-hover="color:#7d985b">{{ t.nDest }}</span>
+          <span style="color:#3c443c;cursor:pointer;display:flex;align-items:center;gap:5px" style-hover="color:#7d985b" onMouseEnter="{{ openMega }}">{{ t.nVen }}<svg width="9" height="9" viewBox="0 0 10 10"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></span>
+          <span style="color:#3c443c;cursor:pointer" style-hover="color:#7d985b">{{ t.nExp }}</span>
+          <span style="color:#3c443c;cursor:pointer" style-hover="color:#7d985b">{{ t.nServ }}</span>
+          <span style="color:#3c443c;cursor:pointer" style-hover="color:#7d985b">{{ t.nSucc }}</span>
+          <span style="color:#3c443c;cursor:pointer" style-hover="color:#7d985b">{{ t.nIns }}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:20px">
+          <div style="display:flex;gap:2px;font-size:13px;font-weight:600;letter-spacing:.04em;align-items:center">
+            <span onClick="{{ setEn }}" style="{{ enStyle }}">EN</span>
+            <span style="color:#cfd0c8">/</span>
+            <span onClick="{{ setFr }}" style="{{ frStyle }}">FR</span>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 20 20" style="color:#3c443c"><circle cx="9" cy="9" r="6.4" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M13.6 13.6L18 18" stroke="currentColor" stroke-width="1.5"/></svg>
+          <button style="background:#284236;color:#fff;border:none;font-family:inherit;font-size:14px;font-weight:500;padding:12px 22px;border-radius:999px;cursor:pointer;letter-spacing:.01em" style-hover="background:#1d3227">{{ t.rfp }}</button>
+        </div>
+      </div>
+
+      <!-- MEGA MENU -->
+      <sc-if value="{{ mega }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:84px;left:0;right:0;background:#fff;border-bottom:1px solid #efeee7;box-shadow:0 40px 60px -30px rgba(40,66,54,.24);padding:40px 42px 44px;display:grid;grid-template-columns:1fr 1fr 1fr 1.35fr;gap:44px;animation:fadeUp .3s ease">
+          <sc-for list="{{ megaCols }}" as="col" hint-placeholder-count="3">
+            <div>
+              <div style="font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#7d985b;margin-bottom:16px">{{ col.head }}</div>
+              <sc-for list="{{ col.items }}" as="it" hint-placeholder-count="3">
+                <div style="font-size:15px;color:#3c443c;padding:9px 0;border-bottom:1px solid #f2f1ea;cursor:pointer" style-hover="color:#284236;padding-left:6px">{{ it }}</div>
+              </sc-for>
+            </div>
+          </sc-for>
+          <div style="border-radius:12px;overflow:hidden;position:relative;min-height:200px;background-size:cover;background-position:center;background-image:url(https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=900&q=80&auto=format&fit=crop)">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,45,35,0) 30%,rgba(24,38,29,.86))"></div>
+            <div style="position:absolute;left:22px;right:22px;bottom:20px;color:#fff">
+              <div style="font-size:16px;font-weight:500;line-height:1.35">{{ t.megaTitle }}</div>
+              <div style="margin-top:12px;font-size:13px;font-weight:600;letter-spacing:.03em;color:#cfe0bf;display:flex;align-items:center;gap:7px">{{ t.megaCta }} <span>→</span></div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <!-- HERO -->
+    <div style="display:grid;grid-template-columns:600px 1fr;min-height:726px">
+      <div style="padding:88px 60px 54px 44px;display:flex;flex-direction:column;justify-content:center">
+        <div style="display:flex;align-items:center;gap:11px;font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#7d985b">
+          <span style="width:26px;height:1px;background:#7d985b"></span>{{ t.heroEy }}
+        </div>
+        <h1 style="margin:24px 0 0;font-size:66px;line-height:1.03;font-weight:300;letter-spacing:-.022em;color:#22321f">{{ hero.a }}<span class="em">{{ hero.b }}</span>{{ hero.c }}</h1>
+        <p style="margin:26px 0 0;font-size:19px;line-height:1.52;color:#5c655b;max-width:452px;font-weight:400">{{ hero.sub }}</p>
+        <div style="margin:34px 0 0;display:flex;gap:13px;align-items:center">
+          <button style="background:#284236;color:#fff;border:none;font-family:inherit;font-size:15px;font-weight:500;padding:15px 28px;border-radius:999px;cursor:pointer" style-hover="background:#1d3227">{{ t.rfp }}</button>
+          <button style="background:transparent;color:#2f382f;border:1px solid #d5d4c9;font-family:inherit;font-size:15px;font-weight:500;padding:15px 26px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:9px" style-hover="border-color:#7d985b;color:#284236">{{ t.explore }} <span style="color:#7d985b">→</span></button>
+        </div>
+        <div style="margin-top:44px;padding-top:24px;border-top:1px solid #edece4">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#9aa093;display:flex;justify-content:space-between;align-items:center">
+            <span>{{ t.posLabel }}</span><span style="color:#7d985b;font-weight:600;letter-spacing:.04em;text-transform:none;font-size:12.5px">{{ hero.tone }}</span>
+          </div>
+          <div style="margin-top:14px;display:flex;gap:7px;flex-wrap:wrap">
+            <sc-for list="{{ pills }}" as="p" hint-placeholder-count="8">
+              <button onClick="{{ p.on }}" style="{{ p.style }}">{{ p.num }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative;background-size:cover;background-position:center 30%;background-image:url(https://images.unsplash.com/photo-1544517333-3ceafba4d01b?w=1500&q=80&auto=format&fit=crop)">
+        <div style="position:absolute;inset:0;background:linear-gradient(105deg,rgba(34,50,31,.30),rgba(34,50,31,0) 42%)"></div>
+        <div style="position:absolute;left:34px;bottom:34px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:13px;padding:20px 24px;display:flex;gap:26px;box-shadow:0 24px 60px -30px rgba(24,38,29,.6)">
+          <div><div style="font-size:30px;font-weight:600;color:#284236;line-height:1">3</div><div style="font-size:12px;color:#6a7167;margin-top:5px;letter-spacing:.02em">Convention<br>centres</div></div>
+          <div style="width:1px;background:#e6e5dc"></div>
+          <div><div style="font-size:30px;font-weight:600;color:#284236;line-height:1">1,000s</div><div style="font-size:12px;color:#6a7167;margin-top:5px;letter-spacing:.02em">Five-star<br>rooms</div></div>
+          <div style="width:1px;background:#e6e5dc"></div>
+          <div><div style="font-size:30px;font-weight:600;color:#284236;line-height:1">3h</div><div style="font-size:12px;color:#6a7167;margin-top:5px;letter-spacing:.02em">From<br>Europe</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRUST -->
+    <div style="padding:26px 42px;background:#f6f5ef;border-top:1px solid #eceadf;display:flex;align-items:center;gap:34px">
+      <div style="font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#9aa093;white-space:nowrap;max-width:180px;line-height:1.5">{{ t.trust }}</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:16px;font-weight:500;letter-spacing:.03em;color:#5b6459;flex-wrap:wrap">
+        <span>COP22</span><span style="color:#cdd3c4">◆</span>
+        <span>IMF · World Bank ’23</span><span style="color:#cdd3c4">◆</span>
+        <span>GITEX Africa</span><span style="color:#cdd3c4">◆</span>
+        <span>PURE Life Experiences</span><span style="color:#cdd3c4">◆</span>
+        <span>Marrakech Film Festival</span>
+      </div>
+    </div>
+
+    <!-- WHY MARRAKECH -->
+    <div style="padding:104px 44px 92px;background:#fff">
+      <div style="display:grid;grid-template-columns:1.14fr .86fr;gap:58px;align-items:center;max-width:1352px;margin:0 auto">
+        <div>
+          <div style="display:flex;align-items:center;gap:11px;font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#7d985b"><span style="width:26px;height:1px;background:#7d985b"></span>{{ t.whyEy }}</div>
+          <h2 style="margin:22px 0 0;font-size:46px;line-height:1.08;font-weight:300;letter-spacing:-.02em;color:#22321f;max-width:540px">{{ t.whyT }}</h2>
+          <p style="margin:24px 0 0;font-size:19px;line-height:1.55;color:#5c655b;max-width:470px">{{ t.whyLead }}</p>
+          <div style="margin-top:30px;display:flex;gap:10px;flex-wrap:wrap">
+            <span style="font-size:13px;color:#48514a;border:1px solid #e0dfd4;border-radius:999px;padding:8px 16px">Direct flights · 100+ cities°</span>
+            <span style="font-size:13px;color:#48514a;border:1px solid #e0dfd4;border-radius:999px;padding:8px 16px">UNESCO Medina</span>
+            <span style="font-size:13px;color:#48514a;border:1px solid #e0dfd4;border-radius:999px;padding:8px 16px">Atlas & Agafay</span>
+          </div>
+        </div>
+        <div style="height:466px;border-radius:14px;background-size:cover;background-position:center;background-image:url(https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=1100&q=80&auto=format&fit=crop);box-shadow:0 40px 80px -46px rgba(40,66,54,.5)"></div>
+      </div>
+      <div style="max-width:1352px;margin:70px auto 0;display:grid;grid-template-columns:repeat(3,1fr);column-gap:46px;row-gap:0">
+        <sc-for list="{{ strengths }}" as="s" hint-placeholder-count="6">
+          <div style="border-top:1px solid #e8e7de;padding:26px 24px 26px 0">
+            <div style="font-size:42px;font-weight:600;color:#284236;line-height:1;letter-spacing:-.01em">{{ s.big }}</div>
+            <div style="margin-top:12px;font-size:16.5px;font-weight:500;color:#333b32">{{ s.label }}</div>
+            <div style="margin-top:6px;font-size:13.5px;color:#7c8378;line-height:1.5">{{ s.note }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- CONVENTION BUREAU -->
+    <div style="padding:100px 44px;background:#f7f6f0;border-top:1px solid #ecebe1">
+      <div style="display:grid;grid-template-columns:.82fr 1.18fr;gap:66px;max-width:1352px;margin:0 auto">
+        <div>
+          <div style="display:flex;align-items:center;gap:11px;font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#7d985b"><span style="width:26px;height:1px;background:#7d985b"></span>{{ t.cbEy }}</div>
+          <h2 style="margin:22px 0 0;font-size:40px;line-height:1.1;font-weight:300;letter-spacing:-.02em;color:#22321f;max-width:400px">{{ t.cbT }}</h2>
+          <p style="margin:22px 0 0;font-size:18px;line-height:1.55;color:#5c655b;max-width:400px">{{ t.cbLead }}</p>
+          <div style="margin-top:26px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="font-size:12px;font-weight:600;letter-spacing:.03em;color:#5a6353;background:#eae9df;border-radius:999px;padding:7px 15px">Free</span>
+            <span style="font-size:12px;font-weight:600;letter-spacing:.03em;color:#5a6353;background:#eae9df;border-radius:999px;padding:7px 15px">Neutral</span>
+            <span style="font-size:12px;font-weight:600;letter-spacing:.03em;color:#5a6353;background:#eae9df;border-radius:999px;padding:7px 15px">Confidential</span>
+          </div>
+          <button style="margin-top:30px;background:#284236;color:#fff;border:none;font-family:inherit;font-size:15px;font-weight:500;padding:14px 26px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:9px" style-hover="background:#1d3227">{{ t.ctaBtn2 }} <span>→</span></button>
+          <div style="margin-top:34px;height:210px;border-radius:12px;background-size:cover;background-position:center;background-image:url(https://images.unsplash.com/photo-1556761175-b413da4baf72?w=900&q=80&auto=format&fit=crop)"></div>
+        </div>
+        <div>
+          <sc-for list="{{ services }}" as="sv" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:52px 1fr;gap:22px;align-items:baseline;border-top:1px solid #e3e2d6;padding:28px 8px 28px 0;cursor:default;transition:all .2s" style-hover="padding-left:8px;background:#fbfaf5">
+              <div style="font-family:'Newsreader',serif;font-style:italic;font-size:24px;color:#9aab7e">{{ sv.n }}</div>
+              <div>
+                <div style="font-size:20px;font-weight:500;color:#26302a">{{ sv.name }}</div>
+                <div style="margin-top:7px;font-size:15px;color:#6a7268;line-height:1.5;max-width:520px">{{ sv.desc }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- VENUES -->
+    <div style="padding:100px 44px;background:#fff">
+      <div style="max-width:1352px;margin:0 auto">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <div style="display:flex;align-items:center;gap:11px;font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#7d985b"><span style="width:26px;height:1px;background:#7d985b"></span>{{ t.venEy }}</div>
+            <h2 style="margin:20px 0 0;font-size:44px;line-height:1.06;font-weight:300;letter-spacing:-.02em;color:#22321f">{{ t.venT }}</h2>
+          </div>
+          <div style="font-size:14.5px;font-weight:500;color:#284236;display:flex;align-items:center;gap:9px;cursor:pointer;padding-bottom:8px" style-hover="gap:14px">{{ t.venAll }} <span style="color:#7d985b">→</span></div>
+        </div>
+        <div style="margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px">
+          <sc-for list="{{ venues }}" as="v" hint-placeholder-count="3">
+            <div style="border-radius:15px;overflow:hidden;background:#fff;border:1px solid #ecebe2;cursor:pointer;transition:transform .3s,box-shadow .3s" style-hover="transform:translateY(-7px);box-shadow:0 44px 74px -42px rgba(40,66,54,.42)">
+              <div style="height:266px;position:relative;background-size:cover;background-position:center;background-image:url({{ v.img }})">
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,38,29,.28),rgba(24,38,29,0) 40%)"></div>
+                <span style="position:absolute;top:16px;left:16px;background:rgba(255,255,255,.92);color:#2f4a37;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px">{{ v.tag }}</span>
+              </div>
+              <div style="padding:24px 24px 26px">
+                <div style="font-size:21px;font-weight:500;color:#26302a;letter-spacing:-.01em">{{ v.name }}</div>
+                <div style="margin-top:4px;font-size:14px;font-weight:500;color:#7d985b">{{ v.sub }}</div>
+                <div style="margin-top:18px;padding-top:16px;border-top:1px solid #eeede4;display:flex;gap:22px;font-size:13.5px;color:#6a7268">
+                  <span>{{ v.cap }}</span><span>{{ v.rooms }}</span>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:20px;font-size:12.5px;color:#9aa093">° Indicative capacities — confirmed on enquiry.</div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCES -->
+    <div style="padding:100px 44px;background:#faf9f4;border-top:1px solid #eeede3">
+      <div style="max-width:1352px;margin:0 auto">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between">
+          <div>
+            <div style="display:flex;align-items:center;gap:11px;font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#7d985b"><span style="width:26px;height:1px;background:#7d985b"></span>{{ t.expEy }}</div>
+            <h2 style="margin:20px 0 0;font-size:44px;line-height:1.06;font-weight:300;letter-spacing:-.02em;color:#22321f;max-width:640px">{{ t.expT }}</h2>
+          </div>
+        </div>
+        <div style="margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+          <sc-for list="{{ experiences }}" as="x" hint-placeholder-count="6">
+            <div style="position:relative;height:344px;border-radius:15px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;background-size:cover;background-position:center;background-image:url({{ x.img }})" style-hover="transform:translateY(-7px);box-shadow:0 44px 74px -42px rgba(40,66,54,.5)">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,38,29,0) 34%,rgba(20,32,24,.82))"></div>
+              <div style="position:absolute;left:24px;right:24px;bottom:24px;color:#fff">
+                <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#c7d8b6">{{ x.cat }}</div>
+                <div style="margin-top:8px;font-size:22px;font-weight:500;line-height:1.2;letter-spacing:-.01em">{{ x.name }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div style="padding:100px 44px;background:#fff">
+      <div style="max-width:1352px;margin:0 auto">
+        <div style="display:flex;align-items:center;gap:11px;font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#7d985b"><span style="width:26px;height:1px;background:#7d985b"></span>{{ t.sucEy }}</div>
+        <h2 style="margin:20px 0 0;font-size:44px;line-height:1.06;font-weight:300;letter-spacing:-.02em;color:#22321f">{{ t.sucT }}</h2>
+        <div style="margin-top:46px;display:grid;grid-template-columns:repeat(4,1fr);column-gap:40px">
+          <sc-for list="{{ successNamed }}" as="e" hint-placeholder-count="4">
+            <div style="border-top:1px solid #e6e5dc;padding-top:22px">
+              <div style="font-size:27px;font-weight:600;color:#284236;letter-spacing:-.01em;line-height:1.05">{{ e.big }}</div>
+              <div style="margin-top:10px;font-size:14px;color:#6a7268;line-height:1.5">{{ e.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:74px;max-width:940px;margin-left:auto;margin-right:auto;text-align:center">
+          <div style="font-family:'Newsreader',serif;font-style:italic;font-weight:400;font-size:33px;line-height:1.36;color:#2b3a2d;letter-spacing:-.01em">“Marrakech gave our congress something no other destination could — two thousand delegates who felt genuinely welcomed. The Bureau turned the complex into the effortless.”</div>
+          <div style="margin-top:26px;font-size:14px;font-weight:600;color:#26302a;letter-spacing:.02em">Congress Director °</div>
+          <div style="font-size:13px;color:#8a9184">International medical association · illustrative</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSIGHTS -->
+    <div style="padding:98px 44px;background:#faf9f4;border-top:1px solid #eeede3">
+      <div style="max-width:1352px;margin:0 auto">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between">
+          <div>
+            <div style="display:flex;align-items:center;gap:11px;font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#7d985b"><span style="width:26px;height:1px;background:#7d985b"></span>{{ t.insEy }}</div>
+            <h2 style="margin:20px 0 0;font-size:40px;line-height:1.08;font-weight:300;letter-spacing:-.02em;color:#22321f">{{ t.insT }}</h2>
+          </div>
+          <div style="font-size:14.5px;font-weight:500;color:#284236;display:flex;align-items:center;gap:9px;cursor:pointer;padding-bottom:6px" style-hover="gap:14px">{{ t.insAll }} <span style="color:#7d985b">→</span></div>
+        </div>
+        <div style="margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px">
+          <sc-for list="{{ insights }}" as="a" hint-placeholder-count="3">
+            <div style="cursor:pointer;transition:transform .3s" style-hover="transform:translateY(-6px)">
+              <div style="height:214px;border-radius:13px;background-size:cover;background-position:center;background-image:url({{ a.img }})"></div>
+              <div style="margin-top:18px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#7d985b">{{ a.tag }}</div>
+              <div style="margin-top:11px;font-size:20px;font-weight:500;color:#26302a;line-height:1.28;letter-spacing:-.01em">{{ a.title }}</div>
+              <div style="margin-top:12px;font-size:13px;color:#8a9184">{{ a.read }} read</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTNERS -->
+    <div style="padding:52px 44px;background:#fff;border-top:1px solid #eeede3">
+      <div style="max-width:1352px;margin:0 auto;display:flex;align-items:center;gap:44px;flex-wrap:wrap">
+        <div style="font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#9aa093;white-space:nowrap">{{ t.partners }}</div>
+        <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+          <sc-for list="{{ hotels }}" as="h" hint-placeholder-count="7">
+            <span style="font-size:16px;font-weight:500;letter-spacing:.02em;color:#5b6459">{{ h }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINAL CTA -->
+    <div style="position:relative;min-height:472px;display:flex;align-items:center;justify-content:center;text-align:center;background-size:cover;background-position:center 40%;background-image:url(https://images.unsplash.com/photo-1489493585363-d69421e0edd3?w=1600&q=80&auto=format&fit=crop)">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,38,29,.62),rgba(24,38,29,.72))"></div>
+      <div style="position:relative;color:#fff;padding:70px 24px;max-width:720px">
+        <div style="font-size:12px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#c7d8b6">Marrakech Convention Bureau</div>
+        <h2 style="margin:20px 0 0;font-size:50px;line-height:1.08;font-weight:300;letter-spacing:-.02em">{{ t.ctaT }}</h2>
+        <p style="margin:20px auto 0;font-size:18px;line-height:1.55;color:#dfe6d8;max-width:520px">{{ t.ctaLead }}</p>
+        <div style="margin-top:34px;display:flex;gap:14px;justify-content:center">
+          <button style="background:#fff;color:#243027;border:none;font-family:inherit;font-size:15px;font-weight:600;padding:16px 30px;border-radius:999px;cursor:pointer" style-hover="background:#eef1e8">{{ t.rfp }}</button>
+          <button style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);font-family:inherit;font-size:15px;font-weight:500;padding:16px 28px;border-radius:999px;cursor:pointer" style-hover="border-color:#fff;background:rgba(255,255,255,.1)">{{ t.ctaBtn2 }}</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="background:#f6f5ef;border-top:1px solid #e9e8de;padding:64px 44px 30px">
+      <div style="max-width:1352px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.4fr;gap:48px">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <svg width="34" height="39" viewBox="0 0 40 46" fill="none"><path d="M20 1.6c10.9 0 17.4 8.6 17.4 20.1C37.4 35 30 44.4 20 44.4S2.6 35 2.6 21.7C2.6 10.2 9.1 1.6 20 1.6Z" fill="#7d985b"/><g stroke="#fff" stroke-width="3.3" fill="none" stroke-linecap="square"><path d="M12 15.5h10.5v15"/><path d="M28 30.5h-8.5v-8.5H28"/><path d="M12 30.5v-6.5"/></g></svg>
+            <div style="line-height:1"><div style="font-size:15px;font-weight:600;letter-spacing:.12em;color:#243027">VISIT MARRAKECH</div><div style="font-size:9px;font-weight:600;letter-spacing:.32em;color:#7d985b;margin-top:4px">CONVENTION BUREAU</div></div>
+          </div>
+          <p style="margin:20px 0 0;font-size:14.5px;line-height:1.6;color:#6a7268;max-width:290px">{{ t.footTag }}</p>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#9aa093;margin-bottom:16px">Explore</div>
+          <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px;color:#4b544a">
+            <span style="cursor:pointer" style-hover="color:#284236">{{ t.nDest }}</span>
+            <span style="cursor:pointer" style-hover="color:#284236">{{ t.nVen }}</span>
+            <span style="cursor:pointer" style-hover="color:#284236">{{ t.nExp }}</span>
+            <span style="cursor:pointer" style-hover="color:#284236">{{ t.nServ }}</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#9aa093;margin-bottom:16px">Plan</div>
+          <div style="display:flex;flex-direction:column;gap:11px;font-size:14.5px;color:#4b544a">
+            <span style="cursor:pointer" style-hover="color:#284236">{{ t.rfp }}</span>
+            <span style="cursor:pointer" style-hover="color:#284236">Venue finder</span>
+            <span style="cursor:pointer" style-hover="color:#284236">Site inspections</span>
+            <span style="cursor:pointer" style-hover="color:#284236">Meeting planner guide</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#9aa093;margin-bottom:16px">{{ t.news }}</div>
+          <p style="margin:0 0 14px;font-size:14px;color:#6a7268;line-height:1.5">{{ t.newsSub }}</p>
+          <div style="display:flex;gap:8px">
+            <input placeholder="you@company.com" style="flex:1;font-family:inherit;font-size:14px;padding:12px 14px;border:1px solid #dddcd0;border-radius:10px;background:#fff;color:#2b322c;outline:none">
+            <button style="background:#284236;color:#fff;border:none;font-family:inherit;font-size:14px;font-weight:500;padding:12px 18px;border-radius:10px;cursor:pointer">{{ t.newsGo }}</button>
+          </div>
+        </div>
+      </div>
+      <div style="max-width:1352px;margin:40px auto 0;padding-top:22px;border-top:1px solid #e6e5db;display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:#8a9184">
+        <span>{{ t.rights }}</span>
+        <div style="display:flex;gap:22px"><span style="cursor:pointer" style-hover="color:#284236">Privacy</span><span style="cursor:pointer" style-hover="color:#284236">Terms</span><span style="cursor:pointer" style-hover="color:#284236">LinkedIn</span><span style="cursor:pointer" style-hover="color:#284236">Instagram</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="1b" style="padding:34px 92px 40px;scroll-margin-top:30px">
+  <div style="display:flex;align-items:flex-end;gap:16px;margin-bottom:22px;max-width:1440px">
+    <span style="background:#284236;color:#fff;font-size:13px;font-weight:600;letter-spacing:.08em;padding:5px 12px;border-radius:7px">1B</span>
+    <div>
+      <div style="font-size:23px;font-weight:600;color:#243027;letter-spacing:-.01em">Direction B — Structured / Swiss Precision</div>
+      <div style="font-size:14px;color:#7c8378;margin-top:2px">Stripe × McKinsey confidence. Full-bleed hero, planner toolkit, data-forward grids. Hero + key sections.</div>
+    </div>
+  </div>
+
+  <div style="width:1440px;background:#fff;border:1px solid #e9e7df;border-radius:16px;overflow:hidden;box-shadow:0 50px 130px -50px rgba(40,66,54,.34)">
+
+    <!-- HERO full-bleed -->
+    <div style="position:relative;min-height:640px;background-size:cover;background-position:center;background-image:url(https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=1600&q=80&auto=format&fit=crop)">
+      <div style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,32,24,.82),rgba(20,32,24,.34) 62%,rgba(20,32,24,.12))"></div>
+
+      <!-- transparent nav -->
+      <div style="position:relative;z-index:2;height:84px;padding:0 44px;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:13px">
+          <svg width="36" height="42" viewBox="0 0 40 46" fill="none"><path d="M20 1.6c10.9 0 17.4 8.6 17.4 20.1C37.4 35 30 44.4 20 44.4S2.6 35 2.6 21.7C2.6 10.2 9.1 1.6 20 1.6Z" fill="#fff" opacity=".95"/><g stroke="#284236" stroke-width="3.3" fill="none" stroke-linecap="square"><path d="M12 15.5h10.5v15"/><path d="M28 30.5h-8.5v-8.5H28"/><path d="M12 30.5v-6.5"/></g></svg>
+          <div style="line-height:1"><div style="font-size:16px;font-weight:600;letter-spacing:.13em;color:#fff">VISIT MARRAKECH</div><div style="font-size:9.5px;font-weight:600;letter-spacing:.34em;color:#cfe0bf;margin-top:4px">{{ t.cbTag }}</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:28px;font-size:14.5px;font-weight:500;color:rgba(255,255,255,.92)">
+          <span style="cursor:pointer" style-hover="color:#fff">{{ t.nDest }}</span>
+          <span style="cursor:pointer" style-hover="color:#fff">{{ t.nVen }}</span>
+          <span style="cursor:pointer" style-hover="color:#fff">{{ t.nExp }}</span>
+          <span style="cursor:pointer" style-hover="color:#fff">{{ t.nServ }}</span>
+          <span style="cursor:pointer" style-hover="color:#fff">{{ t.nSucc }}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:18px">
+          <div style="display:flex;gap:2px;font-size:13px;font-weight:600;color:#fff;align-items:center"><span onClick="{{ setEn }}" style="cursor:pointer;{{ enOnDark }}">EN</span><span style="opacity:.5">/</span><span onClick="{{ setFr }}" style="cursor:pointer;{{ frOnDark }}">FR</span></div>
+          <button style="background:#fff;color:#243027;border:none;font-family:inherit;font-size:14px;font-weight:600;padding:12px 22px;border-radius:999px;cursor:pointer" style-hover="background:#eef1e8">{{ t.rfp }}</button>
+        </div>
+      </div>
+
+      <div style="position:relative;z-index:2;padding:88px 44px 150px;max-width:820px">
+        <div style="display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#cfe0bf;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 15px">{{ t.bTag }}</div>
+        <h1 style="margin:26px 0 0;font-size:62px;line-height:1.04;font-weight:400;letter-spacing:-.025em;color:#fff">{{ t.bHeadA }}<br>{{ t.bHeadB }}</h1>
+        <p style="margin:24px 0 0;font-size:19px;line-height:1.55;color:#dbe3d5;max-width:540px">{{ t.bSub }}</p>
+      </div>
+    </div>
+
+    <!-- PLANNER TOOLKIT -->
+    <div style="padding:0 44px;margin-top:-92px;position:relative;z-index:3">
+      <div style="max-width:1160px;margin:0 auto;background:#fff;border:1px solid #eae9df;border-radius:16px;box-shadow:0 44px 90px -46px rgba(24,38,29,.5);padding:28px 30px 30px">
+        <div style="display:flex;gap:8px;background:#f4f3ec;padding:6px;border-radius:999px;width:fit-content">
+          <sc-for list="{{ rfpTabs }}" as="tb" hint-placeholder-count="3">
+            <button onClick="{{ tb.on }}" style="{{ tb.style }}">{{ tb.label }}</button>
+          </sc-for>
+        </div>
+        <div style="margin-top:22px;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:16px;align-items:end">
+          <div><div style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8a9184;margin-bottom:9px">{{ t.qType }}</div><div style="border:1px solid #e2e1d5;border-radius:11px;padding:14px 16px;font-size:15px;color:#3c443c;display:flex;justify-content:space-between;align-items:center">Congress <span style="color:#9aa093">▾</span></div></div>
+          <div><div style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8a9184;margin-bottom:9px">{{ t.qPax }}</div><div style="border:1px solid #e2e1d5;border-radius:11px;padding:14px 16px;font-size:15px;color:#3c443c;display:flex;justify-content:space-between;align-items:center">500 – 2,000 <span style="color:#9aa093">▾</span></div></div>
+          <div><div style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8a9184;margin-bottom:9px">{{ t.qDate }}</div><div style="border:1px solid #e2e1d5;border-radius:11px;padding:14px 16px;font-size:15px;color:#3c443c;display:flex;justify-content:space-between;align-items:center">Q2 2026 <span style="color:#9aa093">▾</span></div></div>
+          <button style="background:#284236;color:#fff;border:none;font-family:inherit;font-size:15px;font-weight:500;padding:15px 30px;border-radius:11px;cursor:pointer;white-space:nowrap;height:52px" style-hover="background:#1d3227">{{ t.qGo }}</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div style="padding:80px 44px 76px">
+      <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0">
+        <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+          <div style="padding:0 36px;border-left:1px solid #e8e7de">
+            <div style="font-size:52px;font-weight:600;color:#284236;line-height:1;letter-spacing:-.02em">{{ k.big }}</div>
+            <div style="margin-top:14px;font-size:14.5px;color:#6a7268;line-height:1.45;max-width:180px">{{ k.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="max-width:1160px;margin:22px auto 0;font-size:12.5px;color:#9aa093">° Illustrative figures — to be confirmed with the Bureau.</div>
+    </div>
+
+    <!-- WHY GRID -->
+    <div style="padding:88px 44px;background:#faf9f4;border-top:1px solid #eeede3">
+      <div style="max-width:1160px;margin:0 auto">
+        <div style="max-width:560px">
+          <div style="font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7d985b">What the Bureau does</div>
+          <h2 style="margin:16px 0 0;font-size:38px;line-height:1.1;font-weight:500;letter-spacing:-.02em;color:#22321f">Six ways we de-risk your event</h2>
+        </div>
+        <div style="margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+          <div style="background:#fff;border:1px solid #ecebe1;border-radius:14px;padding:28px" style-hover="border-color:#c9d2bd"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L20 20"/></svg><div style="margin-top:18px;font-size:18px;font-weight:600;color:#26302a">Venue sourcing</div><div style="margin-top:8px;font-size:14.5px;color:#6a7268;line-height:1.5">Curated shortlists matched to your programme, capacity and budget.</div></div>
+          <div style="background:#fff;border:1px solid #ecebe1;border-radius:14px;padding:28px" style-hover="border-color:#c9d2bd"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><path d="M6 3h9l4 4v14H6z"/><path d="M9 13l2 2 4-4"/></svg><div style="margin-top:18px;font-size:18px;font-weight:600;color:#26302a">Bid support</div><div style="margin-top:8px;font-size:14.5px;color:#6a7268;line-height:1.5">Data, letters of support and lobbying to help you win the bid.</div></div>
+          <div style="background:#fff;border:1px solid #ecebe1;border-radius:14px;padding:28px" style-hover="border-color:#c9d2bd"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="2.5"/></svg><div style="margin-top:18px;font-size:18px;font-weight:600;color:#26302a">Site inspections</div><div style="margin-top:8px;font-size:14.5px;color:#6a7268;line-height:1.5">We host and organise your familiarisation and inspection visits.</div></div>
+          <div style="background:#fff;border:1px solid #ecebe1;border-radius:14px;padding:28px" style-hover="border-color:#c9d2bd"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><circle cx="6" cy="7" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="17" r="2.5"/><path d="M8 8.5l3 6.5M16 8.5l-3 6.5"/></svg><div style="margin-top:18px;font-size:18px;font-weight:600;color:#26302a">Supplier network</div><div style="margin-top:8px;font-size:14.5px;color:#6a7268;line-height:1.5">Vetted DMCs, agencies, caterers, production and transport.</div></div>
+          <div style="background:#fff;border:1px solid #ecebe1;border-radius:14px;padding:28px" style-hover="border-color:#c9d2bd"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><path d="M9 15l6-6M8.5 8h-2a3.5 3.5 0 000 7h2M15.5 16h2a3.5 3.5 0 000-7h-2"/></svg><div style="margin-top:18px;font-size:18px;font-weight:600;color:#26302a">DMC connections</div><div style="margin-top:8px;font-size:14.5px;color:#6a7268;line-height:1.5">Warm introductions to Marrakech's most trusted operators.</div></div>
+          <div style="background:#fff;border:1px solid #ecebe1;border-radius:14px;padding:28px" style-hover="border-color:#c9d2bd"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg><div style="margin-top:18px;font-size:18px;font-weight:600;color:#26302a">Planning assistance</div><div style="margin-top:8px;font-size:14.5px;color:#6a7268;line-height:1.5">A single dedicated contact from first enquiry to closing night.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VENUES DATA GRID -->
+    <div style="padding:88px 44px">
+      <div style="max-width:1160px;margin:0 auto">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between">
+          <h2 style="margin:0;font-size:38px;line-height:1.06;font-weight:500;letter-spacing:-.02em;color:#22321f">Compare convention centres</h2>
+          <div style="font-size:14.5px;font-weight:500;color:#284236;cursor:pointer">{{ t.venAll }} →</div>
+        </div>
+        <div style="margin-top:38px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+          <sc-for list="{{ venues }}" as="v" hint-placeholder-count="3">
+            <div style="border:1px solid #ecebe1;border-radius:14px;overflow:hidden;background:#fff">
+              <div style="height:176px;background-size:cover;background-position:center;background-image:url({{ v.img }})"></div>
+              <div style="padding:22px 24px 24px">
+                <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#7d985b">{{ v.tag }}</div>
+                <div style="margin-top:9px;font-size:19px;font-weight:600;color:#26302a;line-height:1.2">{{ v.name }}</div>
+                <div style="margin-top:3px;font-size:13.5px;color:#8a9184">{{ v.sub }}</div>
+                <div style="margin-top:18px;display:flex;flex-direction:column;gap:0">
+                  <div style="display:flex;justify-content:space-between;padding:11px 0;border-top:1px solid #eeede4;font-size:14px"><span style="color:#8a9184">Capacity</span><span style="color:#333b32;font-weight:500">{{ v.cap }}</span></div>
+                  <div style="display:flex;justify-content:space-between;padding:11px 0;border-top:1px solid #eeede4;font-size:14px"><span style="color:#8a9184">Configuration</span><span style="color:#333b32;font-weight:500">{{ v.rooms }}</span></div>
+                  <div style="display:flex;justify-content:space-between;padding:11px 0;border-top:1px solid #eeede4;font-size:14px"><span style="color:#8a9184">To RAK airport</span><span style="color:#333b32;font-weight:500">~ 15 min°</span></div>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA strip -->
+    <div style="padding:0 44px 80px">
+      <div style="max-width:1160px;margin:0 auto;background:#eef1e8;border:1px solid #dde3d3;border-radius:16px;padding:44px 48px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap">
+        <div>
+          <h3 style="margin:0;font-size:30px;font-weight:500;letter-spacing:-.02em;color:#22321f">Ready to build your shortlist?</h3>
+          <p style="margin:10px 0 0;font-size:16px;color:#5c655b;max-width:520px">Submit an RFP and receive a tailored proposal within 48 hours — venues, budgets and a dedicated contact.</p>
+        </div>
+        <button style="background:#284236;color:#fff;border:none;font-family:inherit;font-size:15px;font-weight:500;padding:16px 30px;border-radius:999px;cursor:pointer;white-space:nowrap" style-hover="background:#1d3227">{{ t.rfp }} →</button>
+      </div>
+      <div style="max-width:1160px;margin:20px auto 0;font-size:13px;color:#9aa093;text-align:center">Direction B shares the footer, insights, partners and component library shown in Direction A.</div>
+    </div>
+
+  </div>
+</section>
+<section id="1c" style="padding:34px 92px 40px;scroll-margin-top:30px">
+  <div style="display:flex;align-items:flex-end;gap:16px;margin-bottom:26px;max-width:1440px">
+    <span style="background:#284236;color:#fff;font-size:13px;font-weight:600;letter-spacing:.08em;padding:5px 12px;border-radius:7px">1C</span>
+    <div>
+      <div style="font-size:23px;font-weight:600;color:#243027;letter-spacing:-.01em">Mobile responsive concept</div>
+      <div style="font-size:14px;color:#7c8378;margin-top:2px">The Editorial Luxe direction, reflowed for mobile — thumb-first, sticky RFP, full-screen navigation.</div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:56px;align-items:flex-start;padding:14px 8px">
+
+    <!-- PHONE 1: HOME -->
+    <div>
+      <div style="width:378px;height:786px;background:#0e120f;border-radius:52px;padding:12px;box-shadow:0 50px 110px -46px rgba(24,38,29,.6)">
+        <div style="width:100%;height:100%;background:#fff;border-radius:41px;overflow:hidden;position:relative">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:14px;font-weight:600;color:#22321f">9:41<div style="position:absolute;left:50%;top:9px;transform:translateX(-50%);width:104px;height:26px;background:#0e120f;border-radius:0 0 16px 16px"></div><span style="font-size:12px;letter-spacing:1px">▂▄▆ ᯤ ▮</span></div>
+          <div style="height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid #f0efe8">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="width:22px;height:2px;background:#2f382f"></span><span style="width:22px;height:2px;background:#2f382f"></span><span style="width:15px;height:2px;background:#2f382f"></span></div>
+            <div style="display:flex;align-items:center;gap:8px"><svg width="24" height="28" viewBox="0 0 40 46" fill="none"><path d="M20 1.6c10.9 0 17.4 8.6 17.4 20.1C37.4 35 30 44.4 20 44.4S2.6 35 2.6 21.7C2.6 10.2 9.1 1.6 20 1.6Z" fill="#7d985b"/><g stroke="#fff" stroke-width="3.3" fill="none" stroke-linecap="square"><path d="M12 15.5h10.5v15"/><path d="M28 30.5h-8.5v-8.5H28"/><path d="M12 30.5v-6.5"/></g></svg><span style="font-size:12.5px;font-weight:600;letter-spacing:.1em;color:#243027">VISIT MARRAKECH</span></div>
+            <svg width="18" height="18" viewBox="0 0 20 20" style="color:#2f382f"><circle cx="9" cy="9" r="6.4" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M13.6 13.6L18 18" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <div style="position:relative;height:344px;background-size:cover;background-position:center;background-image:url(https://images.unsplash.com/photo-1544517333-3ceafba4d01b?w=800&q=80&auto=format&fit=crop)">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,38,29,.12),rgba(20,32,24,.78))"></div>
+            <div style="position:absolute;left:22px;right:22px;bottom:24px;color:#fff">
+              <div style="font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#c7d8b6">Marrakech Convention Bureau</div>
+              <h2 style="margin:12px 0 0;font-size:33px;line-height:1.06;font-weight:300;letter-spacing:-.02em">Where business meets <span class="em" style="color:#c7d8b6">Bahja</span></h2>
+            </div>
+          </div>
+          <div style="padding:20px">
+            <p style="margin:0;font-size:14.5px;line-height:1.5;color:#5c655b">World-class venues, seamless logistics and the warmth of Moroccan hospitality.</p>
+            <button style="margin-top:16px;width:100%;background:#284236;color:#fff;border:none;font-family:inherit;font-size:15px;font-weight:500;padding:15px;border-radius:13px">Submit an RFP</button>
+            <button style="margin-top:10px;width:100%;background:#fff;color:#2f382f;border:1px solid #d5d4c9;font-family:inherit;font-size:15px;font-weight:500;padding:15px;border-radius:13px">Explore the destination</button>
+            <div style="margin-top:22px;display:flex;justify-content:space-between;text-align:center">
+              <div><div style="font-size:24px;font-weight:600;color:#284236">3</div><div style="font-size:11px;color:#8a9184;margin-top:3px">Centres</div></div>
+              <div style="width:1px;background:#eeede4"></div>
+              <div><div style="font-size:24px;font-weight:600;color:#284236">1,000s</div><div style="font-size:11px;color:#8a9184;margin-top:3px">5★ rooms</div></div>
+              <div style="width:1px;background:#eeede4"></div>
+              <div><div style="font-size:24px;font-weight:600;color:#284236">3h</div><div style="font-size:11px;color:#8a9184;margin-top:3px">From Europe</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;font-size:13px;color:#7c8378">Home</div>
+    </div>
+
+    <!-- PHONE 2: NAV -->
+    <div>
+      <div style="width:378px;height:786px;background:#0e120f;border-radius:52px;padding:12px;box-shadow:0 50px 110px -46px rgba(24,38,29,.6)">
+        <div style="width:100%;height:100%;background:#284236;border-radius:41px;overflow:hidden;position:relative;color:#fff">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:14px;font-weight:600;color:#fff">9:41<div style="position:absolute;left:50%;top:9px;transform:translateX(-50%);width:104px;height:26px;background:#0e120f;border-radius:0 0 16px 16px"></div><span style="font-size:12px;letter-spacing:1px">▂▄▆ ᯤ ▮</span></div>
+          <div style="height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px">
+            <span style="font-size:12.5px;font-weight:600;letter-spacing:.1em">VISIT MARRAKECH</span>
+            <div style="width:30px;height:30px;position:relative"><span style="position:absolute;top:14px;left:4px;width:22px;height:2px;background:#fff;transform:rotate(45deg)"></span><span style="position:absolute;top:14px;left:4px;width:22px;height:2px;background:#fff;transform:rotate(-45deg)"></span></div>
+          </div>
+          <div style="padding:20px 24px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:26px;font-weight:300;letter-spacing:-.01em">Destination <span style="color:#9fb389;font-size:18px">→</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:26px;font-weight:300;letter-spacing:-.01em">Venues <span style="color:#9fb389;font-size:18px">→</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:26px;font-weight:300;letter-spacing:-.01em">Experiences <span style="color:#9fb389;font-size:18px">→</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:26px;font-weight:300;letter-spacing:-.01em">Services <span style="color:#9fb389;font-size:18px">→</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:26px;font-weight:300;letter-spacing:-.01em">Success stories <span style="color:#9fb389;font-size:18px">→</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-size:26px;font-weight:300;letter-spacing:-.01em">Insights <span style="color:#9fb389;font-size:18px">→</span></div>
+          </div>
+          <div style="position:absolute;left:24px;right:24px;bottom:26px">
+            <div style="display:flex;gap:4px;font-size:14px;font-weight:600;margin-bottom:16px"><span>EN</span><span style="opacity:.5">/</span><span style="opacity:.5">FR</span></div>
+            <button style="width:100%;background:#fff;color:#243027;border:none;font-family:inherit;font-size:15px;font-weight:600;padding:15px;border-radius:13px">Submit an RFP</button>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;font-size:13px;color:#7c8378">Full-screen navigation</div>
+    </div>
+
+    <!-- PHONE 3: VENUES + STICKY RFP -->
+    <div>
+      <div style="width:378px;height:786px;background:#0e120f;border-radius:52px;padding:12px;box-shadow:0 50px 110px -46px rgba(24,38,29,.6)">
+        <div style="width:100%;height:100%;background:#fff;border-radius:41px;overflow:hidden;position:relative">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:14px;font-weight:600;color:#22321f">9:41<div style="position:absolute;left:50%;top:9px;transform:translateX(-50%);width:104px;height:26px;background:#0e120f;border-radius:0 0 16px 16px"></div><span style="font-size:12px;letter-spacing:1px">▂▄▆ ᯤ ▮</span></div>
+          <div style="padding:16px 20px 0">
+            <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7d985b">Venues</div>
+            <h3 style="margin:8px 0 0;font-size:26px;font-weight:300;letter-spacing:-.02em;color:#22321f">Where your delegates gather</h3>
+          </div>
+          <div style="padding:18px 20px;display:flex;flex-direction:column;gap:16px">
+            <div style="border:1px solid #ecebe2;border-radius:15px;overflow:hidden">
+              <div style="height:150px;background-size:cover;background-position:center;background-image:url(https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=700&q=80&auto=format&fit=crop)"></div>
+              <div style="padding:15px 16px 17px"><div style="font-size:17px;font-weight:500;color:#26302a">Palais des Congrès</div><div style="font-size:13px;color:#7d985b;margin-top:2px">Mövenpick Mansour Eddahbi</div><div style="margin-top:12px;padding-top:11px;border-top:1px solid #eeede4;font-size:12.5px;color:#6a7268">Up to 3,000° pax · 20+ rooms</div></div>
+            </div>
+            <div style="border:1px solid #ecebe2;border-radius:15px;overflow:hidden">
+              <div style="height:150px;background-size:cover;background-position:center;background-image:url(https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=700&q=80&auto=format&fit=crop)"></div>
+              <div style="padding:15px 16px 17px"><div style="font-size:17px;font-weight:500;color:#26302a">Palais des Congrès Mogador</div><div style="font-size:13px;color:#7d985b;margin-top:2px">Mogador Resort · Menara</div><div style="margin-top:12px;padding-top:11px;border-top:1px solid #eeede4;font-size:12.5px;color:#6a7268">Up to 5,000° pax · Exhibition halls</div></div>
+            </div>
+          </div>
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:14px 20px 22px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff 34%);display:flex;gap:10px">
+            <button style="flex:1;background:#284236;color:#fff;border:none;font-family:inherit;font-size:15px;font-weight:500;padding:15px;border-radius:13px">Submit an RFP</button>
+            <button style="width:54px;background:#eef1e8;border:none;border-radius:13px;color:#284236;font-size:18px">♡</button>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;font-size:13px;color:#7c8378">Venues · sticky RFP</div>
+    </div>
+
+  </div>
+</section>
+<section id="1d" style="padding:34px 92px 60px;scroll-margin-top:30px">
+  <div style="display:flex;align-items:flex-end;gap:16px;margin-bottom:22px;max-width:1440px">
+    <span style="background:#284236;color:#fff;font-size:13px;font-weight:600;letter-spacing:.08em;padding:5px 12px;border-radius:7px">1D</span>
+    <div>
+      <div style="font-size:23px;font-weight:600;color:#243027;letter-spacing:-.01em">Design system & foundations</div>
+      <div style="font-size:14px;color:#7c8378;margin-top:2px">The B2B digital extension of the Visit Marrakech · Bahja Spirit identity — colour, type, components, grid, photography, architecture.</div>
+    </div>
+  </div>
+
+  <div style="width:1440px;background:#fff;border:1px solid #e9e7df;border-radius:16px;box-shadow:0 50px 130px -50px rgba(40,66,54,.34);padding:0 64px 64px">
+
+    <!-- 01 LOGO -->
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:48px;padding:62px 0 56px">
+      <div><div style="font-family:'Newsreader',serif;font-style:italic;font-size:22px;color:#9aab7e">01</div><div style="margin-top:8px;font-size:22px;font-weight:500;color:#26302a">Logo & mark</div><div style="margin-top:10px;font-size:14px;color:#7c8378;line-height:1.55">The Bahja mark — a stylised square-kufic knot in an organic pebble — paired with the wordmark and a Convention Bureau descriptor.</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px">
+        <div style="border:1px solid #eceadf;border-radius:14px;padding:34px;display:flex;align-items:center;gap:14px"><svg width="46" height="53" viewBox="0 0 40 46" fill="none"><path d="M20 1.6c10.9 0 17.4 8.6 17.4 20.1C37.4 35 30 44.4 20 44.4S2.6 35 2.6 21.7C2.6 10.2 9.1 1.6 20 1.6Z" fill="#7d985b"/><g stroke="#fff" stroke-width="3.3" fill="none" stroke-linecap="square"><path d="M12 15.5h10.5v15"/><path d="M28 30.5h-8.5v-8.5H28"/><path d="M12 30.5v-6.5"/></g></svg><div style="line-height:1"><div style="font-size:17px;font-weight:600;letter-spacing:.12em;color:#243027">VISIT MARRAKECH</div><div style="font-size:9.5px;font-weight:600;letter-spacing:.32em;color:#7d985b;margin-top:5px">CONVENTION BUREAU</div></div></div>
+        <div style="border:1px solid #eceadf;border-radius:14px;padding:34px;background:#284236;display:flex;align-items:center;gap:14px"><svg width="46" height="53" viewBox="0 0 40 46" fill="none"><path d="M20 1.6c10.9 0 17.4 8.6 17.4 20.1C37.4 35 30 44.4 20 44.4S2.6 35 2.6 21.7C2.6 10.2 9.1 1.6 20 1.6Z" fill="#fff"/><g stroke="#284236" stroke-width="3.3" fill="none" stroke-linecap="square"><path d="M12 15.5h10.5v15"/><path d="M28 30.5h-8.5v-8.5H28"/><path d="M12 30.5v-6.5"/></g></svg><div style="line-height:1"><div style="font-size:17px;font-weight:600;letter-spacing:.12em;color:#fff">VISIT MARRAKECH</div><div style="font-size:9.5px;font-weight:600;letter-spacing:.32em;color:#9fb389;margin-top:5px">CONVENTION BUREAU</div></div></div>
+        <div style="border:1px solid #eceadf;border-radius:14px;padding:18px;display:flex;align-items:center;justify-content:center;gap:16px"><svg width="58" height="66" viewBox="0 0 40 46" fill="none"><path d="M20 1.6c10.9 0 17.4 8.6 17.4 20.1C37.4 35 30 44.4 20 44.4S2.6 35 2.6 21.7C2.6 10.2 9.1 1.6 20 1.6Z" fill="#7d985b"/><g stroke="#fff" stroke-width="3.3" fill="none" stroke-linecap="square"><path d="M12 15.5h10.5v15"/><path d="M28 30.5h-8.5v-8.5H28"/><path d="M12 30.5v-6.5"/></g></svg><div style="display:grid;grid-template-columns:repeat(3,14px);grid-template-rows:repeat(3,14px);gap:3px">
+          <span style="background:#284236"></span><span style="background:#e7ebe0"></span><span style="background:#284236"></span><span style="background:#e7ebe0"></span><span style="background:#7d985b"></span><span style="background:#e7ebe0"></span><span style="background:#284236"></span><span style="background:#e7ebe0"></span><span style="background:#284236"></span>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- 02 COLOUR -->
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:48px;padding:56px 0;border-top:1px solid #eceadf">
+      <div><div style="font-family:'Newsreader',serif;font-style:italic;font-size:22px;color:#9aab7e">02</div><div style="margin-top:8px;font-size:22px;font-weight:500;color:#26302a">Colour</div><div style="margin-top:10px;font-size:14px;color:#7c8378;line-height:1.55">Pure white dominates. Deep green carries structure; sage and a restrained ochre appear only as accents. Never large colour blocks.</div></div>
+      <div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+          <div style="border:1px solid #eceadf;border-radius:12px;overflow:hidden"><div style="height:104px;background:#284236"></div><div style="padding:13px 15px"><div style="font-size:14px;font-weight:600;color:#26302a">Deep Green</div><div style="font-size:12px;color:#8a9184;margin-top:3px">#284236 · Primary</div><div style="font-size:11px;color:#aab0a3;margin-top:2px">R40 G66 B54 · C78 M51 Y71 K51</div></div></div>
+          <div style="border:1px solid #eceadf;border-radius:12px;overflow:hidden"><div style="height:104px;background:#7d985b"></div><div style="padding:13px 15px"><div style="font-size:14px;font-weight:600;color:#26302a">Sage</div><div style="font-size:12px;color:#8a9184;margin-top:3px">#7D985B · Secondary</div><div style="font-size:11px;color:#aab0a3;margin-top:2px">R125 G152 B91 · C55 M25 Y79 K5</div></div></div>
+          <div style="border:1px solid #eceadf;border-radius:12px;overflow:hidden"><div style="height:104px;background:#b9793a"></div><div style="padding:13px 15px"><div style="font-size:14px;font-weight:600;color:#26302a">Ochre</div><div style="font-size:12px;color:#8a9184;margin-top:3px">#B9793A · Accent°</div><div style="font-size:11px;color:#aab0a3;margin-top:2px">Micro-accents only — from “ocre & doré”</div></div></div>
+          <div style="border:1px solid #eceadf;border-radius:12px;overflow:hidden"><div style="height:104px;background:#22321f"></div><div style="padding:13px 15px"><div style="font-size:14px;font-weight:600;color:#26302a">Ink</div><div style="font-size:12px;color:#8a9184;margin-top:3px">#22321F · Headlines</div><div style="font-size:11px;color:#aab0a3;margin-top:2px">Near-black green for text</div></div></div>
+        </div>
+        <div style="margin-top:16px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px">
+          <div style="border-radius:10px;overflow:hidden;border:1px solid #eceadf"><div style="height:56px;background:#ffffff;border-bottom:1px solid #eceadf"></div><div style="padding:8px 10px;font-size:11px;color:#8a9184">#FFFFFF</div></div>
+          <div style="border-radius:10px;overflow:hidden;border:1px solid #eceadf"><div style="height:56px;background:#faf9f4"></div><div style="padding:8px 10px;font-size:11px;color:#8a9184">#FAF9F4 Paper</div></div>
+          <div style="border-radius:10px;overflow:hidden;border:1px solid #eceadf"><div style="height:56px;background:#eef1e8"></div><div style="padding:8px 10px;font-size:11px;color:#8a9184">#EEF1E8 Tint</div></div>
+          <div style="border-radius:10px;overflow:hidden;border:1px solid #eceadf"><div style="height:56px;background:#e8e7de"></div><div style="padding:8px 10px;font-size:11px;color:#8a9184">#E8E7DE Line</div></div>
+          <div style="border-radius:10px;overflow:hidden;border:1px solid #eceadf"><div style="height:56px;background:#6a7268"></div><div style="padding:8px 10px;font-size:11px;color:#8a9184">#6A7268 Muted</div></div>
+          <div style="border-radius:10px;overflow:hidden;border:1px solid #eceadf"><div style="height:56px;background:#c7d8b6"></div><div style="padding:8px 10px;font-size:11px;color:#8a9184">#C7D8B6 On-dark</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 TYPE -->
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:48px;padding:56px 0;border-top:1px solid #eceadf">
+      <div><div style="font-family:'Newsreader',serif;font-style:italic;font-size:22px;color:#9aab7e">03</div><div style="margin-top:8px;font-size:22px;font-weight:500;color:#26302a">Typography</div><div style="margin-top:10px;font-size:14px;color:#7c8378;line-height:1.55">Jost carries the geometric spirit of the brand’s Futura. A Newsreader italic adds editorial warmth for single accent words and pull-quotes.</div></div>
+      <div style="display:flex;flex-direction:column;gap:26px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #f0efe7;padding-bottom:22px"><span style="font-size:60px;font-weight:300;letter-spacing:-.02em;color:#22321f">Feel the <span class="em">Bahja</span></span><span style="font-size:12px;color:#9aa093;text-align:right">Display · Jost 300 + Newsreader italic<br>60 / 64</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #f0efe7;padding-bottom:22px"><span style="font-size:40px;font-weight:300;letter-spacing:-.02em;color:#22321f">Where the world meets Marrakech</span><span style="font-size:12px;color:#9aa093;text-align:right">H1 · Jost 300<br>40 / 44</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #f0efe7;padding-bottom:22px"><span style="font-size:26px;font-weight:500;letter-spacing:-.01em;color:#26302a">Where your delegates gather</span><span style="font-size:12px;color:#9aa093;text-align:right">H2 · Jost 500<br>26 / 32</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #f0efe7;padding-bottom:22px"><span style="font-size:18px;font-weight:400;color:#5c655b;max-width:560px;line-height:1.5">Body copy sits at a comfortable editorial measure — generous leading, restrained width, high legibility for international professionals.</span><span style="font-size:12px;color:#9aa093;text-align:right">Body · Jost 400<br>18 / 27</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#7d985b">Marrakech Convention Bureau</span><span style="font-size:12px;color:#9aa093;text-align:right">Label · Jost 600<br>12 · +.24em</span></div>
+      </div>
+    </div>
+
+    <!-- 04 BUTTONS + COMPONENTS -->
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:48px;padding:56px 0;border-top:1px solid #eceadf">
+      <div><div style="font-family:'Newsreader',serif;font-style:italic;font-size:22px;color:#9aab7e">04</div><div style="margin-top:8px;font-size:22px;font-weight:500;color:#26302a">Components</div><div style="margin-top:10px;font-size:14px;color:#7c8378;line-height:1.55">Pill buttons, hairline cards, chips, inputs and stats — soft radii (10–16px), 1px lines, elevation on hover only.</div></div>
+      <div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+          <button style="background:#284236;color:#fff;border:none;font-family:inherit;font-size:15px;font-weight:500;padding:14px 26px;border-radius:999px">Submit an RFP</button>
+          <button style="background:#fff;color:#2f382f;border:1px solid #d5d4c9;font-family:inherit;font-size:15px;font-weight:500;padding:14px 24px;border-radius:999px">Secondary</button>
+          <button style="background:transparent;color:#284236;border:none;font-family:inherit;font-size:15px;font-weight:500;display:flex;align-items:center;gap:8px">Ghost link <span style="color:#7d985b">→</span></button>
+          <div style="background:#284236;padding:14px 22px;border-radius:999px"><button style="background:#fff;color:#243027;border:none;font-family:inherit;font-size:15px;font-weight:600;padding:0">On-dark</button></div>
+        </div>
+        <div style="margin-top:26px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+          <div style="border:1px solid #eceadf;border-radius:14px;padding:22px"><div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7d985b">Chips & tags</div><div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:12px;color:#5a6353;background:#eae9df;border-radius:999px;padding:7px 14px">Congress</span><span style="font-size:12px;color:#2f4a37;border:1px solid #d3d8c8;border-radius:999px;padding:7px 14px">Incentive</span><span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#7d985b;border-radius:999px;padding:6px 13px">Venue</span></div></div>
+          <div style="border:1px solid #eceadf;border-radius:14px;padding:22px"><div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7d985b">Input</div><div style="margin-top:14px;border:1px solid #e2e1d5;border-radius:11px;padding:13px 15px;font-size:14px;color:#3c443c;display:flex;justify-content:space-between">Event type <span style="color:#9aa093">▾</span></div></div>
+          <div style="border:1px solid #eceadf;border-radius:14px;padding:22px"><div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7d985b">Stat</div><div style="margin-top:10px;font-size:36px;font-weight:600;color:#284236;line-height:1">300+</div><div style="font-size:13px;color:#6a7268;margin-top:4px">Days of sunshine</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 GRID + ICONS -->
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:48px;padding:56px 0;border-top:1px solid #eceadf">
+      <div><div style="font-family:'Newsreader',serif;font-style:italic;font-size:22px;color:#9aab7e">05</div><div style="margin-top:8px;font-size:22px;font-weight:500;color:#26302a">Grid, spacing & icons</div><div style="margin-top:10px;font-size:14px;color:#7c8378;line-height:1.55">12-column grid, 88px outer margins on desktop. Spacing on an 8-pt rhythm. Icons: 1.5px line, rounded joins, single-weight.</div></div>
+      <div>
+        <div style="display:flex;gap:26px;flex-wrap:wrap">
+          <div><div style="display:grid;grid-template-columns:repeat(12,1fr);gap:6px;width:420px">
+            <span style="height:70px;background:#eef1e8;border-radius:4px"></span><span style="height:70px;background:#eef1e8;border-radius:4px"></span><span style="height:70px;background:#eef1e8;border-radius:4px"></span><span style="height:70px;background:#eef1e8;border-radius:4px"></span><span style="height:70px;background:#eef1e8;border-radius:4px"></span><span style="height:70px;background:#eef1e8;border-radius:4px"></span><span style="height:70px;background:#eef1e8;border-radius:4px"></span><span style="height:70px;background:#eef1e8;border-radius:4px"></span><span style="height:70px;background:#eef1e8;border-radius:4px"></span><span style="height:70px;background:#eef1e8;border-radius:4px"></span><span style="height:70px;background:#eef1e8;border-radius:4px"></span><span style="height:70px;background:#eef1e8;border-radius:4px"></span>
+          </div><div style="margin-top:10px;font-size:12px;color:#9aa093">12 columns · 24px gutter</div></div>
+          <div style="display:flex;align-items:flex-end;gap:10px">
+            <div style="text-align:center"><span style="display:block;width:8px;height:8px;background:#7d985b;border-radius:2px;margin:0 auto"></span><span style="font-size:10px;color:#9aa093">8</span></div>
+            <div style="text-align:center"><span style="display:block;width:16px;height:16px;background:#7d985b;border-radius:2px;margin:0 auto"></span><span style="font-size:10px;color:#9aa093">16</span></div>
+            <div style="text-align:center"><span style="display:block;width:24px;height:24px;background:#7d985b;border-radius:3px;margin:0 auto"></span><span style="font-size:10px;color:#9aa093">24</span></div>
+            <div style="text-align:center"><span style="display:block;width:44px;height:44px;background:#7d985b;border-radius:4px;margin:0 auto"></span><span style="font-size:10px;color:#9aa093">44</span></div>
+            <div style="text-align:center"><span style="display:block;width:64px;height:64px;background:#7d985b;border-radius:5px;margin:0 auto"></span><span style="font-size:10px;color:#9aa093">64</span></div>
+          </div>
+        </div>
+        <div style="margin-top:26px;display:flex;gap:20px;flex-wrap:wrap">
+          <div style="width:52px;height:52px;border:1px solid #eceadf;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L20 20"/></svg></div>
+          <div style="width:52px;height:52px;border:1px solid #eceadf;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="2.5"/></svg></div>
+          <div style="width:52px;height:52px;border:1px solid #eceadf;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg></div>
+          <div style="width:52px;height:52px;border:1px solid #eceadf;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><path d="M12 21s-7-5-7-11a7 7 0 0114 0c0 6-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div style="width:52px;height:52px;border:1px solid #eceadf;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><circle cx="6" cy="7" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="17" r="2.5"/><path d="M8 8.5l3 6.5M16 8.5l-3 6.5"/></svg></div>
+          <div style="width:52px;height:52px;border:1px solid #eceadf;border-radius:12px;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#284236" stroke-width="1.5"><path d="M6 3h9l4 4v14H6z"/><path d="M9 13l2 2 4-4"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 PHOTOGRAPHY -->
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:48px;padding:56px 0;border-top:1px solid #eceadf">
+      <div><div style="font-family:'Newsreader',serif;font-style:italic;font-size:22px;color:#9aab7e">06</div><div style="margin-top:8px;font-size:22px;font-weight:500;color:#26302a">Photography</div><div style="margin-top:10px;font-size:14px;color:#7c8378;line-height:1.55">Editorial, natural light, human warmth and architectural detail. Never tourist clichés or oversaturated stock.</div></div>
+      <div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+          <div style="height:150px;border-radius:12px;background-size:cover;background-position:center;background-image:url(https://images.unsplash.com/photo-1544517333-3ceafba4d01b?w=500&q=80&auto=format&fit=crop)"></div>
+          <div style="height:150px;border-radius:12px;background-size:cover;background-position:center;background-image:url(https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=500&q=80&auto=format&fit=crop)"></div>
+          <div style="height:150px;border-radius:12px;background-size:cover;background-position:center;background-image:url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80&auto=format&fit=crop)"></div>
+          <div style="height:150px;border-radius:12px;background-size:cover;background-position:center;background-image:url(https://images.unsplash.com/photo-1489493585363-d69421e0edd3?w=500&q=80&auto=format&fit=crop)"></div>
+        </div>
+        <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div><div style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5a8a5f">Do</div><div style="margin-top:9px;font-size:14px;color:#5c655b;line-height:1.6">Editorial framing · natural light · people in context · zellige & architecture detail · desert and Atlas scale · genuine business moments.</div></div>
+          <div><div style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#b9793a">Avoid</div><div style="margin-top:9px;font-size:14px;color:#5c655b;line-height:1.6">Tourist clichés · oversaturated HDR · staged stock handshakes · heavy filters · souvenir snapshots · crowded compositions.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 SITEMAP -->
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:48px;padding:56px 0;border-top:1px solid #eceadf">
+      <div><div style="font-family:'Newsreader',serif;font-style:italic;font-size:22px;color:#9aab7e">07</div><div style="margin-top:8px;font-size:22px;font-weight:500;color:#26302a">Architecture & sitemap</div><div style="margin-top:10px;font-size:14px;color:#7c8378;line-height:1.55">A shallow, conversion-oriented structure — every path leads to an RFP. SEO-friendly, semantic, bilingual (EN / FR with hreflang).</div></div>
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:10px;background:#284236;color:#fff;font-size:14px;font-weight:600;padding:11px 22px;border-radius:10px">Homepage</div>
+        <div style="margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+          <div style="border:1px solid #eceadf;border-radius:12px;padding:16px"><div style="font-size:14px;font-weight:600;color:#26302a">Destination</div><div style="margin-top:10px;font-size:13px;color:#7c8378;line-height:1.9">Why Marrakech<br>Access & logistics<br>Sustainability</div></div>
+          <div style="border:1px solid #eceadf;border-radius:12px;padding:16px"><div style="font-size:14px;font-weight:600;color:#26302a">Venues</div><div style="margin-top:10px;font-size:13px;color:#7c8378;line-height:1.9">Convention centres<br>Hotels<br>Unique venues</div></div>
+          <div style="border:1px solid #eceadf;border-radius:12px;padding:16px"><div style="font-size:14px;font-weight:600;color:#26302a">Experiences</div><div style="margin-top:10px;font-size:13px;color:#7c8378;line-height:1.9">Incentives<br>Team building<br>Gala & dining</div></div>
+          <div style="border:1px solid #eceadf;border-radius:12px;padding:16px"><div style="font-size:14px;font-weight:600;color:#26302a">Convention Bureau</div><div style="margin-top:10px;font-size:13px;color:#7c8378;line-height:1.9">Services<br>Bid support<br>About & team</div></div>
+          <div style="border:1px solid #eceadf;border-radius:12px;padding:16px"><div style="font-size:14px;font-weight:600;color:#26302a">Success Stories</div><div style="margin-top:10px;font-size:13px;color:#7c8378;line-height:1.9">Case studies<br>Testimonials<br>Statistics</div></div>
+          <div style="border:1px solid #eceadf;border-radius:12px;padding:16px"><div style="font-size:14px;font-weight:600;color:#26302a">Events Calendar</div><div style="margin-top:10px;font-size:13px;color:#7c8378;line-height:1.9">Trade shows<br>Congresses<br>Agenda Bahja</div></div>
+          <div style="border:1px solid #eceadf;border-radius:12px;padding:16px"><div style="font-size:14px;font-weight:600;color:#26302a">Insights & Media</div><div style="margin-top:10px;font-size:13px;color:#7c8378;line-height:1.9">Journal<br>Press<br>Media library</div></div>
+          <div style="border:1px solid #d3d8c8;background:#eef1e8;border-radius:12px;padding:16px"><div style="font-size:14px;font-weight:600;color:#284236">Plan / Contact</div><div style="margin-top:10px;font-size:13px;color:#5a6b52;line-height:1.9">Submit an RFP<br>Site inspection<br>Contact the Bureau</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 PRINCIPLES -->
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:48px;padding:56px 0 6px;border-top:1px solid #eceadf">
+      <div><div style="font-family:'Newsreader',serif;font-style:italic;font-size:22px;color:#9aab7e">08</div><div style="margin-top:8px;font-size:22px;font-weight:500;color:#26302a">Principles</div><div style="margin-top:10px;font-size:14px;color:#7c8378;line-height:1.55">Interaction, accessibility and SEO standards that keep the experience calm, inclusive and discoverable.</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px">
+        <div style="border:1px solid #eceadf;border-radius:14px;padding:22px"><div style="font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#7d985b">Interaction</div><div style="margin-top:12px;font-size:14px;color:#5c655b;line-height:1.75">Smooth scroll · 200–300ms ease · card elevation +6px on hover · hairline reveals · restrained fades · no parallax overload · reduced-motion honoured.</div></div>
+        <div style="border:1px solid #eceadf;border-radius:14px;padding:22px"><div style="font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#7d985b">Accessibility</div><div style="margin-top:12px;font-size:14px;color:#5c655b;line-height:1.75">WCAG 2.1 AA contrast · visible focus states · 44px minimum targets · descriptive alt text · keyboard-navigable menus · semantic landmarks.</div></div>
+        <div style="border:1px solid #eceadf;border-radius:14px;padding:22px"><div style="font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#7d985b">SEO structure</div><div style="margin-top:12px;font-size:14px;color:#5c655b;line-height:1.75">One H1 per page · semantic H2–H3 · descriptive slugs · Organization & Event schema · bilingual hreflang · fast, image-optimised delivery.</div></div>
+      </div>
+    </div>
+
+  </div>
+</section></x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang:'en', hi:0, mega:false, rfp:0 };
+
+  img(id,w){ return 'https://images.unsplash.com/photo-'+id+'?w='+w+'&q=80&auto=format&fit=crop'; }
+
+  renderVals(){
+    const fr = this.state.lang === 'fr';
+    const p = i => i[fr?1:0];
+
+    const S = {
+      cbTag:['Convention Bureau','Convention Bureau'],
+      nDest:['Destination','Destination'], nVen:['Venues','Lieux'], nExp:['Experiences','Expériences'],
+      nServ:['Services','Services'], nSucc:['Success Stories','Références'], nIns:['Insights','Actualités'],
+      rfp:['Submit an RFP','Déposer un RFP'], explore:['Explore the destination','Découvrir la destination'],
+      heroEy:['Marrakech Convention Bureau','Marrakech Convention Bureau'],
+      trust:['Trusted to host the world’s leading events','La confiance des plus grands événements'],
+      posLabel:['Positioning concepts','Concepts de positionnement'],
+      megaTitle:['1,000s of five-star rooms within 20 minutes of the Palais des Congrès.','Des milliers de chambres 5★ à moins de 20 minutes du Palais des Congrès.'],
+      megaCta:['See the venue guide','Voir le guide des lieux'],
+      whyEy:['Why Marrakech','Pourquoi Marrakech'],
+      whyT:['A world-class destination, three hours from Europe','Une destination de rang mondial, à trois heures de l’Europe'],
+      whyLead:['Sun, culture, connectivity and five-star capacity — Marrakech gives your delegates a reason to say yes, and a reason to come back.','Soleil, culture, accessibilité et capacité cinq étoiles — Marrakech donne à vos participants une raison de dire oui, et de revenir.'],
+      cbEy:['The Convention Bureau','Le Convention Bureau'],
+      cbT:['One partner, from first bid to closing night','Un partenaire unique, de l’appel d’offres à la clôture'],
+      cbLead:['We are your free, neutral and confidential single point of contact — connecting your event to the entire destination.','Nous sommes votre point de contact unique, gratuit, neutre et confidentiel — reliant votre événement à toute la destination.'],
+      venEy:['Venues','Lieux'], venT:['Where your delegates gather','Là où vos participants se réunissent'],
+      venAll:['View all venues','Voir tous les lieux'],
+      expEy:['Signature Experiences','Expériences signature'],
+      expT:['The moments they’ll talk about for years','Les moments dont ils parleront pendant des années'],
+      sucEy:['Proven ground','Une destination éprouvée'], sucT:['Trusted at the highest level','La confiance au plus haut niveau'],
+      insEy:['Insights','Actualités'], insT:['Intelligence for event professionals','L’expertise pour les professionnels de l’événement'],
+      insAll:['Read the journal','Lire le journal'],
+      partners:['Our hospitality partners','Nos partenaires hôteliers'],
+      ctaT:['Let’s plan something extraordinary','Créons un événement d’exception'],
+      ctaLead:['Tell us about your event. We come back within 48 hours with venues, ideas and a dedicated contact — at no cost.','Parlez-nous de votre projet. Nous revenons sous 48h avec des lieux, des idées et un contact dédié — sans frais.'],
+      ctaBtn2:['Talk to the Bureau','Contacter le Bureau'],
+      footTag:['The official Convention Bureau for Marrakech. Feel the Bahja Spirit.','Le Convention Bureau officiel de Marrakech. Feel the Bahja Spirit.'],
+      news:['Get the planner’s briefing','Recevez le briefing pro'],
+      newsSub:['Quarterly MICE intelligence from Marrakech. No noise.','L’essentiel du MICE marrakchi, chaque trimestre.'],
+      newsGo:['Subscribe','S’inscrire'],
+      rights:['© 2026 Marrakech Convention Bureau — Visit Marrakech. All rights reserved.','© 2026 Marrakech Convention Bureau — Visit Marrakech. Tous droits réservés.'],
+      tab1:['Find a venue','Trouver un lieu'], tab2:['Submit an RFP','Déposer un RFP'], tab3:['Book a site visit','Visite d’inspection'],
+      qType:['Event type','Type d’événement'], qPax:['Delegates','Participants'], qDate:['Preferred dates','Dates souhaitées'],
+      qGo:['Start enquiry','Démarrer'],
+      bTag:['B2B platform','Plateforme B2B'],
+      bHeadA:['One destination.','Une destination.'], bHeadB:['Every reason to meet here.','Toutes les raisons de s’y réunir.'],
+      bSub:['Marrakech Convention Bureau is the official, single point of contact for meeting and event professionals. Venues, logistics, suppliers — organised.','Le Marrakech Convention Bureau est le point de contact officiel des professionnels de l’événement. Lieux, logistique, prestataires — orchestrés.'],
+      mHead:['Meet in Marrakech','Réunissez-vous à Marrakech'],
+      dsTitle:['Design system','Système de design'],
+    };
+    const t = {}; for (const k in S) t[k] = p(S[k]);
+
+    const HL = [
+      {tone:['Corporate','Corporate'],a:['Where the world meets ','Là où le monde rencontre '],b:['Marrakech','Marrakech'],c:['',''],sub:['Africa’s rising capital for meetings, incentives, congresses and events — supported end to end by the Marrakech Convention Bureau.','La capitale montante d’Afrique pour vos réunions, incentives et congrès — accompagnée de A à Z par le Convention Bureau.']},
+      {tone:['Confident','Assuré'],a:['Meet beyond ','Réunissez-vous au-delà des '],b:['expectations','attentes'],c:['',''],sub:['World-class venues, seamless logistics and a destination your delegates will never forget.','Des lieux d’exception, une logistique fluide et une destination inoubliable pour vos participants.']},
+      {tone:['On-brand','Signature'],a:['Where business meets ','Là où le business rencontre la '],b:['Bahja','Bahja'],c:['',''],sub:['The efficiency of an international MICE hub, carried by the warmth of Moroccan hospitality.','L’efficacité d’un hub MICE international, portée par la chaleur de l’hospitalité marocaine.']},
+      {tone:['Premium','Premium'],a:['The home of ','La terre des '],b:['extraordinary','événements'],c:[' meetings',' d’exception'],sub:['Three convention centres, hundreds of five-star meeting spaces, one unforgettable city.','Trois palais des congrès, des centaines d’espaces cinq étoiles, une ville inoubliable.']},
+      {tone:['Energetic','Énergique'],a:['Inspire. Connect. ','Inspirez. Connectez. '],b:['Celebrate.','Célébrez.'],c:['',''],sub:['Every congress, incentive and gala gains a new dimension under the Marrakech sun.','Chaque congrès, incentive et gala prend une autre dimension sous le soleil de Marrakech.']},
+      {tone:['Emotional','Émotionnel'],a:['Where great events become ','Quand l’événement devient '],b:['lasting memories','souvenir'],c:['',''],sub:['From the Palais des Congrès to the Agafay desert, we craft events people carry with them for years.','Du Palais des Congrès au désert d’Agafay, nous créons des événements que l’on garde en mémoire des années.']},
+      {tone:['Purpose','Engagé'],a:['Business with soul,','Le business avec une âme,'],b:[' events with impact',' l’événement avec impact'],c:['',''],sub:['A destination that turns strategic objectives into human connection — and measurable results.','Une destination qui transforme vos objectifs en lien humain — et en résultats.']},
+      {tone:['Signature','Signature'],a:['Meet in Marrakech.','Réunissez-vous à Marrakech.'],b:[' Feel the Bahja.',' Vivez la Bahja.'],c:['',''],sub:['Hospitality, authenticity and positive energy — the Bahja Spirit runs through every event we help you create.','Hospitalité, authenticité et énergie positive — la Bahja Spirit traverse chaque événement que nous créons avec vous.']},
+    ];
+    const hi = this.state.hi;
+    const hsel = HL[hi];
+    const hero = { tone:p(hsel.tone), a:p(hsel.a), b:p(hsel.b), c:p(hsel.c), sub:p(hsel.sub) };
+
+    const pillBase = 'font-family:inherit;font-size:12.5px;font-weight:600;letter-spacing:.04em;width:38px;height:34px;border-radius:8px;cursor:pointer;transition:all .18s;';
+    const pills = HL.map((h,i)=>({
+      num:('0'+(i+1)).slice(-2),
+      on:()=>this.setState({hi:i}),
+      style: pillBase + (i===hi
+        ? 'background:#284236;color:#fff;border:1px solid #284236;'
+        : 'background:#fff;color:#8a917f;border:1px solid #e2e1d8;')
+    }));
+
+    const megaCols = [
+      { head: fr?'Palais des congrès':'Convention Centres', items:['Palais des Congrès Marrakech','Palais des Congrès Mogador','Palmeraie Conference Center'] },
+      { head: fr?'Hôtels de luxe':'Luxury Hotels', items:['Royal Mansour Marrakech','Four Seasons Resort','Sofitel Marrakech','Mövenpick Mansour Eddahbi'] },
+      { head: fr?'Lieux uniques':'Unique Venues', items:['Agafay desert camps','Historic riads & palaces','Rooftop & garden spaces'] },
+    ];
+
+    const enStyle = 'cursor:pointer;'+(fr?'color:#b7bbb0;':'color:#284236;');
+    const frStyle = 'cursor:pointer;'+(fr?'color:#284236;':'color:#b7bbb0;');
+
+    const strengths = [
+      {big:'3', label: fr?'Palais des congrès dédiés':'Dedicated convention centres', note: fr?'Palais des Congrès, Mogador & Palmeraie':'Palais des Congrès, Mogador & Palmeraie'},
+      {big:'3h', label: fr?'Depuis les grands hubs européens':'From major European hubs', note:'Paris · London · Madrid · Dubai +'},
+      {big:'300+', label: fr?'Jours de soleil par an':'Days of sunshine a year', note: fr?'Une destination outdoor en toute saison':'An outdoor destination in every season'},
+      {big:'1,000s°', label: fr?'Chambres cinq étoiles':'Five-star rooms', note: fr?'Des centaines d’espaces de réunion':'Hundreds of meeting spaces citywide'},
+      {big:'UNESCO', label: fr?'Médina classée au patrimoine':'World Heritage Medina', note: fr?'Neuf siècles de culture vivante':'Nine centuries of living culture'},
+      {big:'40min', label: fr?'Jusqu’au désert d’Agafay':'To the Agafay desert', note: fr?'Atlas et camps de désert à portée':'Atlas peaks & desert camps within reach'},
+    ];
+
+    const services = [
+      {n:'01', name:'Venue sourcing', name_fr:'Recherche de lieux', desc:'Curated shortlists matched to your programme, capacity and budget.', desc_fr:'Des sélections sur-mesure selon votre programme, capacité et budget.'},
+      {n:'02', name:'Bid support', name_fr:'Appui aux candidatures', desc:'Data, support letters and lobbying to help you win the bid.', desc_fr:'Données, lettres de soutien et lobbying pour remporter la candidature.'},
+      {n:'03', name:'Site inspections', name_fr:'Visites d’inspection', desc:'We host and organise your familiarisation and inspection visits.', desc_fr:'Nous organisons et accueillons vos visites d’inspection.'},
+      {n:'04', name:'Supplier network', name_fr:'Réseau de prestataires', desc:'Vetted DMCs, agencies, caterers, production and transport.', desc_fr:'DMC, agences, traiteurs, production et transport référencés.'},
+      {n:'05', name:'DMC connections', name_fr:'Mise en relation DMC', desc:'Warm introductions to Marrakech’s most trusted operators.', desc_fr:'Des introductions aux opérateurs les plus fiables de Marrakech.'},
+      {n:'06', name:'Planning assistance', name_fr:'Accompagnement', desc:'A single dedicated contact from first enquiry to closing night.', desc_fr:'Un contact dédié, de la première demande à la clôture.'},
+    ].map(s=>({n:s.n, name: fr?s.name_fr:s.name, desc: fr?s.desc_fr:s.desc}));
+
+    const venues = [
+      {name:'Palais des Congrès Marrakech', sub:'Mövenpick Mansour Eddahbi', img:this.img('1505373877841-8d25f7d46678',900), cap:'Up to 3,000° pax', rooms:'20+ breakout rooms', tag: fr?'Palais des congrès':'Convention Centre'},
+      {name:'Palais des Congrès Mogador', sub:'Mogador Resort · Menara', img:this.img('1517457373958-b7bdd4587205',900), cap:'Up to 5,000° pax', rooms:'Plenary + exhibition halls', tag: fr?'Palais des congrès':'Convention Centre'},
+      {name:'Palmeraie Conference Center', sub:'Palmeraie Rotana Resort', img:this.img('1560264280-88b68371db39',900), cap:'Up to 2,000° pax', rooms:'Resort-integrated venue', tag: fr?'Resort de conférence':'Conference Resort'},
+    ];
+
+    const hotels = ['Royal Mansour','Four Seasons','Sofitel Marrakech','Mövenpick Mansour Eddahbi','Kenzi Menara Palace','Barrière Le Naoura','Palmeraie Rotana'];
+
+    const experiences = [
+      {name: fr?'Dîner de gala dans le désert d’Agafay':'Gala dinner in the Agafay desert', cat: fr?'Incentive':'Incentive', img:this.img('1489493585363-d69421e0edd3',900)},
+      {name: fr?'Retraite privée dans l’Atlas':'Private retreat in the Atlas Mountains', cat: fr?'Team building':'Team building', img:this.img('1489749798305-4fea3ae63d43',900)},
+      {name: fr?'Découverte de la médina':'Medina & heritage discovery', cat: fr?'Culture':'Culture', img:this.img('1544517333-3ceafba4d01b',900)},
+      {name: fr?'Golf, spa & bien-être':'Golf, spa & wellness', cat: fr?'Loisir':'Leisure', img:this.img('1585320806297-9794b3e4eeae',900)},
+      {name: fr?'Dîner dans un palais historique':'Dinner inside a historic palace', cat: fr?'Gastronomie':'Exclusive dining', img:this.img('1414235077428-338989a2e8c0',900)},
+      {name: fr?'Cocktails sous les étoiles':'Cocktails under the stars', cat: fr?'Networking':'Networking', img:this.img('1571003123894-1f0594d2b5d9',900)},
+    ];
+
+    const insights = [
+      {tag: fr?'Destination':'Destination', title: fr?'Pourquoi Marrakech est le hub MICE qui monte en Afrique':'Why Marrakech is Africa’s fastest-rising MICE hub', read:'6 min', img:this.img('1540575467063-178a50c2df87',800)},
+      {tag: fr?'Incentives':'Incentives', title: fr?'L’Agafay, nouvelle frontière de l’incentive':'Inside the Agafay: the new frontier for incentives', read:'4 min', img:this.img('1489493585363-d69421e0edd3',800)},
+      {tag: fr?'Organisation':'Planning', title: fr?'Organiser un congrès à Marrakech : le guide 2026':'Hosting a congress in Marrakech: the 2026 guide', read:'8 min', img:this.img('1517457373958-b7bdd4587205',800)},
+    ];
+
+    const successNamed = [
+      {big:'COP22', label: fr?'Conférence de l’ONU sur le climat':'UN Climate Change Conference'},
+      {big:'IMF · World Bank', label: fr?'Réunions annuelles 2023':'Annual Meetings 2023'},
+      {big:'GITEX Africa', label: fr?'Plus grand événement tech d’Afrique':'Largest tech event in Africa'},
+      {big:'PURE Life', label: fr?'Voyage de luxe expérientiel':'Luxury experiential travel'},
+    ];
+
+    const kpis = [
+      {big:'25,000°', label: fr?'Participants sur un seul événement':'Delegate capacity, single event'},
+      {big:'150+°', label: fr?'Événements internationaux / an':'International events / year'},
+      {big:'3', label: fr?'Palais des congrès':'Convention centres'},
+      {big:'98%°', label: fr?'Recommanderaient Marrakech':'Would host in Marrakech again'},
+    ];
+
+    const rfpTabs = [t.tab1, t.tab2, t.tab3].map((label,i)=>({
+      label, on:()=>this.setState({rfp:i}),
+      style: 'font-family:inherit;font-size:14px;font-weight:500;padding:12px 20px;border-radius:999px;cursor:pointer;border:none;transition:all .18s;'+(i===this.state.rfp?'background:#284236;color:#fff;':'background:transparent;color:#8b9384;')
+    }));
+
+    return {
+      t, hero, pills, megaCols, enStyle, frStyle,
+      mega:this.state.mega, openMega:()=>this.setState({mega:true}), closeMega:()=>this.setState({mega:false}),
+      setEn:()=>this.setState({lang:'en'}), setFr:()=>this.setState({lang:'fr'}),
+      strengths, services, venues, hotels, experiences, insights, successNamed, kpis, rfpTabs, fr,
+      enOnDark: fr?'opacity:.55;':'opacity:1;font-weight:700;',
+      frOnDark: fr?'opacity:1;font-weight:700;':'opacity:.55;',
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Hotel card — star class, rooms, meeting space.
+ * Hotel card — venue-card language with hotel meta (star class · rooms).
  *
  * @package MCB
  */
@@ -16,20 +16,15 @@ $mcb_location = mcb_listing_meta( 'location', $mcb_id );
 mcb_part(
 	'cards/card-listing',
 	array(
-		'post_id' => $mcb_id,
-		'kind'    => 'hotel',
-		'meta'    => array(
+		'post_id'  => $mcb_id,
+		'kind'     => 'hotel',
+		'subtitle' => $mcb_location,
+		'meta'     => array(
 			array(
-				'icon' => 'star',
-				'text' => $mcb_stars ? sprintf( /* translators: %s: hotel star class. */ __( '%s-star hotel', 'mcb' ), $mcb_stars ) : '',
+				'text' => $mcb_stars ? sprintf( /* translators: %s: hotel star class. */ __( '%s-star', 'mcb' ), $mcb_stars ) : '',
 			),
 			array(
-				'icon' => 'bed',
-				'text' => $mcb_rooms ? sprintf( /* translators: %s: number of rooms. */ __( '%s rooms', 'mcb' ), number_format_i18n( (float) $mcb_rooms ) ) : '',
-			),
-			array(
-				'icon' => 'map-pin',
-				'text' => $mcb_location,
+				'text' => $mcb_rooms ? sprintf( /* translators: %s: number of rooms. */ __( '%s rooms', 'mcb' ), $mcb_rooms ) : '',
 			),
 		),
 	)

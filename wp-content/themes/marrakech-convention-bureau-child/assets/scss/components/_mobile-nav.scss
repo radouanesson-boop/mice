@@ -1,7 +1,8 @@
 @use '../abstracts' as *;
 
 // ---------------------------------------------------------------------------
-// Mobile navigation drawer (right slide-in, scrim, accordion submenus).
+// Mobile navigation — board 1C: full-screen deep-green takeover with large
+// light links, sage arrows, EN/FR + white RFP button pinned to the bottom.
 // ---------------------------------------------------------------------------
 
 .mcb-mobile-nav {
@@ -16,24 +17,18 @@
 	&__scrim {
 		position: absolute;
 		inset: 0;
-		background: rgb(33 28 23 / 55%);
-		@include motion-safe {
-			animation: mcb-fade-in var(--mcb-duration) var(--mcb-ease);
-		}
+		background: rgb(14 18 15 / 40%);
 	}
 
 	&__panel {
 		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
+		inset: 0;
 		display: flex;
 		flex-direction: column;
-		width: min(22rem, 88vw);
-		background: var(--mcb-color-surface);
-		box-shadow: var(--mcb-shadow-lg);
+		background: var(--mcb-color-primary);
+		color: #fff;
 		@include motion-safe {
-			animation: mcb-slide-in var(--mcb-duration) var(--mcb-ease);
+			animation: mcb-fade-in var(--mcb-duration) var(--mcb-ease);
 		}
 	}
 
@@ -41,14 +36,16 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: var(--mcb-space-4) var(--mcb-space-5);
-		border-bottom: 1px solid var(--mcb-color-line);
+		min-height: 3.75rem;
+		padding: 0 1.25rem;
 	}
 
 	&__brand {
-		font-family: var(--mcb-font-display);
-		font-size: var(--mcb-text-lg);
-		color: var(--mcb-color-ink);
+		font-size: 0.78125rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #fff;
 	}
 
 	&__close {
@@ -56,7 +53,7 @@
 		padding: var(--mcb-space-2);
 		background: none;
 		border: 0;
-		color: var(--mcb-color-ink);
+		color: #fff;
 		cursor: pointer;
 		@include focus-ring;
 	}
@@ -64,7 +61,7 @@
 	&__nav {
 		flex: 1;
 		overflow-y: auto;
-		padding: var(--mcb-space-4) var(--mcb-space-5);
+		padding: 1.25rem 1.5rem;
 	}
 
 	&__menu {
@@ -72,33 +69,48 @@
 		padding: 0;
 		list-style: none;
 
-		li {
-			border-bottom: 1px solid var(--mcb-color-line);
+		> li {
+			border-bottom: 1px solid rgb(255 255 255 / 14%);
+
+			&:last-child {
+				border-bottom: 0;
+			}
 		}
 
 		a {
-			display: block;
-			padding: var(--mcb-space-3) 0;
-			font-weight: 600;
-			color: var(--mcb-color-ink);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 1.125rem 0;
+			font-size: 1.625rem;
+			font-weight: 300;
+			letter-spacing: -0.01em;
+			color: #fff;
 			@include focus-ring;
+
+			&::after {
+				content: '→';
+				font-size: 1.125rem;
+				color: #9fb389;
+			}
 		}
 
 		// Sub-menus: collapsed by default, JS toggles .is-open on the <li>.
 		.sub-menu {
 			display: none;
 			margin: 0;
-			padding: 0 0 var(--mcb-space-3) var(--mcb-space-4);
+			padding: 0 0 var(--mcb-space-4) var(--mcb-space-4);
 			list-style: none;
 
-			li {
-				border: 0;
-			}
-
 			a {
-				padding: var(--mcb-space-2) 0;
+				padding: 0.5rem 0;
+				font-size: 1.0625rem;
 				font-weight: 400;
-				color: var(--mcb-color-body);
+				color: var(--mcb-color-on-dark-body);
+
+				&::after {
+					content: none;
+				}
 			}
 		}
 
@@ -108,17 +120,40 @@
 	}
 
 	&__footer {
-		padding: var(--mcb-space-4) var(--mcb-space-5);
-		border-top: 1px solid var(--mcb-color-line);
+		padding: 1.25rem 1.5rem 1.625rem;
+
+		.mcb-btn {
+			background: #fff;
+			color: #243027;
+			font-weight: 600;
+			border-radius: 0.8125rem;
+
+			&:hover {
+				background: var(--mcb-color-tint);
+			}
+		}
+	}
+
+	&__lang {
+		display: flex;
+		gap: 0.25rem;
+		margin-bottom: var(--mcb-space-4);
+		font-size: var(--mcb-text-sm);
+		font-weight: 600;
+		color: #fff;
+
+		a {
+			color: rgb(255 255 255 / 50%);
+		}
+
+		.is-active a,
+		.current-lang a {
+			color: #fff;
+		}
 	}
 }
 
 @keyframes mcb-fade-in {
 	from { opacity: 0; }
 	to { opacity: 1; }
-}
-
-@keyframes mcb-slide-in {
-	from { transform: translateX(100%); }
-	to { transform: translateX(0); }
 }

@@ -14,8 +14,8 @@ defined( 'ABSPATH' ) || exit;
 add_action(
 	'after_setup_theme',
 	function () {
-		// Listing/venue/hotel cards — 4:3.
-		add_image_size( 'mcb-card', 640, 480, true );
+		// Listing/venue/hotel cards — 13:8 (design board 1A: ≈433×266).
+		add_image_size( 'mcb-card', 866, 532, true );
 
 		// Wide feature cards & news — 16:10.
 		add_image_size( 'mcb-card-wide', 800, 500, true );
@@ -41,7 +41,7 @@ add_filter(
 		return array_merge(
 			$sizes,
 			array(
-				'mcb-card'      => __( 'MCB Card (4:3)', 'mcb' ),
+				'mcb-card'      => __( 'MCB Card (13:8)', 'mcb' ),
 				'mcb-card-wide' => __( 'MCB Card wide (16:10)', 'mcb' ),
 				'mcb-card-tall' => __( 'MCB Card tall (3:4)', 'mcb' ),
 				'mcb-hero'      => __( 'MCB Hero', 'mcb' ),

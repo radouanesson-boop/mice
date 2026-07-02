@@ -1,90 +1,155 @@
 @use '../abstracts' as *;
 
 // ---------------------------------------------------------------------------
-// Home hero + inner-page hero.
+// Home hero — board 1A: split layout. Text column (white) left, cinematic
+// image right with a soft green gradient and a frosted stats card.
+// Mobile (board 1C): image on top with overlay title, buttons stacked
+// full-width below, stats become a 3-up row.
 // ---------------------------------------------------------------------------
 
 .mcb-hero {
-	position: relative;
-	display: flex;
-	align-items: center;
-	min-height: min(88vh, 56rem);
-	padding-block: var(--mcb-space-8);
-	color: #fff;
-	// Pull under the sticky header for the full-bleed look on the front page.
-	isolation: isolate;
+	background: var(--mcb-color-surface);
 
+	@include mq($breakpoint-lg) {
+		display: grid;
+		grid-template-columns: minmax(0, 41.6%) 1fr; // 600 / 1440
+		min-height: min(45.4rem, 92vh);              // 726px comp height
+	}
+
+	// --- Text column ---------------------------------------------------------
+	&__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: var(--mcb-space-6) var(--mcb-gutter) var(--mcb-space-7);
+
+		@include mq($breakpoint-lg) {
+			padding: 5.5rem 3.75rem 3.375rem var(--mcb-gutter);
+		}
+	}
+
+	&__title {
+		margin: var(--mcb-space-5) 0 0;
+		font-size: var(--mcb-text-4xl);
+		font-weight: 300;
+		line-height: 1.03;
+		letter-spacing: var(--mcb-track-tight);
+		color: var(--mcb-color-ink);
+		text-wrap: balance;
+	}
+
+	&__desc {
+		margin: 1.625rem 0 0;
+		max-width: 28.25rem;
+		font-size: var(--mcb-text-lg);
+		line-height: 1.52;
+		color: var(--mcb-color-body);
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8125rem;
+		margin-top: 2.125rem;
+	}
+
+	// --- Image column ----------------------------------------------------------
 	&__media {
-		position: absolute;
-		inset: 0;
-		z-index: -1;
+		position: relative;
+		min-height: 21.5rem; // mobile: 344px like board 1C
 		overflow: hidden;
-		background: var(--mcb-color-ink); // fallback while image loads
 
 		img {
+			position: absolute;
+			inset: 0;
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			object-position: center 30%;
 		}
 	}
 
 	&__overlay {
 		position: absolute;
 		inset: 0;
-		background:
-			linear-gradient(
-				to bottom,
-				rgb(33 28 23 / calc(var(--mcb-hero-overlay) * 0.8)),
-				rgb(33 28 23 / var(--mcb-hero-overlay)) 60%,
-				rgb(33 28 23 / calc(var(--mcb-hero-overlay) * 1.25))
-			);
+		background: linear-gradient(105deg, rgb(34 50 31 / calc(var(--mcb-hero-overlay) * 1)), rgb(34 50 31 / 0%) 42%);
+
+		@include mq-down($breakpoint-lg) {
+			background: linear-gradient(180deg, rgb(24 38 29 / 12%), rgb(20 32 24 / 78%));
+		}
 	}
 
-	&__inner {
-		max-width: 52rem;
-	}
-
-	&__kicker {
-		margin: 0 0 var(--mcb-space-3);
-		font-size: var(--mcb-text-sm);
-		font-weight: 600;
-		letter-spacing: 0.18em;
-		text-transform: uppercase;
-		color: var(--mcb-color-accent);
-	}
-
-	&__title {
-		margin: 0 0 var(--mcb-space-4);
-		font-size: var(--mcb-text-4xl);
+	// Title shown over the image on mobile only (board 1C).
+	&__media-caption {
+		position: absolute;
+		left: var(--mcb-space-5);
+		right: var(--mcb-space-5);
+		bottom: var(--mcb-space-5);
 		color: #fff;
-		text-wrap: balance;
+
+		@include mq($breakpoint-lg) {
+			display: none;
+		}
 	}
 
-	&__desc {
-		margin: 0 0 var(--mcb-space-6);
-		max-width: 40rem;
-		font-size: var(--mcb-text-lg);
-		color: rgb(255 255 255 / 88%);
-	}
-
-	&__actions {
+	// --- Frosted stats card -------------------------------------------------------
+	&__stats {
 		display: flex;
-		flex-wrap: wrap;
-		gap: var(--mcb-space-3);
-		margin-bottom: var(--mcb-space-7);
+		gap: 1.625rem;
+		margin: var(--mcb-space-5) var(--mcb-gutter) 0;
+		padding: 1.25rem 1.5rem;
+		background: rgb(255 255 255 / 92%);
+		backdrop-filter: blur(8px);
+		border-radius: 0.8125rem;
+		justify-content: space-between;
+
+		@include mq($breakpoint-lg) {
+			position: absolute;
+			left: 2.125rem;
+			bottom: 2.125rem;
+			margin: 0;
+			justify-content: flex-start;
+			box-shadow: var(--mcb-shadow);
+		}
+	}
+
+	&__stat {
+		text-align: left;
+
+		b {
+			display: block;
+			font-size: 1.875rem;
+			font-weight: 600;
+			line-height: 1;
+			color: var(--mcb-color-primary);
+		}
+
+		span {
+			display: block;
+			margin-top: 0.3125rem;
+			font-size: var(--mcb-text-xs);
+			letter-spacing: 0.02em;
+			color: var(--mcb-color-muted);
+		}
+	}
+
+	&__stat-divider {
+		width: 1px;
+		background: var(--mcb-color-line);
 	}
 }
 
-// Inner pages: compact sand banner with breadcrumbs.
+// Inner pages: calm paper banner with breadcrumbs (design has no busy inner
+// hero — hairline + eyebrow + light display title).
 .mcb-page-hero {
-	padding-block: var(--mcb-space-7);
-	background:
-		linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 40%)),
-		var(--mcb-color-sand);
+	padding-block: var(--mcb-space-8) var(--mcb-space-7);
+	background: var(--mcb-color-paper);
 	border-bottom: 1px solid var(--mcb-color-line);
 
 	&__title {
-		margin: var(--mcb-space-2) 0 0;
+		margin: var(--mcb-space-3) 0 0;
+		font-weight: 300;
+		letter-spacing: var(--mcb-track-tight);
 	}
 
 	&__desc {

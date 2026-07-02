@@ -1,17 +1,18 @@
 <?php
 /**
- * Base listing card — shared markup for every card kind.
+ * Base listing card — design board 1A venue card: image with frosted tag
+ * pill, title (Jost 500), sage subtitle, hairline-separated meta row.
  *
  * Kind-specific cards (card-venue, card-hotel, …) compose this part with a
- * modifier and their own meta rows, so the card skeleton exists exactly
- * once (image → badge → title → meta → footer).
+ * modifier and their own meta rows, so the card skeleton exists once.
  *
  * @param array $args {
- *     @type int    $post_id   Listing ID (defaults to current post).
- *     @type string $kind      venue|hotel|experience|event|listing.
- *     @type string $size      Image size (default mcb-card).
- *     @type array  $meta      Rows: [ [ 'icon' => 'map-pin', 'text' => '…' ], … ].
- *     @type string $footer    Extra footer HTML (already escaped by caller).
+ *     @type int    $post_id  Listing ID (defaults to current post).
+ *     @type string $kind     venue|hotel|event|listing.
+ *     @type string $size     Image size (default mcb-card).
+ *     @type string $subtitle Sage sub-line under the title.
+ *     @type array  $meta     Rows: [ [ 'icon' => '…', 'text' => '…' ], … ].
+ *     @type string $footer   Extra footer HTML (already escaped by caller).
  * }
  *
  * @package MCB
@@ -22,11 +23,12 @@ defined( 'ABSPATH' ) || exit;
 $args = wp_parse_args(
 	$args ?? array(),
 	array(
-		'post_id' => get_the_ID(),
-		'kind'    => 'listing',
-		'size'    => 'mcb-card',
-		'meta'    => array(),
-		'footer'  => '',
+		'post_id'  => get_the_ID(),
+		'kind'     => 'listing',
+		'size'     => 'mcb-card',
+		'subtitle' => '',
+		'meta'     => array(),
+		'footer'   => '',
 	)
 );
 
@@ -53,34 +55,35 @@ $mcb_rating = mcb_listing_rating( $mcb_id );
 			<?php mcb_part( 'components/rating', array( 'rating' => $mcb_rating ) ); ?>
 		</div>
 
-		<?php if ( ! empty( $args['meta'] ) ) : ?>
-			<ul class="mcb-card__meta">
-				<?php foreach ( $args['meta'] as $mcb_row ) : ?>
-					<?php
-					if ( empty( $mcb_row['text'] ) ) {
-						continue;
-					}
-					?>
-					<li class="mcb-card__meta-row">
-						<?php mcb_icon( $mcb_row['icon'] ?? 'info' ); ?>
-						<span><?php echo esc_html( $mcb_row['text'] ); ?></span>
-					</li>
-				<?php endforeach; ?>
-			</ul>
+		<?php if ( $args['subtitle'] ) : ?>
+			<p class="mcb-card__subtitle"><?php echo esc_html( $args['subtitle'] ); ?></p>
 		<?php endif; ?>
 
 		<?php if ( has_excerpt( $mcb_id ) ) : ?>
 			<p class="mcb-card__excerpt"><?php echo esc_html( get_the_excerpt( $mcb_id ) ); ?></p>
 		<?php endif; ?>
 
-		<div class="mcb-card__footer">
-			<?php echo $args['footer']; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped by caller. ?>
+		<?php
+		$mcb_meta = array_filter( (array) $args['meta'], static fn( $row ) => ! empty( $row['text'] ) );
+		if ( ! empty( $mcb_meta ) ) :
+			?>
+			<ul class="mcb-card__meta">
+				<?php foreach ( $mcb_meta as $mcb_row ) : ?>
+					<li class="mcb-card__meta-row">
+						<?php if ( ! empty( $mcb_row['icon'] ) ) : ?>
+							<?php mcb_icon( $mcb_row['icon'] ); ?>
+						<?php endif; ?>
+						<span><?php echo esc_html( $mcb_row['text'] ); ?></span>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
 
-			<a class="mcb-card__link" href="<?php echo esc_url( get_permalink( $mcb_id ) ); ?>">
-				<?php esc_html_e( 'View details', 'mcb' ); ?>
-				<?php mcb_icon( 'arrow-right' ); ?>
-			</a>
-		</div>
+		<?php if ( $args['footer'] ) : ?>
+			<div class="mcb-card__footer">
+				<?php echo $args['footer']; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped by caller. ?>
+			</div>
+		<?php endif; ?>
 	</div>
 
 </article>

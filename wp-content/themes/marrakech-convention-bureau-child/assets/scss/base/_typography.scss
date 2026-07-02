@@ -1,34 +1,45 @@
 @use '../abstracts' as *;
 
 // ---------------------------------------------------------------------------
-// Fonts & global type. Scoped under body.mcb so nothing leaks into wp-admin.
+// Fonts & global type — synced with design board 1D · 03 Typography.
+//
+//   Display  Jost 300, −.02em, 60–66px  (+ Newsreader italic accent words)
+//   H2       Jost 300, 40–46px
+//   H3/card  Jost 500, 20–26px
+//   Body     Jost 400, 15–19px / 1.5
+//   Label    Jost 600, 11–12px, +.2em+, uppercase, sage
+//
+// Both families ship as self-hosted variable fonts (latin subsets).
 // ---------------------------------------------------------------------------
 
-// Self-hosted fonts (assets/fonts, latin subsets — 62 KB total).
-// Inter ships as a single variable font covering weights 100–900.
-// font-display: swap keeps text visible during load.
 @font-face {
-	font-family: 'Marcellus';
-	src: url('../fonts/marcellus-latin-400.woff2') format('woff2');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Inter';
-	src: url('../fonts/inter-latin-var.woff2') format('woff2');
+	font-family: 'Jost';
+	src: url('../fonts/jost-latin-var.woff2') format('woff2');
 	font-weight: 100 900;
 	font-style: normal;
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'Newsreader';
+	src: url('../fonts/newsreader-italic-latin-var.woff2') format('woff2');
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
+}
+
 body.mcb {
 	font-family: var(--mcb-font-body);
-	font-size: var(--mcb-text-base);
+	font-size: var(--mcb-text-lg);
 	line-height: var(--mcb-leading-body);
 	color: var(--mcb-color-body);
 	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+
+	::selection {
+		background: var(--mcb-color-secondary);
+		color: #fff;
+	}
 
 	h1,
 	h2,
@@ -37,16 +48,31 @@ body.mcb {
 	h5,
 	h6 {
 		font-family: var(--mcb-font-display);
-		font-weight: 400;
 		line-height: var(--mcb-leading-tight);
 		color: var(--mcb-color-ink);
-		letter-spacing: 0.01em;
+	}
+
+	// Display levels are LIGHT (Jost 300) with tight tracking.
+	h1,
+	h2 {
+		font-weight: 300;
+		letter-spacing: var(--mcb-track-tight);
+	}
+
+	// Component levels are MEDIUM (Jost 500).
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: 500;
+		letter-spacing: -0.01em;
+		color: var(--mcb-color-strong);
 	}
 
 	h1 { font-size: var(--mcb-text-4xl); }
 	h2 { font-size: var(--mcb-text-3xl); }
 	h3 { font-size: var(--mcb-text-xl); }
-	h4 { font-size: var(--mcb-text-lg); }
+	h4 { font-size: var(--mcb-text-md); }
 
 	a {
 		color: var(--mcb-color-primary);
@@ -54,7 +80,51 @@ body.mcb {
 		transition: color var(--mcb-duration) var(--mcb-ease);
 
 		&:hover {
-			color: var(--mcb-color-primary-dark);
+			color: var(--mcb-color-secondary);
+		}
+	}
+}
+
+// Editorial accent voice — single words inside display headings and quotes.
+// (The design's `.em`: Newsreader italic 500, sage.)
+.mcb-em {
+	font-family: var(--mcb-font-em);
+	font-style: italic;
+	font-weight: 500;
+	color: var(--mcb-color-secondary);
+}
+
+// Eyebrow label with the 26px dash (every section opener in the design).
+.mcb-eyebrow {
+	display: flex;
+	align-items: center;
+	gap: 0.6875rem;
+	font-size: var(--mcb-text-xs);
+	font-weight: 600;
+	letter-spacing: var(--mcb-track-label);
+	text-transform: uppercase;
+	color: var(--mcb-color-secondary);
+
+	&::before {
+		content: '';
+		width: 1.625rem;
+		height: 1px;
+		background: var(--mcb-color-secondary);
+	}
+
+	&--center {
+		justify-content: center;
+
+		&::before {
+			display: none;
+		}
+	}
+
+	&--on-dark {
+		color: var(--mcb-color-on-dark);
+
+		&::before {
+			background: var(--mcb-color-on-dark);
 		}
 	}
 }

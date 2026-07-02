@@ -1,8 +1,7 @@
 <?php
 /**
- * Generic listings section: heading + dynamic card grid + "view all" link.
- * Used by the PHP homepage; the Elementor equivalent is the combination of
- * the MCB Section Heading + MCB Listings Grid widgets.
+ * Generic listings section — board 1A: eyebrow + light title with a
+ * "View all →" link on the baseline, dynamic card grid, optional footnote.
  *
  * @package MCB
  */
@@ -12,15 +11,18 @@ defined( 'ABSPATH' ) || exit;
 $args = wp_parse_args(
 	$args ?? array(),
 	array(
-		'kicker'   => '',
-		'title'    => '',
-		'intro'    => '',
-		'kind'     => 'venue',
-		'taxonomy' => '',
-		'terms'    => array(),
-		'count'    => 6,
-		'columns'  => 3,
-		'more_url' => '',
+		'kicker'    => '',
+		'title'     => '',
+		'intro'     => '',
+		'kind'      => 'venue',
+		'taxonomy'  => '',
+		'terms'     => array(),
+		'count'     => 3,
+		'columns'   => 3,
+		'more_text' => '',
+		'more_url'  => '',
+		'footnote'  => '',
+		'paper'     => false,
 	)
 );
 
@@ -36,16 +38,18 @@ if ( ! $mcb_query->have_posts() ) {
 	return;
 }
 ?>
-<section class="<?php echo mcb_bem( 'mcb-section', array( 'listings', $args['kind'] ) ); ?>">
+<section class="<?php echo mcb_bem( 'mcb-section', array( 'listings', $args['kind'], $args['paper'] ? 'paper' : null ) ); ?>">
 	<div class="mcb-container">
 
 		<?php
 		mcb_part(
 			'components/section-heading',
 			array(
-				'kicker' => $args['kicker'],
-				'title'  => $args['title'],
-				'intro'  => $args['intro'],
+				'kicker'    => $args['kicker'],
+				'title'     => $args['title'],
+				'intro'     => $args['intro'],
+				'link_text' => $args['more_text'],
+				'link_url'  => $args['more_url'],
 			)
 		);
 		?>
@@ -60,13 +64,8 @@ if ( ! $mcb_query->have_posts() ) {
 			?>
 		</div>
 
-		<?php if ( $args['more_url'] ) : ?>
-			<div class="mcb-section__more">
-				<a class="mcb-btn mcb-btn--outline" href="<?php echo esc_url( $args['more_url'] ); ?>">
-					<?php esc_html_e( 'View all', 'mcb' ); ?>
-					<?php mcb_icon( 'arrow-right' ); ?>
-				</a>
-			</div>
+		<?php if ( $args['footnote'] ) : ?>
+			<p class="mcb-footnote"><?php echo esc_html( $args['footnote'] ); ?></p>
 		<?php endif; ?>
 
 	</div>

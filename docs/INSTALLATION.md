@@ -34,10 +34,11 @@
 
 Appearance → Brikk options:
 
-- **Colors**: set the primary color to `#b0492f` (terracotta) and secondary to
-  `#24509e` (Majorelle blue) so plugin-rendered UI matches the design tokens.
+- **Colors**: set the primary color to `#284236` (Deep Green) and secondary to
+  `#7d985b` (Sage) so plugin-rendered UI matches the design tokens
+  (design board 1D · Colour).
 - Disable Brikk's Google Fonts if it loads any (the child self-hosts
-  Marcellus + Inter) — or list the parent's font style handle in the
+  Jost + Newsreader italic) — or list the parent's font style handle in the
   `mcb/dequeue_styles` filter.
 
 ## 4. Menus (Appearance → Menus)
