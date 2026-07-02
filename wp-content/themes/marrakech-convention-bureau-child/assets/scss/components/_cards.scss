@@ -1,0 +1,267 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Cards — one skeleton (.mcb-card), kind modifiers adjust ratio & accents.
+// ---------------------------------------------------------------------------
+
+.mcb-media {
+	@include media-cover('4 / 3');
+	background: var(--mcb-color-sand);
+
+	&__placeholder {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		place-items: center;
+		color: var(--mcb-color-line);
+
+		.mcb-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+	}
+}
+
+.mcb-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background: var(--mcb-color-surface);
+	border: 1px solid var(--mcb-color-line);
+	border-radius: var(--mcb-radius-lg);
+	box-shadow: var(--mcb-shadow-sm);
+	transition: box-shadow var(--mcb-duration) var(--mcb-ease), transform var(--mcb-duration) var(--mcb-ease);
+
+	@include motion-safe {
+		&:hover {
+			transform: translateY(-4px);
+			box-shadow: var(--mcb-shadow);
+		}
+	}
+
+	&__media img {
+		transition: transform 600ms var(--mcb-ease);
+	}
+
+	@include motion-safe {
+		&:hover .mcb-card__media img {
+			transform: scale(1.05);
+		}
+	}
+
+	&__badge {
+		position: absolute;
+		top: var(--mcb-space-3);
+		left: var(--mcb-space-3);
+	}
+
+	&__body {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: var(--mcb-space-3);
+		padding: var(--mcb-space-5);
+	}
+
+	&__top {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: var(--mcb-space-3);
+	}
+
+	&__title {
+		margin: 0;
+		font-size: var(--mcb-text-xl);
+		@include line-clamp(2);
+
+		a {
+			color: var(--mcb-color-ink);
+
+			&:hover {
+				color: var(--mcb-color-primary);
+			}
+
+			// Stretch the title link over the whole card (keyboard-friendly).
+			&::after {
+				content: '';
+				position: absolute;
+				inset: 0;
+			}
+		}
+	}
+
+	&__eyebrow {
+		display: flex;
+		align-items: center;
+		gap: var(--mcb-space-3);
+		font-size: var(--mcb-text-xs);
+		color: var(--mcb-color-muted);
+	}
+
+	&__meta {
+		display: flex;
+		flex-direction: column;
+		gap: var(--mcb-space-2);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: var(--mcb-text-sm);
+		color: var(--mcb-color-muted);
+	}
+
+	&__meta-row {
+		display: flex;
+		align-items: center;
+		gap: var(--mcb-space-2);
+
+		.mcb-icon {
+			color: var(--mcb-color-primary);
+		}
+	}
+
+	&__excerpt {
+		margin: 0;
+		font-size: var(--mcb-text-sm);
+		color: var(--mcb-color-body);
+		@include line-clamp(3);
+	}
+
+	&__footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--mcb-space-3);
+		margin-top: auto;
+		padding-top: var(--mcb-space-3);
+		border-top: 1px solid var(--mcb-color-line);
+	}
+
+	&__link {
+		position: relative; // above the stretched title link
+		z-index: 1;
+		display: inline-flex;
+		align-items: center;
+		gap: var(--mcb-space-1);
+		font-size: var(--mcb-text-sm);
+		font-weight: 600;
+
+		&:hover .mcb-icon {
+			transform: translateX(3px);
+		}
+
+		.mcb-icon {
+			transition: transform var(--mcb-duration) var(--mcb-ease);
+		}
+	}
+
+	&__time {
+		white-space: nowrap;
+	}
+
+	// Event date block.
+	&__date {
+		display: inline-flex;
+		flex-direction: column;
+		align-items: center;
+		min-width: 3.25rem;
+		padding: var(--mcb-space-2);
+		background: var(--mcb-color-primary-soft);
+		color: var(--mcb-color-primary-dark);
+		border-radius: var(--mcb-radius);
+		line-height: 1.1;
+
+		&-day {
+			font-family: var(--mcb-font-display);
+			font-size: var(--mcb-text-xl);
+		}
+
+		&-month {
+			font-size: var(--mcb-text-xs);
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+		}
+	}
+
+	// --- Kind modifiers -------------------------------------------------------
+	&--experience .mcb-media {
+		aspect-ratio: 3 / 4;
+	}
+
+	&--event .mcb-media,
+	&--news .mcb-media {
+		aspect-ratio: 16 / 10;
+	}
+
+	&--hotel .mcb-card__badge {
+		background: var(--mcb-color-secondary);
+	}
+
+	&--experience .mcb-card__badge {
+		background: var(--mcb-color-accent);
+		color: var(--mcb-color-ink);
+	}
+}
+
+// Badges.
+.mcb-badge {
+	display: inline-block;
+	padding: 0.3125rem 0.75rem;
+	font-size: var(--mcb-text-xs);
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	color: #fff;
+	background: var(--mcb-color-primary);
+	border-radius: var(--mcb-radius-pill);
+
+	&--soft {
+		background: var(--mcb-color-primary-soft);
+		color: var(--mcb-color-primary-dark);
+	}
+}
+
+// Rating stars (partial fill via --mcb-rating %).
+.mcb-rating {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--mcb-space-1);
+	white-space: nowrap;
+
+	&__stars {
+		position: relative;
+		display: inline-flex;
+		color: var(--mcb-color-line);
+
+		&::before {
+			content: '';
+		}
+	}
+
+	// Foreground fill: gold stars clipped to the rating percentage.
+	&__stars {
+		background:
+			linear-gradient(
+				to right,
+				var(--mcb-color-accent) var(--mcb-rating, 0%),
+				var(--mcb-color-line) var(--mcb-rating, 0%)
+			);
+		-webkit-background-clip: text;
+		background-clip: text;
+
+		.mcb-icon {
+			fill: currentColor;
+			color: transparent;
+			stroke: none;
+			width: 1em;
+			height: 1em;
+		}
+	}
+
+	&__value {
+		font-size: var(--mcb-text-sm);
+		font-weight: 600;
+		color: var(--mcb-color-ink);
+	}
+}

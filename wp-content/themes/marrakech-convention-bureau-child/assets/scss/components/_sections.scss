@@ -1,0 +1,305 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Section heading, stats, testimonials, CTA, partners, accordion,
+// search bar, breadcrumbs — the remaining homepage components.
+// ---------------------------------------------------------------------------
+
+.mcb-section-heading {
+	max-width: 44rem;
+	margin-bottom: var(--mcb-space-7);
+
+	&--center {
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	&__kicker {
+		margin: 0 0 var(--mcb-space-2);
+		font-size: var(--mcb-text-sm);
+		font-weight: 600;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--mcb-color-primary);
+	}
+
+	&__title {
+		margin: 0;
+		text-wrap: balance;
+	}
+
+	&__intro {
+		margin: var(--mcb-space-3) 0 0;
+		color: var(--mcb-color-muted);
+	}
+}
+
+// --- Stats -------------------------------------------------------------------
+.mcb-stats {
+	&__grid {
+		display: grid;
+		gap: var(--mcb-space-5);
+		grid-template-columns: repeat(2, 1fr);
+		margin: 0;
+
+		@include mq($breakpoint-lg) {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column-reverse; // value visually above label
+		gap: var(--mcb-space-1);
+		padding: var(--mcb-space-5);
+		text-align: center;
+		background: var(--mcb-color-surface);
+		border: 1px solid var(--mcb-color-line);
+		border-radius: var(--mcb-radius-lg);
+	}
+
+	&__value {
+		margin: 0;
+		font-family: var(--mcb-font-display);
+		font-size: var(--mcb-text-3xl);
+		color: var(--mcb-color-primary);
+	}
+
+	&__label {
+		font-size: var(--mcb-text-sm);
+		color: var(--mcb-color-muted);
+	}
+}
+
+// --- Testimonials --------------------------------------------------------------
+.mcb-testimonial {
+	display: flex;
+	flex-direction: column;
+	gap: var(--mcb-space-4);
+	margin: 0;
+	padding: var(--mcb-space-6);
+	background: var(--mcb-color-surface);
+	border: 1px solid var(--mcb-color-line);
+	border-radius: var(--mcb-radius-lg);
+
+	&__quote {
+		margin: 0;
+		font-size: var(--mcb-text-lg);
+		color: var(--mcb-color-ink);
+
+		.mcb-icon--quote {
+			display: block;
+			width: 2rem;
+			height: 2rem;
+			margin-bottom: var(--mcb-space-3);
+			color: var(--mcb-color-accent);
+		}
+
+		p {
+			margin: 0;
+		}
+	}
+
+	&__author {
+		display: flex;
+		align-items: center;
+		gap: var(--mcb-space-3);
+		margin-top: auto;
+	}
+
+	&__avatar {
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		object-fit: cover;
+	}
+
+	&__name {
+		display: block;
+		font-weight: 600;
+		color: var(--mcb-color-ink);
+	}
+
+	&__role {
+		display: block;
+		font-size: var(--mcb-text-sm);
+		color: var(--mcb-color-muted);
+	}
+}
+
+// --- CTA band -------------------------------------------------------------------
+.mcb-cta {
+	background:
+		radial-gradient(120% 160% at 85% 0%, rgb(201 162 39 / 25%), transparent 50%),
+		linear-gradient(120deg, var(--mcb-color-primary-dark), var(--mcb-color-primary));
+	color: #fff;
+
+	&__inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--mcb-space-5);
+	}
+
+	&__title {
+		margin: 0;
+		color: #fff;
+	}
+
+	&__desc {
+		margin: var(--mcb-space-2) 0 0;
+		max-width: 38rem;
+		color: rgb(255 255 255 / 85%);
+	}
+}
+
+// --- Partners ---------------------------------------------------------------------
+.mcb-partners {
+	&__row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: var(--mcb-space-7);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__logo {
+		max-height: 3.5rem;
+		width: auto;
+		filter: grayscale(1);
+		opacity: 0.65;
+		transition: filter var(--mcb-duration) var(--mcb-ease), opacity var(--mcb-duration) var(--mcb-ease);
+
+		&:hover {
+			filter: none;
+			opacity: 1;
+		}
+	}
+
+	&__name {
+		font-family: var(--mcb-font-display);
+		font-size: var(--mcb-text-lg);
+		color: var(--mcb-color-muted);
+	}
+}
+
+// --- Accordion / FAQ ---------------------------------------------------------------
+.mcb-accordion {
+	display: flex;
+	flex-direction: column;
+	gap: var(--mcb-space-3);
+
+	&__item {
+		background: var(--mcb-color-surface);
+		border: 1px solid var(--mcb-color-line);
+		border-radius: var(--mcb-radius);
+
+		&[open] .mcb-icon--chevron-down {
+			transform: rotate(180deg);
+		}
+	}
+
+	&__summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--mcb-space-4);
+		padding: var(--mcb-space-4) var(--mcb-space-5);
+		font-weight: 600;
+		color: var(--mcb-color-ink);
+		cursor: pointer;
+		list-style: none;
+		@include focus-ring;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		.mcb-icon {
+			transition: transform var(--mcb-duration) var(--mcb-ease);
+			color: var(--mcb-color-primary);
+		}
+	}
+
+	&__content {
+		padding: 0 var(--mcb-space-5) var(--mcb-space-5);
+		color: var(--mcb-color-body);
+	}
+}
+
+// --- Hero search bar -----------------------------------------------------------------
+.mcb-search-bar {
+	max-width: 44rem;
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: var(--mcb-space-3);
+		padding: var(--mcb-space-3);
+		background: var(--mcb-color-surface);
+		border-radius: var(--mcb-radius-lg);
+		box-shadow: var(--mcb-shadow-lg);
+
+		@include mq($breakpoint-md) {
+			flex-direction: row;
+			align-items: center;
+			border-radius: var(--mcb-radius-pill);
+		}
+	}
+
+	&__field {
+		display: flex;
+		flex: 1;
+		align-items: center;
+		gap: var(--mcb-space-3);
+		padding-inline: var(--mcb-space-3);
+		color: var(--mcb-color-muted);
+	}
+
+	&__input {
+		flex: 1;
+		min-width: 0;
+		padding: var(--mcb-space-3) 0;
+		font-size: var(--mcb-text-base);
+		color: var(--mcb-color-ink);
+		background: none;
+		border: 0;
+		outline: none;
+
+		&::placeholder {
+			color: var(--mcb-color-muted);
+		}
+	}
+}
+
+// --- Breadcrumbs --------------------------------------------------------------------------
+.mcb-breadcrumbs {
+	font-size: var(--mcb-text-sm);
+	color: var(--mcb-color-muted);
+
+	&__trail a {
+		color: var(--mcb-color-muted);
+
+		&:hover {
+			color: var(--mcb-color-primary);
+		}
+	}
+
+	&__sep {
+		margin-inline: var(--mcb-space-2);
+	}
+}
+
+// --- Notices --------------------------------------------------------------------------------
+.mcb-notice {
+	padding: var(--mcb-space-4);
+	background: var(--mcb-color-sand);
+	border: 1px dashed var(--mcb-color-line);
+	border-radius: var(--mcb-radius);
+	color: var(--mcb-color-muted);
+	text-align: center;
+}

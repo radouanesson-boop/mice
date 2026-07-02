@@ -1,0 +1,95 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Home hero + inner-page hero.
+// ---------------------------------------------------------------------------
+
+.mcb-hero {
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-height: min(88vh, 56rem);
+	padding-block: var(--mcb-space-8);
+	color: #fff;
+	// Pull under the sticky header for the full-bleed look on the front page.
+	isolation: isolate;
+
+	&__media {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		overflow: hidden;
+		background: var(--mcb-color-ink); // fallback while image loads
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__overlay {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(
+				to bottom,
+				rgb(33 28 23 / calc(var(--mcb-hero-overlay) * 0.8)),
+				rgb(33 28 23 / var(--mcb-hero-overlay)) 60%,
+				rgb(33 28 23 / calc(var(--mcb-hero-overlay) * 1.25))
+			);
+	}
+
+	&__inner {
+		max-width: 52rem;
+	}
+
+	&__kicker {
+		margin: 0 0 var(--mcb-space-3);
+		font-size: var(--mcb-text-sm);
+		font-weight: 600;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--mcb-color-accent);
+	}
+
+	&__title {
+		margin: 0 0 var(--mcb-space-4);
+		font-size: var(--mcb-text-4xl);
+		color: #fff;
+		text-wrap: balance;
+	}
+
+	&__desc {
+		margin: 0 0 var(--mcb-space-6);
+		max-width: 40rem;
+		font-size: var(--mcb-text-lg);
+		color: rgb(255 255 255 / 88%);
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--mcb-space-3);
+		margin-bottom: var(--mcb-space-7);
+	}
+}
+
+// Inner pages: compact sand banner with breadcrumbs.
+.mcb-page-hero {
+	padding-block: var(--mcb-space-7);
+	background:
+		linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 40%)),
+		var(--mcb-color-sand);
+	border-bottom: 1px solid var(--mcb-color-line);
+
+	&__title {
+		margin: var(--mcb-space-2) 0 0;
+	}
+
+	&__desc {
+		max-width: 46rem;
+		margin-top: var(--mcb-space-3);
+		color: var(--mcb-color-muted);
+	}
+}

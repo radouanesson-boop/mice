@@ -1,0 +1,99 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Buttons — primary (terracotta), outline, ghost (over imagery), light
+// (over dark CTA band). One .mcb-btn block, BEM modifiers.
+// ---------------------------------------------------------------------------
+
+.mcb-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--mcb-space-2);
+	padding: 0.75rem 1.5rem;
+	font-family: var(--mcb-font-body);
+	font-size: var(--mcb-text-sm);
+	font-weight: 600;
+	line-height: 1.2;
+	text-decoration: none;
+	white-space: nowrap;
+	border: 1.5px solid transparent;
+	border-radius: var(--mcb-radius-pill);
+	cursor: pointer;
+	transition:
+		background-color var(--mcb-duration) var(--mcb-ease),
+		border-color var(--mcb-duration) var(--mcb-ease),
+		color var(--mcb-duration) var(--mcb-ease),
+		transform var(--mcb-duration) var(--mcb-ease);
+	@include focus-ring;
+
+	@include motion-safe {
+		&:hover {
+			transform: translateY(-1px);
+		}
+	}
+
+	.mcb-icon {
+		transition: transform var(--mcb-duration) var(--mcb-ease);
+	}
+
+	&:hover .mcb-icon--arrow-right {
+		transform: translateX(3px);
+	}
+
+	// --- Variants -----------------------------------------------------------
+	&--primary {
+		background: var(--mcb-color-primary);
+		color: #fff;
+
+		&:hover {
+			background: var(--mcb-color-primary-dark);
+			color: #fff;
+		}
+	}
+
+	&--outline {
+		border-color: var(--mcb-color-primary);
+		color: var(--mcb-color-primary);
+		background: transparent;
+
+		&:hover {
+			background: var(--mcb-color-primary);
+			color: #fff;
+		}
+	}
+
+	&--ghost {
+		border-color: rgb(255 255 255 / 60%);
+		color: #fff;
+		background: rgb(255 255 255 / 8%);
+		backdrop-filter: blur(4px);
+
+		&:hover {
+			background: rgb(255 255 255 / 20%);
+			border-color: #fff;
+			color: #fff;
+		}
+	}
+
+	&--light {
+		background: #fff;
+		color: var(--mcb-color-primary);
+
+		&:hover {
+			background: var(--mcb-color-sand);
+			color: var(--mcb-color-primary-dark);
+		}
+	}
+
+	// --- Sizes ---------------------------------------------------------------
+	&--lg {
+		padding: 1rem 2rem;
+		font-size: var(--mcb-text-base);
+	}
+
+	&--block {
+		display: flex;
+		width: 100%;
+	}
+}

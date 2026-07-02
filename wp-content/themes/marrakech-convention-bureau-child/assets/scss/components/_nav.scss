@@ -1,0 +1,182 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Desktop primary navigation + dropdowns + mega menu panel.
+// Hidden below the desktop breakpoint (the drawer takes over).
+// ---------------------------------------------------------------------------
+
+.mcb-nav {
+	display: none;
+
+	@include mq($breakpoint-lg) {
+		display: block;
+	}
+
+	&__menu {
+		display: flex;
+		align-items: center;
+		gap: var(--mcb-space-2);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__item {
+		position: relative;
+	}
+
+	&__link {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--mcb-space-1);
+		padding: var(--mcb-space-3) var(--mcb-space-3);
+		font-size: var(--mcb-text-sm);
+		font-weight: 600;
+		color: var(--mcb-color-ink);
+		border-radius: var(--mcb-radius-sm);
+		@include focus-ring;
+
+		&:hover {
+			color: var(--mcb-color-primary);
+			background: var(--mcb-color-primary-soft);
+		}
+	}
+
+	.is-current > .mcb-nav__link {
+		color: var(--mcb-color-primary);
+	}
+
+	&__caret {
+		width: 0.875em;
+		height: 0.875em;
+		transition: transform var(--mcb-duration) var(--mcb-ease);
+	}
+
+	// --- Standard dropdown -----------------------------------------------
+	&__submenu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		z-index: 90;
+		min-width: 15rem;
+		margin: 0;
+		padding: var(--mcb-space-2);
+		list-style: none;
+		background: var(--mcb-color-surface);
+		border: 1px solid var(--mcb-color-line);
+		border-radius: var(--mcb-radius);
+		box-shadow: var(--mcb-shadow-lg);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(0.5rem);
+		transition: opacity var(--mcb-duration) var(--mcb-ease), transform var(--mcb-duration) var(--mcb-ease), visibility var(--mcb-duration);
+
+		// Nested levels open sideways.
+		.mcb-nav__submenu {
+			top: 0;
+			left: 100%;
+		}
+	}
+
+	&__item--parent:hover > .mcb-nav__submenu,
+	&__item--parent:focus-within > .mcb-nav__submenu,
+	&__item--parent.is-open > .mcb-nav__submenu {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	&__sublink {
+		display: block;
+		padding: var(--mcb-space-2) var(--mcb-space-3);
+		font-size: var(--mcb-text-sm);
+		color: var(--mcb-color-body);
+		border-radius: var(--mcb-radius-sm);
+		@include focus-ring;
+
+		&:hover {
+			background: var(--mcb-color-sand);
+			color: var(--mcb-color-primary);
+		}
+	}
+
+	&__desc {
+		display: block;
+		margin-top: 2px;
+		font-size: var(--mcb-text-xs);
+		color: var(--mcb-color-muted);
+	}
+}
+
+// --- Mega menu -------------------------------------------------------------
+// A top-level item with class "mcb-mega" gets a full-width panel whose
+// 2nd-level items become column headings.
+.mcb-nav__item--mega {
+	position: static;
+
+	&:hover > .mcb-mega-panel,
+	&:focus-within > .mcb-mega-panel,
+	&.is-open > .mcb-mega-panel {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	&:hover .mcb-nav__caret,
+	&.is-open .mcb-nav__caret {
+		transform: rotate(180deg);
+	}
+}
+
+.mcb-mega-panel {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	z-index: 90;
+	width: min(64rem, calc(100vw - 2 * var(--mcb-gutter)));
+	translate: -50% 0;
+	padding: var(--mcb-space-6);
+	background: var(--mcb-color-surface);
+	border: 1px solid var(--mcb-color-line);
+	border-radius: var(--mcb-radius-lg);
+	box-shadow: var(--mcb-shadow-lg);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(0.5rem);
+	transition: opacity var(--mcb-duration) var(--mcb-ease), transform var(--mcb-duration) var(--mcb-ease), visibility var(--mcb-duration);
+
+	&__columns {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+		gap: var(--mcb-space-6);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__column {
+		> .mcb-nav__sublink {
+			padding-inline: 0;
+			font-family: var(--mcb-font-display);
+			font-size: var(--mcb-text-base);
+			color: var(--mcb-color-ink);
+
+			&:hover {
+				background: none;
+				color: var(--mcb-color-primary);
+			}
+		}
+
+		> .mcb-nav__submenu {
+			position: static;
+			min-width: 0;
+			padding: 0;
+			margin-top: var(--mcb-space-2);
+			border: 0;
+			box-shadow: none;
+			opacity: 1;
+			visibility: visible;
+			transform: none;
+		}
+	}
+}

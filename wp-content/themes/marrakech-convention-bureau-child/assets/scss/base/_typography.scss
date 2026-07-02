@@ -1,0 +1,60 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Fonts & global type. Scoped under body.mcb so nothing leaks into wp-admin.
+// ---------------------------------------------------------------------------
+
+// Self-hosted fonts (assets/fonts, latin subsets — 62 KB total).
+// Inter ships as a single variable font covering weights 100–900.
+// font-display: swap keeps text visible during load.
+@font-face {
+	font-family: 'Marcellus';
+	src: url('../fonts/marcellus-latin-400.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('../fonts/inter-latin-var.woff2') format('woff2');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+body.mcb {
+	font-family: var(--mcb-font-body);
+	font-size: var(--mcb-text-base);
+	line-height: var(--mcb-leading-body);
+	color: var(--mcb-color-body);
+	-webkit-font-smoothing: antialiased;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--mcb-font-display);
+		font-weight: 400;
+		line-height: var(--mcb-leading-tight);
+		color: var(--mcb-color-ink);
+		letter-spacing: 0.01em;
+	}
+
+	h1 { font-size: var(--mcb-text-4xl); }
+	h2 { font-size: var(--mcb-text-3xl); }
+	h3 { font-size: var(--mcb-text-xl); }
+	h4 { font-size: var(--mcb-text-lg); }
+
+	a {
+		color: var(--mcb-color-primary);
+		text-decoration: none;
+		transition: color var(--mcb-duration) var(--mcb-ease);
+
+		&:hover {
+			color: var(--mcb-color-primary-dark);
+		}
+	}
+}

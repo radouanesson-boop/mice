@@ -1,0 +1,36 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Elementor alignment.
+//
+// - Native Elementor widgets inherit MCB typography inside .mcb pages.
+// - Container/section widths follow the MCB container so PHP-rendered and
+//   Elementor-rendered sections line up perfectly.
+// ---------------------------------------------------------------------------
+
+body.mcb {
+	// Match Elementor's boxed width to the MCB container.
+	.elementor-section.elementor-section-boxed > .elementor-container {
+		max-width: var(--mcb-container);
+	}
+
+	// Native Elementor headings/buttons adopt the design system by default;
+	// editors can still override per-widget.
+	.elementor-widget-heading .elementor-heading-title {
+		font-family: var(--mcb-font-display);
+		color: var(--mcb-color-ink);
+	}
+
+	.elementor-button {
+		border-radius: var(--mcb-radius-pill);
+		font-weight: 600;
+	}
+
+	// Elementor testimonial/image-carousel widgets reuse MCB card cosmetics.
+	.elementor-testimonial-wrapper {
+		background: var(--mcb-color-surface);
+		border: 1px solid var(--mcb-color-line);
+		border-radius: var(--mcb-radius-lg);
+		padding: var(--mcb-space-6);
+	}
+}

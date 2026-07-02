@@ -1,0 +1,101 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Footer — dark warm ink, 4 columns, legal bar.
+// ---------------------------------------------------------------------------
+
+.mcb-footer {
+	background: var(--mcb-color-footer);
+	color: rgb(255 255 255 / 72%);
+	font-size: var(--mcb-text-sm);
+
+	a {
+		color: rgb(255 255 255 / 72%);
+
+		&:hover {
+			color: #fff;
+		}
+	}
+
+	&__prefooter {
+		padding-block: var(--mcb-space-6);
+		background: var(--mcb-color-primary);
+		color: #fff;
+	}
+
+	&__main {
+		padding-block: var(--mcb-space-8) var(--mcb-space-7);
+	}
+
+	&__grid {
+		display: grid;
+		gap: var(--mcb-space-6);
+		grid-template-columns: 1fr;
+
+		@include mq($breakpoint-sm) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include mq($breakpoint-lg) {
+			grid-template-columns: 2fr 1fr 1fr 1fr;
+		}
+	}
+
+	&__brand-name {
+		margin: 0 0 var(--mcb-space-3);
+		font-family: var(--mcb-font-display);
+		font-size: var(--mcb-text-xl);
+		color: #fff;
+	}
+
+	&__brand-desc {
+		max-width: 22rem;
+		margin: 0;
+	}
+
+	&__widget-title {
+		margin: 0 0 var(--mcb-space-4);
+		font-family: var(--mcb-font-body);
+		font-size: var(--mcb-text-sm);
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #fff;
+	}
+
+	&__menu,
+	&__widget ul {
+		display: flex;
+		flex-direction: column;
+		gap: var(--mcb-space-2);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__bottom {
+		border-top: 1px solid rgb(255 255 255 / 12%);
+		padding-block: var(--mcb-space-4);
+	}
+
+	&__bottom-inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--mcb-space-3);
+	}
+
+	&__copyright {
+		margin: 0;
+	}
+
+	&__legal-menu {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--mcb-space-4);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+}

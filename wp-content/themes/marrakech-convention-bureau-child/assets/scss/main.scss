@@ -1,0 +1,33 @@
+// ===========================================================================
+// Marrakech Convention Bureau — child theme stylesheet entry point.
+//
+// Architecture (ITCSS-flavoured 7-1):
+//   abstracts/  tokens (design system source of truth) + mixins  — no output
+//   base/       element defaults & typography
+//   layout/     container, grid, header, footer
+//   components/ every reusable UI block (BEM, `mcb-` prefix)
+//   vendors/    Brikk/Routiz re-skin + Elementor alignment
+//
+// Build: npm run build  →  ../css/main.css (compressed + sourcemap)
+// ===========================================================================
+
+@use 'abstracts/tokens';
+
+@use 'base/base';
+@use 'base/typography';
+
+@use 'layout/container';
+@use 'layout/grid';
+@use 'layout/header';
+@use 'layout/footer';
+
+@use 'components/buttons';
+@use 'components/nav';
+@use 'components/mobile-nav';
+@use 'components/hero';
+@use 'components/cards';
+@use 'components/sections';
+@use 'components/forms';
+
+@use 'vendors/brikk-overrides';
+@use 'vendors/elementor';

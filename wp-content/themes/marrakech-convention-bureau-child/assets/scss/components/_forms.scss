@@ -1,0 +1,64 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Forms — shared field styling for theme, Routiz filter & submission forms,
+// comment forms and newsletter widgets. Scoped to body.mcb.
+// ---------------------------------------------------------------------------
+
+body.mcb {
+	input[type='text'],
+	input[type='email'],
+	input[type='url'],
+	input[type='tel'],
+	input[type='number'],
+	input[type='password'],
+	input[type='search'],
+	input[type='date'],
+	select,
+	textarea {
+		width: 100%;
+		padding: 0.75rem 1rem;
+		font-family: var(--mcb-font-body);
+		font-size: var(--mcb-text-base);
+		color: var(--mcb-color-ink);
+		background: var(--mcb-color-surface);
+		border: 1.5px solid var(--mcb-color-line);
+		border-radius: var(--mcb-radius);
+		transition: border-color var(--mcb-duration) var(--mcb-ease), box-shadow var(--mcb-duration) var(--mcb-ease);
+
+		&:focus {
+			border-color: var(--mcb-color-primary);
+			box-shadow: 0 0 0 3px var(--mcb-color-primary-soft);
+			outline: none;
+		}
+
+		&::placeholder {
+			color: var(--mcb-color-muted);
+		}
+	}
+
+	label {
+		display: inline-block;
+		margin-bottom: var(--mcb-space-1);
+		font-size: var(--mcb-text-sm);
+		font-weight: 600;
+		color: var(--mcb-color-ink);
+	}
+
+	// Native submit buttons inherit the primary button look.
+	button[type='submit']:not(.mcb-btn),
+	input[type='submit']:not(.mcb-btn) {
+		padding: 0.75rem 1.5rem;
+		font-weight: 600;
+		color: #fff;
+		background: var(--mcb-color-primary);
+		border: 0;
+		border-radius: var(--mcb-radius-pill);
+		cursor: pointer;
+		transition: background-color var(--mcb-duration) var(--mcb-ease);
+
+		&:hover {
+			background: var(--mcb-color-primary-dark);
+		}
+	}
+}

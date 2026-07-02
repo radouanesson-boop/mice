@@ -1,0 +1,133 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Header: top bar + main bar. Transparent over the hero on the front page,
+// solid + shadow once stuck (JS toggles .is-stuck).
+// ---------------------------------------------------------------------------
+
+.mcb-topbar {
+	background: var(--mcb-color-ink);
+	color: rgb(255 255 255 / 80%);
+	font-size: var(--mcb-text-xs);
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--mcb-space-4);
+		min-height: 2.25rem;
+	}
+
+	&__tagline {
+		margin: 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	&__menu {
+		display: flex;
+		gap: var(--mcb-space-4);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		a {
+			color: rgb(255 255 255 / 80%);
+
+			&:hover {
+				color: #fff;
+			}
+		}
+	}
+
+	@include mq-down($breakpoint-md) {
+		display: none;
+	}
+}
+
+.mcb-header {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+
+	&__bar {
+		background: var(--mcb-color-surface);
+		border-bottom: 1px solid var(--mcb-color-line);
+		transition: box-shadow var(--mcb-duration) var(--mcb-ease);
+	}
+
+	&.is-stuck &__bar {
+		box-shadow: var(--mcb-shadow);
+	}
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--mcb-space-5);
+		min-height: var(--mcb-header-height);
+	}
+
+	&__brand {
+		display: flex;
+		align-items: center;
+
+		img {
+			max-height: 3rem;
+			width: auto;
+		}
+	}
+
+	&__brand-text {
+		font-family: var(--mcb-font-display);
+		font-size: var(--mcb-text-xl);
+		color: var(--mcb-color-ink);
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: var(--mcb-space-3);
+	}
+
+	&__cta {
+		@include mq-down($breakpoint-md) {
+			display: none;
+		}
+	}
+}
+
+// Burger (mobile trigger).
+.mcb-burger {
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 5px;
+	width: 2.75rem;
+	height: 2.75rem;
+	padding: 0.625rem;
+	background: none;
+	border: 1px solid var(--mcb-color-line);
+	border-radius: var(--mcb-radius-sm);
+	cursor: pointer;
+	@include focus-ring;
+
+	&__line {
+		display: block;
+		height: 2px;
+		background: var(--mcb-color-ink);
+		border-radius: 1px;
+		transition: transform var(--mcb-duration) var(--mcb-ease), opacity var(--mcb-duration) var(--mcb-ease);
+	}
+
+	&[aria-expanded='true'] &__line {
+		&:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+		&:nth-child(2) { opacity: 0; }
+		&:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+	}
+
+	@include mq($breakpoint-lg) {
+		display: none;
+	}
+}

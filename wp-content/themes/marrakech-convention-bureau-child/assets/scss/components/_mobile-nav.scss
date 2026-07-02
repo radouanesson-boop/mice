@@ -1,0 +1,124 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Mobile navigation drawer (right slide-in, scrim, accordion submenus).
+// ---------------------------------------------------------------------------
+
+.mcb-mobile-nav {
+	position: fixed;
+	inset: 0;
+	z-index: 200;
+
+	&[hidden] {
+		display: none;
+	}
+
+	&__scrim {
+		position: absolute;
+		inset: 0;
+		background: rgb(33 28 23 / 55%);
+		@include motion-safe {
+			animation: mcb-fade-in var(--mcb-duration) var(--mcb-ease);
+		}
+	}
+
+	&__panel {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		flex-direction: column;
+		width: min(22rem, 88vw);
+		background: var(--mcb-color-surface);
+		box-shadow: var(--mcb-shadow-lg);
+		@include motion-safe {
+			animation: mcb-slide-in var(--mcb-duration) var(--mcb-ease);
+		}
+	}
+
+	&__head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: var(--mcb-space-4) var(--mcb-space-5);
+		border-bottom: 1px solid var(--mcb-color-line);
+	}
+
+	&__brand {
+		font-family: var(--mcb-font-display);
+		font-size: var(--mcb-text-lg);
+		color: var(--mcb-color-ink);
+	}
+
+	&__close {
+		display: inline-flex;
+		padding: var(--mcb-space-2);
+		background: none;
+		border: 0;
+		color: var(--mcb-color-ink);
+		cursor: pointer;
+		@include focus-ring;
+	}
+
+	&__nav {
+		flex: 1;
+		overflow-y: auto;
+		padding: var(--mcb-space-4) var(--mcb-space-5);
+	}
+
+	&__menu {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+			border-bottom: 1px solid var(--mcb-color-line);
+		}
+
+		a {
+			display: block;
+			padding: var(--mcb-space-3) 0;
+			font-weight: 600;
+			color: var(--mcb-color-ink);
+			@include focus-ring;
+		}
+
+		// Sub-menus: collapsed by default, JS toggles .is-open on the <li>.
+		.sub-menu {
+			display: none;
+			margin: 0;
+			padding: 0 0 var(--mcb-space-3) var(--mcb-space-4);
+			list-style: none;
+
+			li {
+				border: 0;
+			}
+
+			a {
+				padding: var(--mcb-space-2) 0;
+				font-weight: 400;
+				color: var(--mcb-color-body);
+			}
+		}
+
+		li.is-open > .sub-menu {
+			display: block;
+		}
+	}
+
+	&__footer {
+		padding: var(--mcb-space-4) var(--mcb-space-5);
+		border-top: 1px solid var(--mcb-color-line);
+	}
+}
+
+@keyframes mcb-fade-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes mcb-slide-in {
+	from { transform: translateX(100%); }
+	to { transform: translateX(0); }
+}
