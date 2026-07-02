@@ -1,0 +1,43 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Base element behaviour. No aggressive resets — Brikk ships its own; we
+// only normalise what the DMF components rely on.
+// ---------------------------------------------------------------------------
+
+body.dmf {
+	margin: 0;
+	background: var(--dmf-color-surface);
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	// Skip link (a11y) — visible only on focus.
+	.dmf-skip-link {
+		position: absolute;
+		top: -100%;
+		left: var(--dmf-space-4);
+		z-index: 1000;
+		padding: var(--dmf-space-2) var(--dmf-space-4);
+		background: var(--dmf-color-ink);
+		color: #fff;
+		border-radius: var(--dmf-radius-sm);
+
+		&:focus {
+			top: var(--dmf-space-2);
+			clip: auto;
+			width: auto;
+			height: auto;
+		}
+	}
+}
+
+// Shared icon behaviour: inherit currentColor, scale with font size.
+.dmf-icon {
+	width: 1.125em;
+	height: 1.125em;
+	flex: 0 0 auto;
+	vertical-align: -0.2em;
+}

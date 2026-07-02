@@ -1,0 +1,34 @@
+@use '../abstracts' as *;
+
+.dmf-container {
+	width: 100%;
+	max-width: calc(var(--dmf-container) + 2 * var(--dmf-gutter));
+	margin-inline: auto;
+	padding-inline: var(--dmf-gutter);
+
+	&--narrow {
+		max-width: calc(var(--dmf-container-narrow) + 2 * var(--dmf-gutter));
+	}
+}
+
+.dmf-section {
+	padding-block: var(--dmf-space-section);
+	background: var(--dmf-color-surface);
+
+	// Paper sections alternate with white (board 1A: experiences, insights).
+	&--paper {
+		background: var(--dmf-color-paper);
+		border-top: 1px solid #eeede3;
+	}
+
+	// Stone panels (Convention Bureau services section).
+	&--stone {
+		background: #f7f6f0;
+		border-top: 1px solid #ecebe1;
+	}
+
+	&__more {
+		margin-top: var(--dmf-space-6);
+		text-align: center;
+	}
+}

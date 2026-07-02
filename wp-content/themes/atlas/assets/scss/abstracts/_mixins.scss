@@ -1,0 +1,60 @@
+@use 'tokens' as *;
+
+// ---------------------------------------------------------------------------
+// Mixins
+// ---------------------------------------------------------------------------
+
+// Mobile-first media query: @include mq($breakpoint-lg) { … }
+@mixin mq($min) {
+	@media (min-width: $min) {
+		@content;
+	}
+}
+
+// Max-width query for the rare desktop-first exception.
+@mixin mq-down($max) {
+	@media (max-width: calc(#{$max} - 0.0625em)) {
+		@content;
+	}
+}
+
+// Consistent focus ring (keyboard a11y) without harming mouse UX.
+@mixin focus-ring {
+	&:focus-visible {
+		outline: 2px solid var(--dmf-color-secondary);
+		outline-offset: 2px;
+		border-radius: var(--dmf-radius-sm);
+	}
+}
+
+// Multi-line clamp for card titles/excerpts.
+@mixin line-clamp($lines: 2) {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $lines;
+	overflow: hidden;
+}
+
+// Cover-image media block with fixed aspect ratio (no layout shift).
+// Pass the ratio as a string, e.g. media-cover('4 / 3').
+@mixin media-cover($ratio: '4 / 3') {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	aspect-ratio: #{$ratio};
+
+	img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+// Respect users who prefer reduced motion.
+@mixin motion-safe {
+	@media (prefers-reduced-motion: no-preference) {
+		@content;
+	}
+}

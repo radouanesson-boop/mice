@@ -1,0 +1,160 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Home hero — board 1A: split layout. Text column (white) left, cinematic
+// image right with a soft green gradient and a frosted stats card.
+// Mobile (board 1C): image on top with overlay title, buttons stacked
+// full-width below, stats become a 3-up row.
+// ---------------------------------------------------------------------------
+
+.dmf-hero {
+	background: var(--dmf-color-surface);
+
+	@include mq($breakpoint-lg) {
+		display: grid;
+		grid-template-columns: minmax(0, 41.6%) 1fr; // 600 / 1440
+		min-height: min(45.4rem, 92vh);              // 726px comp height
+	}
+
+	// --- Text column ---------------------------------------------------------
+	&__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: var(--dmf-space-6) var(--dmf-gutter) var(--dmf-space-7);
+
+		@include mq($breakpoint-lg) {
+			padding: 5.5rem 3.75rem 3.375rem var(--dmf-gutter);
+		}
+	}
+
+	&__title {
+		margin: var(--dmf-space-5) 0 0;
+		font-size: var(--dmf-text-4xl);
+		font-weight: 300;
+		line-height: 1.03;
+		letter-spacing: var(--dmf-track-tight);
+		color: var(--dmf-color-ink);
+		text-wrap: balance;
+	}
+
+	&__desc {
+		margin: 1.625rem 0 0;
+		max-width: 28.25rem;
+		font-size: var(--dmf-text-lg);
+		line-height: 1.52;
+		color: var(--dmf-color-body);
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8125rem;
+		margin-top: 2.125rem;
+	}
+
+	// --- Image column ----------------------------------------------------------
+	&__media {
+		position: relative;
+		min-height: 21.5rem; // mobile: 344px like board 1C
+		overflow: hidden;
+
+		img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center 30%;
+		}
+	}
+
+	&__overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(105deg, rgb(34 50 31 / calc(var(--dmf-hero-overlay) * 1)), rgb(34 50 31 / 0%) 42%);
+
+		@include mq-down($breakpoint-lg) {
+			background: linear-gradient(180deg, rgb(24 38 29 / 12%), rgb(20 32 24 / 78%));
+		}
+	}
+
+	// Title shown over the image on mobile only (board 1C).
+	&__media-caption {
+		position: absolute;
+		left: var(--dmf-space-5);
+		right: var(--dmf-space-5);
+		bottom: var(--dmf-space-5);
+		color: #fff;
+
+		@include mq($breakpoint-lg) {
+			display: none;
+		}
+	}
+
+	// --- Frosted stats card -------------------------------------------------------
+	&__stats {
+		display: flex;
+		gap: 1.625rem;
+		margin: var(--dmf-space-5) var(--dmf-gutter) 0;
+		padding: 1.25rem 1.5rem;
+		background: rgb(255 255 255 / 92%);
+		backdrop-filter: blur(8px);
+		border-radius: 0.8125rem;
+		justify-content: space-between;
+
+		@include mq($breakpoint-lg) {
+			position: absolute;
+			left: 2.125rem;
+			bottom: 2.125rem;
+			margin: 0;
+			justify-content: flex-start;
+			box-shadow: var(--dmf-shadow);
+		}
+	}
+
+	&__stat {
+		text-align: left;
+
+		b {
+			display: block;
+			font-size: 1.875rem;
+			font-weight: 600;
+			line-height: 1;
+			color: var(--dmf-color-primary);
+		}
+
+		span {
+			display: block;
+			margin-top: 0.3125rem;
+			font-size: var(--dmf-text-xs);
+			letter-spacing: 0.02em;
+			color: var(--dmf-color-muted);
+		}
+	}
+
+	&__stat-divider {
+		width: 1px;
+		background: var(--dmf-color-line);
+	}
+}
+
+// Inner pages: calm paper banner with breadcrumbs (design has no busy inner
+// hero — hairline + eyebrow + light display title).
+.dmf-page-hero {
+	padding-block: var(--dmf-space-8) var(--dmf-space-7);
+	background: var(--dmf-color-paper);
+	border-bottom: 1px solid var(--dmf-color-line);
+
+	&__title {
+		margin: var(--dmf-space-3) 0 0;
+		font-weight: 300;
+		letter-spacing: var(--dmf-track-tight);
+	}
+
+	&__desc {
+		max-width: 46rem;
+		margin-top: var(--dmf-space-3);
+		color: var(--dmf-color-muted);
+	}
+}

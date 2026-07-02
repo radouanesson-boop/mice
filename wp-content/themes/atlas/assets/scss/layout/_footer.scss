@@ -1,0 +1,184 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Footer — board 1A: light stone (#f6f5ef), hairline top, 4 columns
+// (brand / Explore / Plan / Newsletter), quiet legal bar.
+// ---------------------------------------------------------------------------
+
+.dmf-footer {
+	background: var(--dmf-color-stone);
+	border-top: 1px solid #e9e8de;
+	color: var(--dmf-color-muted);
+	font-size: 0.90625rem;
+
+	a {
+		color: #4b544a;
+
+		&:hover {
+			color: var(--dmf-color-primary);
+		}
+	}
+
+	&__prefooter {
+		padding-block: var(--dmf-space-6);
+		background: var(--dmf-color-tint);
+		border-bottom: 1px solid #dde3d3;
+		color: var(--dmf-color-ink);
+	}
+
+	&__main {
+		padding-block: 4rem 0;
+	}
+
+	&__grid {
+		display: grid;
+		gap: var(--dmf-space-6) 3rem;
+		grid-template-columns: 1fr;
+
+		@include mq($breakpoint-sm) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include mq($breakpoint-lg) {
+			grid-template-columns: 1.5fr 1fr 1fr 1.4fr;
+		}
+	}
+
+	// Brand column.
+	&__brand-lockup {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+
+		.dmf-icon {
+			width: 2.125rem;
+			height: 2.4375rem;
+		}
+	}
+
+	&__brand-name {
+		margin: 0;
+		font-size: 0.9375rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		line-height: 1;
+		color: #243027;
+		text-transform: uppercase;
+	}
+
+	&__brand-tag {
+		display: block;
+		margin-top: 0.25rem;
+		font-size: 0.5625rem;
+		font-weight: 600;
+		letter-spacing: 0.32em;
+		text-transform: uppercase;
+		color: var(--dmf-color-secondary);
+	}
+
+	&__brand-desc {
+		max-width: 18.125rem;
+		margin: 1.25rem 0 0;
+		line-height: 1.6;
+		color: var(--dmf-color-muted);
+	}
+
+	&__widget-title {
+		margin: 0 0 var(--dmf-space-4);
+		font-family: var(--dmf-font-body);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--dmf-color-faint);
+	}
+
+	&__menu,
+	&__widget ul {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6875rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	// Newsletter (native form widget / Elementor form picks these up).
+	&__widget form,
+	&__newsletter {
+		display: flex;
+		gap: var(--dmf-space-2);
+
+		input[type='email'],
+		input[type='text'] {
+			flex: 1;
+			min-width: 0;
+			padding: 0.75rem 0.875rem;
+			font-family: inherit;
+			font-size: var(--dmf-text-sm);
+			color: #2b322c;
+			background: #fff;
+			border: 1px solid #dddcd0;
+			border-radius: 0.625rem;
+			outline: none;
+
+			&:focus {
+				border-color: var(--dmf-color-secondary);
+			}
+		}
+
+		button,
+		input[type='submit'] {
+			padding: 0.75rem 1.125rem;
+			font-family: inherit;
+			font-size: var(--dmf-text-sm);
+			font-weight: 500;
+			color: #fff;
+			background: var(--dmf-color-primary);
+			border: 0;
+			border-radius: 0.625rem;
+			cursor: pointer;
+
+			&:hover {
+				background: var(--dmf-color-primary-dark);
+			}
+		}
+	}
+
+	&__bottom {
+		margin-top: 2.5rem;
+		padding-block: 1.375rem 1.875rem;
+		border-top: 1px solid #e6e5db;
+		font-size: 0.78125rem;
+		color: var(--dmf-color-faint);
+	}
+
+	&__bottom-inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--dmf-space-3);
+	}
+
+	&__copyright {
+		margin: 0;
+	}
+
+	&__legal-menu {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.375rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		a {
+			color: var(--dmf-color-faint);
+
+			&:hover {
+				color: var(--dmf-color-primary);
+			}
+		}
+	}
+}

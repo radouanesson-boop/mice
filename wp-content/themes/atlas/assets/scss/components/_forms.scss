@@ -1,0 +1,65 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Forms — shared field styling for theme, Routiz filter & submission forms,
+// comment forms and newsletter widgets. Scoped to body.dmf.
+// ---------------------------------------------------------------------------
+
+body.dmf {
+	input[type='text'],
+	input[type='email'],
+	input[type='url'],
+	input[type='tel'],
+	input[type='number'],
+	input[type='password'],
+	input[type='search'],
+	input[type='date'],
+	select,
+	textarea {
+		width: 100%;
+		padding: 0.875rem 1rem;
+		font-family: var(--dmf-font-body);
+		font-size: var(--dmf-text-base);
+		color: #3c443c;
+		background: var(--dmf-color-surface);
+		border: 1px solid #e2e1d5;
+		border-radius: var(--dmf-radius);
+		transition: border-color var(--dmf-duration) var(--dmf-ease), box-shadow var(--dmf-duration) var(--dmf-ease);
+
+		&:focus {
+			border-color: var(--dmf-color-secondary);
+			box-shadow: 0 0 0 3px var(--dmf-color-tint);
+			outline: none;
+		}
+
+		&::placeholder {
+			color: var(--dmf-color-faint);
+		}
+	}
+
+	label {
+		display: inline-block;
+		margin-bottom: var(--dmf-space-1);
+		font-size: var(--dmf-text-sm);
+		font-weight: 600;
+		color: var(--dmf-color-ink);
+	}
+
+	// Native submit buttons inherit the primary pill look.
+	button[type='submit']:not(.dmf-btn),
+	input[type='submit']:not(.dmf-btn) {
+		padding: 0.875rem 1.625rem;
+		font-family: var(--dmf-font-body);
+		font-weight: 500;
+		color: #fff;
+		background: var(--dmf-color-primary);
+		border: 0;
+		border-radius: var(--dmf-radius-pill);
+		cursor: pointer;
+		transition: background-color var(--dmf-duration) var(--dmf-ease);
+
+		&:hover {
+			background: var(--dmf-color-primary-dark);
+		}
+	}
+}
