@@ -1,0 +1,20 @@
+/*
+Theme Name:   Visit Marrakech — Convention Bureau
+Theme URI:    https://mice.visitmarrakech.com
+Description:  The Marrakech Convention Bureau implementation of the Destination Management Framework (DMF Core). A standalone, from-scratch theme — no page builder, no parent theme — implementing the Claude Design prototype: Bahja Spirit identity, white premium interface, editorial luxury B2B aesthetic. All destination functionality (listings, search, maps, events, members, inquiries, SEO) comes from the DMF Core plugin; this theme is pure presentation.
+Author:       Marrakech Convention Bureau
+Version:      0.1.0
+Requires at least: 6.4
+Requires PHP: 8.0
+License:      GNU General Public License v2 or later
+License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  vm
+Tags:         block-patterns, custom-menu, custom-logo, translation-ready, rtl-language-support
+*/
+
+/*
+ * No CSS here — the design system compiles from assets/scss/ to
+ * assets/css/main.css (npm run build). The class namespace is `mcb-`
+ * (Marrakech Convention Bureau design system) plus `dmf-` structural
+ * classes rendered by DMF Core templates.
+ */

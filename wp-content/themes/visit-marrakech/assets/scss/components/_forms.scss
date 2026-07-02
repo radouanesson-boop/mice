@@ -1,0 +1,65 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Forms — shared field styling for theme, Routiz filter & submission forms,
+// comment forms and newsletter widgets. Scoped to body.mcb.
+// ---------------------------------------------------------------------------
+
+body.mcb {
+	input[type='text'],
+	input[type='email'],
+	input[type='url'],
+	input[type='tel'],
+	input[type='number'],
+	input[type='password'],
+	input[type='search'],
+	input[type='date'],
+	select,
+	textarea {
+		width: 100%;
+		padding: 0.875rem 1rem;
+		font-family: var(--mcb-font-body);
+		font-size: var(--mcb-text-base);
+		color: #3c443c;
+		background: var(--mcb-color-surface);
+		border: 1px solid #e2e1d5;
+		border-radius: var(--mcb-radius);
+		transition: border-color var(--mcb-duration) var(--mcb-ease), box-shadow var(--mcb-duration) var(--mcb-ease);
+
+		&:focus {
+			border-color: var(--mcb-color-secondary);
+			box-shadow: 0 0 0 3px var(--mcb-color-tint);
+			outline: none;
+		}
+
+		&::placeholder {
+			color: var(--mcb-color-faint);
+		}
+	}
+
+	label {
+		display: inline-block;
+		margin-bottom: var(--mcb-space-1);
+		font-size: var(--mcb-text-sm);
+		font-weight: 600;
+		color: var(--mcb-color-ink);
+	}
+
+	// Native submit buttons inherit the primary pill look.
+	button[type='submit']:not(.mcb-btn),
+	input[type='submit']:not(.mcb-btn) {
+		padding: 0.875rem 1.625rem;
+		font-family: var(--mcb-font-body);
+		font-weight: 500;
+		color: #fff;
+		background: var(--mcb-color-primary);
+		border: 0;
+		border-radius: var(--mcb-radius-pill);
+		cursor: pointer;
+		transition: background-color var(--mcb-duration) var(--mcb-ease);
+
+		&:hover {
+			background: var(--mcb-color-primary-dark);
+		}
+	}
+}

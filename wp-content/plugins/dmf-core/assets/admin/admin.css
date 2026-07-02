@@ -1,0 +1,35 @@
+/* DMF admin — calm, framework-branded touches. */
+.dmf-admin .dmf-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 16px;
+	margin-top: 24px;
+	max-width: 960px;
+}
+
+.dmf-admin .dmf-card-stat {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 20px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 10px;
+	text-decoration: none;
+	transition: border-color 0.15s ease;
+}
+
+.dmf-admin .dmf-card-stat:hover {
+	border-color: #284236;
+}
+
+.dmf-admin .dmf-card-stat__value {
+	font-size: 28px;
+	font-weight: 600;
+	color: #284236;
+	line-height: 1;
+}
+
+.dmf-admin .dmf-card-stat__label {
+	color: #646970;
+}

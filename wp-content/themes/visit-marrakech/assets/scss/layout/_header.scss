@@ -1,0 +1,211 @@
+@use '../abstracts' as *;
+
+// ---------------------------------------------------------------------------
+// Header — board 1A: white 84px bar, hairline bottom, brand lockup left,
+// centered nav, EN/FR + search + RFP pill right. Shadow only when stuck.
+// ---------------------------------------------------------------------------
+
+.mcb-topbar {
+	background: var(--mcb-color-stone);
+	color: var(--mcb-color-muted);
+	font-size: var(--mcb-text-xs);
+	border-bottom: 1px solid var(--mcb-color-line);
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--mcb-space-4);
+		min-height: 2.25rem;
+	}
+
+	&__tagline {
+		margin: 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		letter-spacing: 0.06em;
+	}
+
+	&__menu {
+		display: flex;
+		gap: var(--mcb-space-4);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		a {
+			color: var(--mcb-color-muted);
+
+			&:hover {
+				color: var(--mcb-color-primary);
+			}
+		}
+	}
+
+	@include mq-down($breakpoint-md) {
+		display: none;
+	}
+}
+
+.mcb-header {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+
+	&__bar {
+		background: var(--mcb-color-surface);
+		border-bottom: 1px solid #efeee7;
+		transition: box-shadow var(--mcb-duration) var(--mcb-ease);
+	}
+
+	&.is-stuck &__bar {
+		box-shadow: 0 18px 50px -34px rgb(40 66 54 / 45%);
+	}
+
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--mcb-space-5);
+		min-height: var(--mcb-header-height);
+	}
+
+	// Brand lockup: pebble mark + two-line wordmark.
+	&__brand {
+		display: flex;
+		align-items: center;
+
+		a {
+			display: flex;
+			align-items: center;
+			gap: 0.8125rem;
+		}
+
+		img {
+			max-height: 2.75rem;
+			width: auto;
+		}
+	}
+
+	&__brand-mark .mcb-icon {
+		width: 2.375rem;
+		height: 2.75rem;
+	}
+
+	&__brand-name {
+		font-size: 1rem;
+		font-weight: 600;
+		letter-spacing: 0.13em;
+		line-height: 1;
+		color: #243027;
+		text-transform: uppercase;
+	}
+
+	&__brand-tag {
+		display: block;
+		margin-top: 0.25rem;
+		font-size: 0.59375rem;
+		font-weight: 600;
+		letter-spacing: 0.34em;
+		text-transform: uppercase;
+		color: var(--mcb-color-secondary);
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+	}
+
+	// EN / FR toggle.
+	&__lang {
+		display: flex;
+		align-items: center;
+		gap: 0.125rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+
+		a {
+			color: #b7bbb0;
+
+			&:hover {
+				color: var(--mcb-color-primary);
+			}
+		}
+
+		.is-active a,
+		.current-lang a {
+			color: var(--mcb-color-primary);
+		}
+
+		li + li::before {
+			content: '/';
+			margin: 0 0.25rem;
+			color: #cfd0c8;
+		}
+	}
+
+	&__search {
+		display: inline-flex;
+		padding: var(--mcb-space-2);
+		color: #3c443c;
+		@include focus-ring;
+
+		.mcb-icon {
+			width: 1.125rem;
+			height: 1.125rem;
+		}
+
+		&:hover {
+			color: var(--mcb-color-secondary);
+		}
+	}
+
+	&__cta {
+		@include mq-down($breakpoint-md) {
+			display: none;
+		}
+	}
+}
+
+// Burger (mobile trigger) — three lines, no box (board 1C).
+.mcb-burger {
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.3125rem;
+	width: 2.75rem;
+	height: 2.75rem;
+	padding: 0.6875rem;
+	background: none;
+	border: 0;
+	cursor: pointer;
+	@include focus-ring;
+
+	&__line {
+		display: block;
+		height: 2px;
+		background: #2f382f;
+		border-radius: 1px;
+		transition: transform var(--mcb-duration) var(--mcb-ease), opacity var(--mcb-duration) var(--mcb-ease), width var(--mcb-duration) var(--mcb-ease);
+
+		&:nth-child(3) {
+			width: 70%;
+		}
+	}
+
+	&[aria-expanded='true'] &__line {
+		&:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+		&:nth-child(2) { opacity: 0; }
+		&:nth-child(3) { width: 100%; transform: translateY(-7px) rotate(-45deg); }
+	}
+
+	@include mq($breakpoint-lg) {
+		display: none;
+	}
+}

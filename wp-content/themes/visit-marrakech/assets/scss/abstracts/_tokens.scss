@@ -1,0 +1,100 @@
+// ---------------------------------------------------------------------------
+// DESIGN TOKENS — synced with the Claude Design handoff
+// (design-reference: "Marrakech Convention Bureau.dc.html", board 1D).
+//
+// Identity: Visit Marrakech · Convention Bureau — "Bahja Spirit".
+// Pure white dominates; deep green carries structure; sage and a restrained
+// ochre appear only as accents. Never large colour blocks.
+// ---------------------------------------------------------------------------
+
+:root {
+	// -- Brand palette (board 1D · 02 Colour) ---------------------------------
+	--mcb-color-primary:        #284236; // Deep Green — buttons, structure
+	--mcb-color-primary-dark:   #1d3227; // hover state
+	--mcb-color-secondary:      #7d985b; // Sage — eyebrows, accents, links
+	--mcb-color-accent:         #b9793a; // Ochre — micro-accents only
+	--mcb-color-ink:            #22321f; // near-black green — headlines
+	--mcb-color-body:           #5c655b; // body copy
+	--mcb-color-strong:         #26302a; // card titles / medium emphasis
+	--mcb-color-muted:          #6a7268; // secondary text
+	--mcb-color-faint:          #8a9184; // meta, footnotes
+	--mcb-color-line:           #e8e7de; // hairlines
+	--mcb-color-line-soft:      #ecebe1; // card borders
+	--mcb-color-paper:          #faf9f4; // alternating section background
+	--mcb-color-stone:          #f6f5ef; // trust strip / footer background
+	--mcb-color-tint:           #eef1e8; // green tint panels
+	--mcb-color-chip:           #eae9df; // solid chip background
+	--mcb-color-on-dark:        #c7d8b6; // eyebrows/accents on deep green
+	--mcb-color-on-dark-body:   #dfe6d8; // body text on deep green
+	--mcb-color-surface:        #ffffff;
+
+	// -- Typography (board 1D · 03) --------------------------------------------
+	// Jost = geometric structure (brand Futura); Newsreader italic = the
+	// editorial accent voice (.mcb-em) for single words and pull-quotes.
+	--mcb-font-body: 'Jost', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--mcb-font-display: 'Jost', system-ui, sans-serif;
+	--mcb-font-em: 'Newsreader', Georgia, serif;
+
+	// Fluid type scale mapped to the 1440px comps.
+	--mcb-text-xs:   0.75rem;    // 12px — labels, footnotes
+	--mcb-text-sm:   0.875rem;   // 14px — meta, nav
+	--mcb-text-base: 0.9375rem;  // 15px — buttons, UI
+	--mcb-text-md:   1.0625rem;  // 17px
+	--mcb-text-lg:   clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);   // 17→19 lead
+	--mcb-text-xl:   clamp(1.1875rem, 1.1rem + 0.5vw, 1.3125rem);  // card titles 21px
+	--mcb-text-2xl:  clamp(1.375rem, 1.2rem + 0.9vw, 1.6875rem);   // quote-ish 27px
+	--mcb-text-3xl:  clamp(1.75rem, 1.4rem + 1.8vw, 2.75rem);      // H2 44px
+	--mcb-text-4xl:  clamp(2.0625rem, 1.5rem + 2.9vw, 4.125rem);   // hero 66px
+	--mcb-text-stat: clamp(1.75rem, 1.5rem + 1.3vw, 2.625rem);     // strengths 42px
+
+	--mcb-leading-tight: 1.06;
+	--mcb-leading-body:  1.55;
+
+	--mcb-track-label: 0.26em;   // eyebrow letter-spacing
+	--mcb-track-tight: -0.02em;  // display letter-spacing
+
+	// -- Layout (board 1D · 05: 12-col, 24px gutter, 88px outer margins) -------
+	--mcb-container: 84.5rem;        // 1352px content width (1440 − 2×44)
+	--mcb-container-narrow: 58.75rem; // 940px (pull-quote measure)
+	--mcb-gutter: clamp(1.25rem, 4vw, 2.75rem); // 20 → 44px page padding
+
+	// -- Spacing (8-pt rhythm) ---------------------------------------------------
+	--mcb-space-1: 0.25rem;
+	--mcb-space-2: 0.5rem;
+	--mcb-space-3: 0.75rem;
+	--mcb-space-4: 1rem;
+	--mcb-space-5: 1.5rem;
+	--mcb-space-6: 2rem;
+	--mcb-space-7: 2.75rem;
+	--mcb-space-8: 4rem;
+	--mcb-space-section: clamp(3.75rem, 2.75rem + 4.5vw, 6.25rem); // ≈100px desktop
+
+	// -- Shape & elevation (soft radii 10–16px, 1px lines, hover-only lift) -----
+	--mcb-radius-sm: 0.5rem;     // 8px
+	--mcb-radius:    0.6875rem;  // 11px inputs
+	--mcb-radius-md: 0.875rem;   // 14px panels
+	--mcb-radius-lg: 0.9375rem;  // 15px cards
+	--mcb-radius-xl: 1rem;       // 16px large panels
+	--mcb-radius-pill: 999px;
+
+	--mcb-shadow-sm: 0 1px 2px rgb(40 66 54 / 5%);
+	--mcb-shadow:    0 24px 60px -30px rgb(24 38 29 / 60%);
+	--mcb-shadow-card: 0 44px 74px -42px rgb(40 66 54 / 42%);
+	--mcb-shadow-lg: 0 44px 90px -46px rgb(24 38 29 / 50%);
+
+	// -- Motion (board 1D · 08: 200–300ms ease, +6px hover lift) -----------------
+	--mcb-ease: cubic-bezier(0.25, 0.6, 0.3, 1);
+	--mcb-duration: 240ms;
+	--mcb-lift: -7px;
+
+	// -- Component-level -----------------------------------------------------------
+	--mcb-header-height: 5.25rem;  // 84px
+	--mcb-hero-overlay: 0.3;       // hero image scrim strength
+}
+
+// SCSS-only breakpoints.
+$breakpoint-sm: 40em;   // 640px — large mobile
+$breakpoint-md: 48em;   // 768px — tablet
+$breakpoint-lg: 64em;   // 1024px — desktop nav switch
+$breakpoint-xl: 80em;   // 1280px — full desktop comps
+$breakpoint-2xl: 96em;  // 1536px

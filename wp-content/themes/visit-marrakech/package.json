@@ -1,0 +1,13 @@
+{
+  "name": "visit-marrakech",
+  "version": "0.1.0",
+  "description": "SCSS build for the Visit Marrakech theme (DMF Core framework).",
+  "private": true,
+  "scripts": {
+    "build": "sass assets/scss/main.scss assets/css/main.css --style=compressed --source-map",
+    "watch": "sass --watch assets/scss/main.scss assets/css/main.css --style=expanded --source-map"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}
