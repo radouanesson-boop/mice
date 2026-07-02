@@ -1,44 +1,54 @@
-# Marrakech Convention Bureau — WordPress (Brikk child theme)
+# Marrakech Convention Bureau — Destination Management Framework
 
-WordPress implementation of the new Marrakech Convention Bureau website,
-built as a **child theme of Brikk** (Directory & Listing theme by Utillz).
-Brikk and its Routiz core plugin remain the application framework — listings,
-venues, hotels, experiences, events, search, filters, maps, taxonomies,
-booking, user dashboard, Elementor and SEO all keep working. Only the
-presentation layer is redesigned.
+An **open, modular, from-scratch WordPress framework for Destination
+Marketing Organizations, Convention Bureaus and Tourism Boards** — an
+operating system for destinations — with **Marrakech Convention Bureau**
+(https://mice.visitmarrakech.com) as its first implementation, designed
+around the Visit Marrakech · Bahja Spirit identity.
 
-## Repository layout
+## What's in this repository
 
-```
-wp-content/themes/marrakech-convention-bureau-child/   ← the deliverable (see its README)
-docs/
-├── INSTALLATION.md        Full setup: parent stack, child theme, menus, homepage
-├── DEPLOYMENT.md          Build, rollout, safe Brikk/Routiz updates, perf checklist
-├── CONTENT-MAPPING.md     Dynamic data mapping (Routiz fields → components)
-└── ELEMENTOR-GUIDE.md     Widget catalogue + homepage composition for editors
-design-reference/          Drop the Claude Design export here + token sync guide
-```
+| Path | What it is |
+|---|---|
+| `wp-content/plugins/dmf-core/` | **DMF Core** — the framework plugin: kernel + 17 modules (listings, search, maps, events, members, favorites, reviews, forms/RFP, SEO, API, blocks, shortcodes, admin, i18n, performance, CLI). PSR-4, no page builder, no jQuery, no commercial dependencies. |
+| `wp-content/themes/visit-marrakech/` | **Visit Marrakech** — standalone theme implementing the Claude Design prototype (boards 1A/1C/1D) on the framework. Pure presentation: token-driven SCSS design system, template parts, `dmf/` template overrides, vanilla JS. |
+| `docs/framework/` | Architecture, database schema + ER diagram, folder structure & naming, coding standards, API reference, developer guide (add-ons, child themes, new destinations), user guide, deployment, maintenance, versioning, roadmap. |
+| `design-reference/` | The Claude Design export (`.dc.html`), design data, and the Visit Marrakech brand identity PDF, with a design→code map. |
+| `wp-content/themes/marrakech-convention-bureau-child/` + `docs/*.md` | The earlier **Brikk child theme** track (kept for reference; superseded by the framework). |
 
 ## Quick start
 
 ```bash
-cd wp-content/themes/marrakech-convention-bureau-child
-npm install && npm run build     # compiled main.css is also committed
+# WordPress ≥ 6.4, PHP ≥ 8.0
+wp plugin activate dmf-core
+wp theme activate visit-marrakech
+wp option update permalink_structure '/%postname%/' && wp rewrite flush
+wp dmf seed --count=4        # optional demo listings
 ```
 
-Copy the theme folder to your WordPress `wp-content/themes/`, activate it
-(Brikk must be installed), then follow `docs/INSTALLATION.md`.
+Then: Destination → Settings (maps, inquiry email) · Appearance → Menus ·
+Customize → Homepage content. Full steps in
+[`docs/framework/DEPLOYMENT.md`](docs/framework/DEPLOYMENT.md).
 
-## Principles
+## Design principles
 
-- **Never modify Brikk core.** Child theme + hooks + filters + the official
-  `templates/routiz/` override mechanism only — everything survives updates.
-- **Design tokens.** One source of truth (`assets/scss/abstracts/_tokens.scss`)
-  drives colors, type, spacing, radii and shadows everywhere.
-- **Elementor-editable.** Header/footer locations + the "Marrakech CB" widget
-  set make every homepage section client-editable without code.
-- **Dynamic everything.** No hardcoded content; listings, taxonomies,
-  featured images, custom fields, menus, widgets and theme mods feed the UI.
-- **Performance & SEO.** One stylesheet, one deferred vanilla JS file,
-  self-hosted fonts, native lazy-loading, srcset image sizes, semantic HTML5,
-  SEO-plugin-delegated breadcrumbs/schema.
+- **Modules, not monolith** — every capability is a swappable module
+  behind the `dmf/modules` filter.
+- **Configuration, not code** — unlimited listing types defined as data
+  (config file, admin UI, or REST); new destinations = new config + theme
+  tokens, never a rewrite.
+- **One markup source** — blocks, shortcodes and PHP archives render the
+  same theme-overridable templates.
+- **Framework ≠ brand** — DMF Core outputs neutral `dmf-` structure; the
+  theme owns the `mcb-` design system (deep green / sage / Jost +
+  Newsreader italic, white premium editorial interface).
+- **Enterprise discipline** — WPCS + PHPStan, nonce/sanitize/escape
+  everywhere, capability model with a partner role, WCAG AA patterns,
+  native i18n with RTL, no security shortcuts.
+
+## Long-term vision
+
+Agadir, Essaouira, Casablanca, Rabat or any international destination
+should ship by changing **branding, content and configuration** — see
+[`docs/framework/ROADMAP.md`](docs/framework/ROADMAP.md) for the path to
+v1.0.
